@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, DM_Serif_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Young_Serif } from "next/font/google";
 import "./globals.css";
 
 const jakartaSans = Plus_Jakarta_Sans({
@@ -8,10 +8,10 @@ const jakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const dmSerif = DM_Serif_Display({
+const youngSerif = Young_Serif({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakartaSans.variable} ${dmSerif.variable} h-full antialiased`}
+      className={`${jakartaSans.variable} ${youngSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-[#FAF9F6] text-[#141416]">
         {children}

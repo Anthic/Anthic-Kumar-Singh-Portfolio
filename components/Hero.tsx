@@ -34,39 +34,121 @@ export default function Hero() {
   const floatingCardRef = useRef<HTMLDivElement | null>(null);
   const starRef = useRef<HTMLDivElement | null>(null);
 
+  // SVG drawing animation refs for 2025 Edition badge
+  const circlePathRef = useRef<SVGPathElement | null>(null);
+  const arrowPathRef = useRef<SVGPathElement | null>(null);
+  const arrowHeadRef = useRef<SVGPathElement | null>(null);
+  const badgeTextRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Entrance timeline on load
+      // Entrance timeline on load / reload
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.from(".hero-badge-anim", {
-        opacity: 0,
-        y: -18,
-        rotation: -12,
-        duration: 0.8,
+      // 1. Initial states for SVG drawing elements
+      if (circlePathRef.current) {
+        gsap.set(circlePathRef.current, {
+          strokeDasharray: 100,
+          strokeDashoffset: 100,
+        });
+      }
+      if (arrowPathRef.current) {
+        gsap.set(arrowPathRef.current, {
+          strokeDasharray: 100,
+          strokeDashoffset: 100,
+        });
+      }
+      if (arrowHeadRef.current) {
+        gsap.set(arrowHeadRef.current, {
+          strokeDasharray: 100,
+          strokeDashoffset: 100,
+          opacity: 0,
+        });
+      }
+      if (badgeTextRef.current) {
+        gsap.set(badgeTextRef.current, {
+          opacity: 0,
+          scale: 0.8,
+        });
+      }
+
+      // 2. Real-time drawing of 2025 Edition sketched circle
+      tl.to(circlePathRef.current, {
+        strokeDashoffset: 0,
+        duration: 0.85,
+        ease: "power2.inOut",
       })
+        // 2025 Edition text reveals as circle closes
+        .to(
+          badgeTextRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.45,
+            ease: "back.out(1.5)",
+          },
+          "-=0.35"
+        )
+        // Curved line starts animating from its beginning and progressively fills the exact shape/path
+        .to(
+          arrowPathRef.current,
+          {
+            strokeDashoffset: 0,
+            duration: 0.75,
+            ease: "power2.out",
+          },
+          "-=0.2"
+        )
+        // Arrowhead draws at the end of the curved line
+        .to(
+          arrowHeadRef.current,
+          {
+            strokeDashoffset: 0,
+            opacity: 1,
+            duration: 0.35,
+            ease: "back.out(2)",
+          },
+          "-=0.15"
+        )
+        // Staggered entrance for each individual letter of "Portfolio"
         .from(
-          ".hero-title-part",
+          ".hero-letter",
           {
             opacity: 0,
-            y: 35,
-            duration: 0.9,
-            stagger: 0.12,
+            y: 40,
+            duration: 0.8,
+            stagger: 0.04,
+            ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.55"
         )
+        // Coral "Full-Stack Developer" Pill Badge pops in
         .from(
           ".hero-pill-badge",
           {
-            scale: 0.7,
+            scale: 0.5,
             opacity: 0,
-            duration: 0.6,
-            ease: "back.out(1.8)",
+            duration: 0.65,
+            ease: "back.out(2)",
           },
-          "-=0.6"
+          "-=0.5"
         )
+        // Doodles & Stars pop in with springy lively bounce
+        .from(
+          ".hero-doodle-pop",
+          {
+            opacity: 0,
+            scale: 0.2,
+            rotation: -20,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: "back.out(2)",
+          },
+          "-=0.55"
+        )
+        // Right photo column entrance
         .from(
           rightColumnRef.current,
           {
@@ -77,6 +159,7 @@ export default function Hero() {
           },
           "-=0.7"
         )
+        // Floating Card
         .from(
           floatingCardRef.current,
           {
@@ -85,16 +168,6 @@ export default function Hero() {
             scale: 0.96,
             duration: 0.85,
             ease: "back.out(1.4)",
-          },
-          "-=0.6"
-        )
-        .from(
-          ".hero-doodle-pop",
-          {
-            opacity: 0,
-            scale: 0.4,
-            duration: 0.7,
-            stagger: 0.07,
           },
           "-=0.6"
         );
@@ -157,73 +230,103 @@ export default function Hero() {
              ========================================= */}
           <div ref={leftTextRef} className="lg:col-span-7 flex flex-col justify-center relative z-10">
             
-            {/* Top Badge: "2025 Edition" with curly arrow */}
-            <div className="hero-badge-anim mb-3 sm:mb-5 w-fit">
-              <EditionBadge />
+            {/* Top Badge: "2025 Edition" with curved doodle arrow */}
+            <div className="mb-2 sm:mb-4 w-fit">
+              <EditionBadge
+                circlePathRef={circlePathRef}
+                arrowPathRef={arrowPathRef}
+                arrowHeadRef={arrowHeadRef}
+                textRef={badgeTextRef}
+              />
             </div>
 
-            {/* Main Title: "Port" & "folio" */}
+            {/* Main Title: "Port" & "folio" with Stable, Non-Shaking Per-Letter Hover Physics */}
             <div className="relative select-none">
               
-              {/* Line 1: "Port" + Sparkle Star floating in space */}
-              <div className="hero-title-part relative flex items-baseline">
-                <h1 className="font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
-                  Port
+              {/* Line 1: "Port" + Sparkle Star floating to top-right of 't' */}
+              <div className="relative flex items-baseline">
+                <h1 className="flex items-baseline font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    P
+                  </span>
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    o
+                  </span>
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    r
+                  </span>
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    t
+                  </span>
                 </h1>
 
-                {/* 4-point Blue Sparkle Star between "Port" and Right-Side Image */}
-                <div className="hero-doodle-pop absolute left-[68%] sm:left-[64%] top-4 sm:top-6">
+                {/* 4-point Blue Sparkle Star positioned to the top-right of "Port" */}
+                <div className="hero-doodle-pop ml-3 sm:ml-5 -mt-6 sm:-mt-8 self-start pointer-events-none">
                   <BlueSparkleStar className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
               </div>
 
               {/* Line 2: "folio" + Badges + Accents */}
-              <div className="hero-title-part relative flex items-center mt-1 sm:mt-2">
+              <div className="relative flex items-baseline mt-1 sm:mt-2">
                 
-                {/* Green Plus sign on the left of "f" in "folio" */}
-                <div className="hero-doodle-pop absolute -left-7 sm:-left-10 top-1/2 -translate-y-1/2">
+                {/* Left Accent Column: Green Plus Sign (top) & Black Curved Arrow (bottom) */}
+                <div className="hero-doodle-pop absolute -left-10 sm:-left-14 top-2 sm:top-4 pointer-events-none">
                   <GreenPlusDoodle />
                 </div>
 
-                <div className="relative inline-flex items-baseline">
-                  {/* The word "folio" with sparkle star replacing the dot of the "i" */}
-                  <span className="font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
-                    fol
+                {/* Black Curved Doodle Arrow to the left of the bottom of "f" */}
+                <div className="hero-doodle-pop absolute -left-11 sm:-left-16 bottom-1 sm:bottom-3 pointer-events-none">
+                  <BottomCurledArrow />
+                </div>
+
+                {/* The word "folio" in Young Serif */}
+                <div className="relative inline-flex items-baseline font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
+                  {/* Letter "f" */}
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    f
                   </span>
 
-                  {/* Letter "i" with custom sparkle star tittle */}
-                  <span className="relative inline-block font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
+                  {/* Letter "o" */}
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    o
+                  </span>
+
+                  {/* Letter "l" */}
+                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                    l
+                  </span>
+
+                  {/* Letter "i" with custom 4-point royal blue sparkle star replacing the tittle/dot */}
+                  <span className="hero-letter relative inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
                     i
-                    {/* Star sits right on the dot */}
+                    {/* Royal blue sparkle star centered directly over the dot of "i" */}
                     <span className="hero-doodle-pop absolute left-1/2 -top-1 sm:-top-3 -translate-x-1/2 pointer-events-none">
                       <BlueSparkleStar className="w-6 h-6 sm:w-7 sm:h-7" />
                     </span>
                   </span>
 
-                  <span className="font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
-                    o
+                  {/* Final Letter "o" with Pill Badge ABOVE and Yellow Sunburst Star BELOW */}
+                  <span className="relative inline-block">
+                    {/* Coral "Full-Stack Developer" Pill Badge nestled directly above "o" */}
+                    <span className="hero-pill-badge absolute -top-8 sm:-top-11 left-1/2 -translate-x-1/2 pointer-events-auto z-20">
+                      <span className="bg-[#FF4D38] text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-bold tracking-tight shadow-xs inline-flex items-center whitespace-nowrap -rotate-[2deg] hover:rotate-0 transition-transform duration-200">
+                        Full-Stack Developer
+                      </span>
+                    </span>
+
+                    <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
+                      o
+                    </span>
+
+                    {/* Yellow 8-point Sunburst Asterisk directly under "o" */}
+                    <span
+                      ref={starRef}
+                      className="hero-doodle-pop absolute -bottom-10 sm:-bottom-14 left-1/2 -translate-x-1/2 pointer-events-none z-10"
+                    >
+                      <YellowSunburstStar className="w-16 h-16 sm:w-20 sm:h-20 text-[#FBBF24]" />
+                    </span>
                   </span>
                 </div>
-
-                {/* Coral-orange "Full-Stack Developer" Pill Badge */}
-                <div className="hero-pill-badge ml-3 sm:ml-5 -mt-6 sm:-mt-10 self-center">
-                  <div className="bg-[#FF4A32] text-white px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-[13px] font-bold tracking-tight shadow-sm inline-flex items-center whitespace-nowrap -rotate-[2deg] hover:rotate-0 transition-transform duration-200">
-                    Full-Stack Developer
-                  </div>
-                </div>
-
-                {/* Yellow 8-point Sunburst Asterisk directly under "folio" */}
-                <div
-                  ref={starRef}
-                  className="hero-doodle-pop absolute -right-3 sm:right-6 -bottom-10 sm:-bottom-12 pointer-events-none"
-                >
-                  <YellowSunburstStar className="w-14 h-14 sm:w-16 sm:h-16 text-[#FBBF24]" />
-                </div>
-              </div>
-
-              {/* Bottom Curled Arrow under "f" in "folio" */}
-              <div className="hero-doodle-pop absolute -bottom-13 left-0 sm:left-2 pointer-events-none">
-                <BottomCurledArrow />
               </div>
             </div>
 

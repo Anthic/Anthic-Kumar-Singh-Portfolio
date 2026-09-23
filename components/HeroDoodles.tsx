@@ -1,46 +1,102 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 /**
- * 2025 Edition Hand-drawn Badge with curved doodle arrow pointing down to "Port"
+ * 2025 Edition Hand-drawn Sketched Badge with curved doodle line & arrow
+ * Matches reference screenshot 2 with SVG drawing animation support.
  */
-export function EditionBadge({ className = "" }: { className?: string }) {
+export const EditionBadge = forwardRef<
+  HTMLDivElement,
+  {
+    className?: string;
+    circlePathRef?: React.RefObject<SVGPathElement | null>;
+    arrowPathRef?: React.RefObject<SVGPathElement | null>;
+    arrowHeadRef?: React.RefObject<SVGPathElement | null>;
+    textRef?: React.RefObject<HTMLDivElement | null>;
+  }
+>(function EditionBadge(
+  { className = "", circlePathRef, arrowPathRef, arrowHeadRef, textRef },
+  ref
+) {
   return (
-    <div className={`relative inline-flex flex-col items-center select-none ${className}`}>
-      <div className="relative px-4 py-2 rounded-[50%] border-[2px] border-[#2563EB] bg-white/70 backdrop-blur-xs shadow-xs -rotate-[9deg] hover:rotate-0 transition-transform duration-300">
-        <span className="block text-[11px] sm:text-xs font-black tracking-tight text-[#1D4ED8] uppercase text-center leading-none">
-          2025
-        </span>
-        <span className="block text-[10px] sm:text-[11px] font-extrabold text-[#1D4ED8] text-center leading-tight">
-          Edition
-        </span>
+    <div
+      ref={ref}
+      className={`relative inline-flex items-center select-none ${className}`}
+    >
+      {/* Hand-drawn Oval Badge Container */}
+      <div className="relative flex items-center justify-center -rotate-[12deg] hover:rotate-0 transition-transform duration-300">
+        {/* SVG Hand-sketched Oval Path */}
+        <svg
+          viewBox="0 0 132 78"
+          className="w-[120px] sm:w-[136px] h-auto overflow-visible"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            ref={circlePathRef}
+            className="hero-draw-circle"
+            d="M 52 8 C 84 4, 118 12, 124 28 C 129 44, 98 68, 58 70 C 22 72, 6 56, 7 36 C 8 18, 34 8, 66 8 C 94 8, 118 18, 122 34"
+            stroke="#2250F4"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            pathLength={100}
+            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+          />
+        </svg>
+
+        {/* Text inside the oval */}
+        <div
+          ref={textRef}
+          className="hero-badge-text absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+        >
+          <span className="text-[14px] sm:text-[15px] font-extrabold tracking-tight text-[#2250F4] leading-tight">
+            2025
+          </span>
+          <span className="text-[12px] sm:text-[13px] font-extrabold tracking-tight text-[#2250F4] leading-none">
+            Edition
+          </span>
+        </div>
       </div>
 
-      {/* Hand-drawn arrow pointing down-right toward "Port" */}
-      <svg
-        className="absolute left-full top-3 w-10 h-10 text-[#3B82F6] pointer-events-none -ml-1 overflow-visible animate-float-gentle"
-        viewBox="0 0 42 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          d="M 4 8 C 14 2, 28 4, 30 18 C 31 24, 29 28, 26 31"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M 21 27 L 27 32 L 31 25"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      {/* Hand-drawn Doodle Arrow next to the oval arching down toward "Port" */}
+      <div className="relative -ml-1 -mt-4 pointer-events-none">
+        <svg
+          viewBox="0 0 62 56"
+          className="w-12 h-11 sm:w-14 sm:h-13 text-[#2250F4] overflow-visible"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          {/* Curved wavy loop body starting near oval and arching down */}
+          <path
+            ref={arrowPathRef}
+            className="hero-draw-arrow"
+            d="M 4 20 C 10 14, 15 14, 19 18 C 22 23, 17 26, 14 24 C 11 22, 14 14, 25 12 C 38 10, 47 22, 45 38 C 44 42, 42 46, 40 48"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            pathLength={100}
+            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+          />
+          {/* Arrowhead pointing down / down-left */}
+          <path
+            ref={arrowHeadRef}
+            className="hero-draw-arrowhead"
+            d="M 33 42 L 40 48 L 46 39"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            pathLength={100}
+            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+          />
+        </svg>
+      </div>
     </div>
   );
-}
+});
 
 /**
  * Green 4-point Plus mark doodle next to "folio"
@@ -48,7 +104,7 @@ export function EditionBadge({ className = "" }: { className?: string }) {
 export function GreenPlusDoodle({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`w-7 h-7 text-[#84CC16] animate-float-sway overflow-visible ${className}`}
+      className={`w-6 h-6 sm:w-7 sm:h-7 text-[#88D61A] animate-float-sway overflow-visible ${className}`}
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +121,7 @@ export function GreenPlusDoodle({ className = "" }: { className?: string }) {
 }
 
 /**
- * Solid 4-point Blue Sparkle Star
+ * Solid 4-point Royal Blue Sparkle Star
  */
 export function BlueSparkleStar({ className = "" }: { className?: string }) {
   return (
@@ -82,28 +138,47 @@ export function BlueSparkleStar({ className = "" }: { className?: string }) {
 }
 
 /**
- * Curled Doodle Arrow pointing up and right under "folio"
+ * Hand-drawn Curved Black Doodle Arrow matching Reference Screenshot 2:
+ * Sits to the left of the bottom of "f", with a top arrowhead pointing up-left,
+ * a sweeping C-curve down, and a bottom arrowhead pointing up-right.
  */
-export function BottomCurledArrow({ className = "" }: { className?: string }) {
+export function BottomCurledArrow({
+  className = "",
+  pathRef,
+}: {
+  className?: string;
+  pathRef?: React.RefObject<SVGPathElement | null>;
+}) {
   return (
     <svg
-      className={`w-12 h-12 text-[#141416] overflow-visible ${className}`}
-      viewBox="0 0 50 50"
+      className={`w-12 h-14 sm:w-14 sm:h-16 text-[#141416] overflow-visible select-none ${className}`}
+      viewBox="0 0 64 68"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      {/* Top arrowhead pointing up-left towards ~11 o'clock */}
       <path
-        d="M 12 36 C 4 33, 4 23, 12 20 C 22 17, 26 34, 18 36 C 12 37, 8 28, 16 18 C 22 10, 32 12, 38 15"
+        d="M 23 14 L 32 8 L 32 20"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="2.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      {/* Sweeping C-curve arching down-left and curving under to the right */}
       <path
-        d="M 31 11 L 40 15 L 34 23"
+        ref={pathRef}
+        d="M 32 8 C 17 12, 6 24, 5 38 C 4 52, 16 61, 30 61 C 40 61, 48 56, 52 46"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Bottom arrowhead pointing up-right towards ~2 o'clock */}
+      <path
+        d="M 40 48 L 52 46 L 49 57"
+        stroke="currentColor"
+        strokeWidth="2.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -113,20 +188,25 @@ export function BottomCurledArrow({ className = "" }: { className?: string }) {
 
 /**
  * Yellow 8-point Sunburst / Asterisk Star under "folio"
+ * Matches Reference Screenshot 2 with 8 radiating golden spokes.
  */
 export function YellowSunburstStar({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`w-16 h-16 text-[#FBBF24] animate-star-pulse overflow-visible ${className}`}
-      viewBox="0 0 64 64"
+      className={`w-18 h-18 sm:w-22 sm:h-22 text-[#FBBF24] animate-star-pulse overflow-visible ${className}`}
+      viewBox="0 0 68 68"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <line x1="32" y1="4" x2="32" y2="60" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
-      <line x1="4" y1="32" x2="60" y2="32" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
-      <line x1="12" y1="12" x2="52" y2="52" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
-      <line x1="52" y1="12" x2="12" y2="52" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
+      {/* Vertical spoke */}
+      <line x1="34" y1="4" x2="34" y2="64" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
+      {/* Horizontal spoke */}
+      <line x1="4" y1="34" x2="64" y2="34" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
+      {/* Diagonal spoke 1 */}
+      <line x1="13" y1="13" x2="55" y2="55" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
+      {/* Diagonal spoke 2 */}
+      <line x1="55" y1="13" x2="13" y2="55" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -252,23 +332,33 @@ export function RedSpiralDoodle({ className = "" }: { className?: string }) {
 }
 
 /**
- * Wavy Hand-drawn Underline for Download CV
+ * Dual Sketchy Hand-drawn Underline for Download CV matching the reference screenshot
  */
 export function WavyUnderline({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`w-full h-3 text-[#2563EB] overflow-visible ${className}`}
-      viewBox="0 0 120 12"
+      className={`w-full h-3 text-[#2250F4] overflow-visible ${className}`}
+      viewBox="0 0 110 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      {/* Primary slightly arched hand-drawn stroke */}
       <path
-        d="M 2 6 C 15 11, 25 1, 38 6 C 51 11, 62 1, 75 6 C 88 11, 100 2, 118 7"
+        d="M 2 5 C 28 8, 70 3, 108 4"
         stroke="currentColor"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
+      {/* Secondary expressive sketch accent line underneath */}
+      <path
+        d="M 18 10 C 44 11, 78 8, 92 7"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
     </svg>
   );
 }
+
