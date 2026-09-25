@@ -85,10 +85,26 @@ export default function Navbar() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const headerRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const updateNavHeight = () => {
+      if (headerRef.current) {
+        const h = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty("--navbar-h", `${h}px`);
+      }
+    };
+    updateNavHeight();
+    window.addEventListener("resize", updateNavHeight);
+    return () => window.removeEventListener("resize", updateNavHeight);
+  }, []);
 
   return (
-    <header className="w-full bg-[#FAF9F6]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-20 flex items-center justify-between">
+    <header
+      ref={headerRef}
+      className="navbar w-full bg-[#fef9f5]/90 backdrop-blur-md sticky top-0 z-[100] transition-colors border-b border-zinc-200/40"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 sm:h-[72px] flex items-center justify-between">
         {/* Brand / Logo */}
         <Link
           href="/"

@@ -1,507 +1,476 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  MapPin,
-  Mail,
-  Globe,
-  ArrowUpRight,
-  Download,
-} from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  EditionBadge,
-  GreenPlusDoodle,
-  BlueSparkleStar,
-  BottomCurledArrow,
-  YellowSunburstStar,
-  SmileyFaceBadge,
-  HeadRadiatingDashes,
-  LimeStarburst,
-  BlueOuterAuraLine,
-  RedSpiralDoodle,
-  WavyUnderline,
-} from "./HeroDoodles";
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement | null>(null);
-  const leftTextRef = useRef<HTMLDivElement | null>(null);
-  const rightColumnRef = useRef<HTMLDivElement | null>(null);
-  const auraLineRef = useRef<HTMLDivElement | null>(null);
-  const floatingCardRef = useRef<HTMLDivElement | null>(null);
-  const starRef = useRef<HTMLDivElement | null>(null);
-
-  // SVG drawing animation refs for 2025 Edition badge
-  const circlePathRef = useRef<SVGPathElement | null>(null);
-  const arrowPathRef = useRef<SVGPathElement | null>(null);
-  const arrowHeadRef = useRef<SVGPathElement | null>(null);
-  const badgeTextRef = useRef<HTMLDivElement | null>(null);
+  const [scale, setScale] = useState(1);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Entrance timeline on load / reload
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      // 1. Initial states for SVG drawing elements
-      if (circlePathRef.current) {
-        gsap.set(circlePathRef.current, {
-          strokeDasharray: 100,
-          strokeDashoffset: 100,
-        });
+    requestAnimationFrame(() => setMounted(true));
+    const updateScale = () => {
+      const width = window.innerWidth;
+      // Proportional scale on viewports up to 1440px so the canvas is 100% pixel-identical to Figma
+      if (width < 1440) {
+        setScale(Math.max(0.26, width / 1440));
+      } else {
+        setScale(1);
       }
-      if (arrowPathRef.current) {
-        gsap.set(arrowPathRef.current, {
-          strokeDasharray: 100,
-          strokeDashoffset: 100,
-        });
-      }
-      if (arrowHeadRef.current) {
-        gsap.set(arrowHeadRef.current, {
-          strokeDasharray: 100,
-          strokeDashoffset: 100,
-          opacity: 0,
-        });
-      }
-      if (badgeTextRef.current) {
-        gsap.set(badgeTextRef.current, {
-          opacity: 0,
-          scale: 0.8,
-        });
-      }
+    };
 
-      // 2. Real-time drawing of 2025 Edition sketched circle
-      tl.to(circlePathRef.current, {
-        strokeDashoffset: 0,
-        duration: 0.85,
-        ease: "power2.inOut",
-      })
-        // 2025 Edition text reveals as circle closes
-        .to(
-          badgeTextRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.45,
-            ease: "back.out(1.5)",
-          },
-          "-=0.35"
-        )
-        // Curved line starts animating from its beginning and progressively fills the exact shape/path
-        .to(
-          arrowPathRef.current,
-          {
-            strokeDashoffset: 0,
-            duration: 0.75,
-            ease: "power2.out",
-          },
-          "-=0.2"
-        )
-        // Arrowhead draws at the end of the curved line
-        .to(
-          arrowHeadRef.current,
-          {
-            strokeDashoffset: 0,
-            opacity: 1,
-            duration: 0.35,
-            ease: "back.out(2)",
-          },
-          "-=0.15"
-        )
-        // Staggered entrance for each individual letter of "Portfolio"
-        .from(
-          ".hero-letter",
-          {
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            stagger: 0.04,
-            ease: "power3.out",
-          },
-          "-=0.55"
-        )
-        // Coral "Full-Stack Developer" Pill Badge pops in
-        .from(
-          ".hero-pill-badge",
-          {
-            scale: 0.5,
-            opacity: 0,
-            duration: 0.65,
-            ease: "back.out(2)",
-          },
-          "-=0.5"
-        )
-        // Doodles & Stars pop in with springy lively bounce
-        .from(
-          ".hero-doodle-pop",
-          {
-            opacity: 0,
-            scale: 0.2,
-            rotation: -20,
-            duration: 0.65,
-            stagger: 0.08,
-            ease: "back.out(2)",
-          },
-          "-=0.55"
-        )
-        // Right photo column entrance
-        .from(
-          rightColumnRef.current,
-          {
-            opacity: 0,
-            scale: 0.95,
-            y: 30,
-            duration: 1.1,
-          },
-          "-=0.7"
-        )
-        // Floating Card
-        .from(
-          floatingCardRef.current,
-          {
-            opacity: 0,
-            y: 35,
-            scale: 0.96,
-            duration: 0.85,
-            ease: "back.out(1.4)",
-          },
-          "-=0.6"
-        );
-
-      // ScrollTrigger Parallax for continuous blue outer aura line and stars
-      if (auraLineRef.current) {
-        gsap.to(auraLineRef.current, {
-          y: -40,
-          rotation: 4,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-      }
-
-      if (starRef.current) {
-        gsap.to(starRef.current, {
-          y: -35,
-          rotation: 35,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
-
-      // Parallax float on floating identity card
-      if (floatingCardRef.current) {
-        gsap.to(floatingCardRef.current, {
-          y: -20,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.5,
-          },
-        });
-      }
-    }, heroRef);
-
-    return () => ctx.revert();
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
   }, []);
 
   return (
     <section
-      ref={heroRef}
-      aria-label="Introduction Banner"
-      className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden pt-4 pb-20 lg:py-10 bg-[#FAF9F6]"
+      aria-label="Hero Section"
+      className="relative w-full bg-[#fef9f5] overflow-hidden flex justify-center"
+      style={{
+        height: mounted ? `${970 * scale}px` : "970px",
+        minHeight: mounted ? `${970 * scale}px` : "970px",
+      }}
     >
-      <div className="max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center">
-          
-          {/* =========================================
-              LEFT COLUMN: Editorial Typography & CTAs
-             ========================================= */}
-          <div ref={leftTextRef} className="lg:col-span-7 flex flex-col justify-center relative z-10">
-            
-            {/* Top Badge: "2025 Edition" with curved doodle arrow */}
-            <div className="mb-2 sm:mb-4 w-fit">
-              <EditionBadge
-                circlePathRef={circlePathRef}
-                arrowPathRef={arrowPathRef}
-                arrowHeadRef={arrowHeadRef}
-                textRef={badgeTextRef}
-              />
-            </div>
-
-            {/* Main Title: "Port" & "folio" with Stable, Non-Shaking Per-Letter Hover Physics */}
-            <div className="relative select-none">
-              
-              {/* Line 1: "Port" + Sparkle Star floating to top-right of 't' */}
-              <div className="relative flex items-baseline">
-                <h1 className="flex items-baseline font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    P
-                  </span>
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    o
-                  </span>
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    r
-                  </span>
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    t
-                  </span>
-                </h1>
-
-                {/* 4-point Blue Sparkle Star positioned to the top-right of "Port" */}
-                <div className="hero-doodle-pop ml-3 sm:ml-5 -mt-6 sm:-mt-8 self-start pointer-events-none">
-                  <BlueSparkleStar className="w-6 h-6 sm:w-8 sm:h-8" />
-                </div>
-              </div>
-
-              {/* Line 2: "folio" + Badges + Accents */}
-              <div className="relative flex items-baseline mt-1 sm:mt-2">
-                
-                {/* Left Accent Column: Green Plus Sign (top) & Black Curved Arrow (bottom) */}
-                <div className="hero-doodle-pop absolute -left-10 sm:-left-14 top-2 sm:top-4 pointer-events-none">
-                  <GreenPlusDoodle />
-                </div>
-
-                {/* Black Curved Doodle Arrow to the left of the bottom of "f" */}
-                <div className="hero-doodle-pop absolute -left-11 sm:-left-16 bottom-1 sm:bottom-3 pointer-events-none">
-                  <BottomCurledArrow />
-                </div>
-
-                {/* The word "folio" in Young Serif */}
-                <div className="relative inline-flex items-baseline font-serif text-[5.4rem] sm:text-[7.4rem] md:text-[8.6rem] lg:text-[9.8rem] xl:text-[10.5rem] font-normal leading-[0.84] text-[#2250F4] tracking-tight">
-                  {/* Letter "f" */}
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    f
-                  </span>
-
-                  {/* Letter "o" */}
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    o
-                  </span>
-
-                  {/* Letter "l" */}
-                  <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    l
-                  </span>
-
-                  {/* Letter "i" with custom 4-point royal blue sparkle star replacing the tittle/dot */}
-                  <span className="hero-letter relative inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                    i
-                    {/* Royal blue sparkle star centered directly over the dot of "i" */}
-                    <span className="hero-doodle-pop absolute left-1/2 -top-1 sm:-top-3 -translate-x-1/2 pointer-events-none">
-                      <BlueSparkleStar className="w-6 h-6 sm:w-7 sm:h-7" />
-                    </span>
-                  </span>
-
-                  {/* Final Letter "o" with Pill Badge ABOVE and Yellow Sunburst Star BELOW */}
-                  <span className="relative inline-block">
-                    {/* Coral "Full-Stack Developer" Pill Badge nestled directly above "o" */}
-                    <span className="hero-pill-badge absolute -top-8 sm:-top-11 left-1/2 -translate-x-1/2 pointer-events-auto z-20">
-                      <span className="bg-[#FF4D38] text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-bold tracking-tight shadow-xs inline-flex items-center whitespace-nowrap -rotate-[2deg] hover:rotate-0 transition-transform duration-200">
-                        Full-Stack Developer
-                      </span>
-                    </span>
-
-                    <span className="hero-letter inline-block select-none cursor-pointer transition-transform duration-250 ease-out hover:-translate-y-3 sm:hover:-translate-y-4 will-change-transform">
-                      o
-                    </span>
-
-                    {/* Yellow 8-point Sunburst Asterisk directly under "o" */}
-                    <span
-                      ref={starRef}
-                      className="hero-doodle-pop absolute -bottom-10 sm:-bottom-14 left-1/2 -translate-x-1/2 pointer-events-none z-10"
-                    >
-                      <YellowSunburstStar className="w-16 h-16 sm:w-20 sm:h-20 text-[#FBBF24]" />
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Subtitle Value Proposition */}
-            <div className="mt-14 sm:mt-16 max-w-lg">
-              <p className="text-[#141416] text-lg sm:text-[1.18rem] font-semibold leading-snug tracking-tight">
-                I build digital products that are <br className="hidden sm:block" />
-                fast, scalable and thoughtfully designed.
-              </p>
-            </div>
-
-            {/* Action Buttons: "Let's Work Together ↗" & "Download CV ↓" */}
-            <div className="mt-7 sm:mt-9 flex flex-wrap items-center gap-6 sm:gap-8">
-              
-              {/* Primary Pill Button */}
-              <Link
-                href="#contact"
-                className="group inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-[#111113] text-[#FAF9F6] font-semibold text-[15px] hover:bg-black hover:scale-[1.02] active:scale-[0.98] shadow-md transition-all duration-200"
-              >
-                <span>Let&apos;s Work Together</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-
-              {/* Download CV link with hand-drawn wavy underline */}
-              <a
-                href="/cv.pdf"
-                download
-                className="group relative inline-flex flex-col items-center pt-1 focus:outline-none"
-              >
-                <div className="inline-flex items-center gap-1.5 text-[15.5px] font-bold text-[#141416] group-hover:text-[#2250F4] transition-colors">
-                  <span>Download CV</span>
-                  <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5 text-current" />
-                </div>
-                
-                {/* Hand-drawn blue wavy underline */}
-                <div className="w-full -mt-0.5 transition-transform group-hover:scale-x-105 duration-200">
-                  <WavyUnderline className="text-[#2250F4]" />
-                </div>
-              </a>
-            </div>
-
-          </div>
-
-          {/* ==========================================================
-              RIGHT COLUMN: Profile Photo & Background Lines / Doodles
-             ========================================================== */}
-          <div ref={rightColumnRef} className="lg:col-span-5 relative flex justify-center items-center mt-8 lg:mt-0">
-            
-            {/* 1. Continuous Blue Outer Aura Line Enveloping the Top and Right Side */}
-            <div
-              ref={auraLineRef}
-              className="absolute -inset-6 sm:-inset-10 flex items-center justify-center pointer-events-none z-0"
-            >
-              <BlueOuterAuraLine className="w-[370px] sm:w-[440px] lg:w-[470px] h-[450px] sm:h-[510px] lg:h-[540px]" />
-            </div>
-
-            {/* 2. Lime-green 8-point starburst at top-right corner */}
-            <div className="hero-doodle-pop absolute -top-8 right-2 sm:right-6 pointer-events-none z-10">
-              <LimeStarburst className="w-12 h-12 sm:w-14 sm:h-14" />
-            </div>
-
-            {/* 3. Three Radiating Ink Dashes above the right side of the head */}
-            <div className="hero-doodle-pop absolute -top-9 sm:-top-11 right-[26%] sm:right-[30%] pointer-events-none z-30">
-              <HeadRadiatingDashes />
-            </div>
-
-            {/* 4. Coral-red Curly Spiral Spring Doodle at bottom-right */}
-            <div className="hero-doodle-pop absolute -bottom-5 sm:-bottom-7 right-3 sm:right-6 pointer-events-none z-30">
-              <RedSpiralDoodle className="w-10 h-16 sm:w-11 sm:h-18" />
-            </div>
-
-            {/* 5. Main Photo Composition with 3D Pop-out Effect */}
-            <div className="relative w-[300px] sm:w-[370px] lg:w-[390px] h-[400px] sm:h-[470px] lg:h-[490px] flex items-end justify-center">
-              
-              {/* Lilac/Periwinkle Card Backdrop (starts below hair for pop-out effect) */}
-              <div className="absolute inset-x-0 bottom-0 top-12 sm:top-14 rounded-[40px] sm:rounded-[48px] bg-[#CCD2FC] shadow-[0_20px_50px_rgba(34,80,244,0.1)] border border-[#BFC8FC]/70 z-10">
-                
-                {/* Green Smiley Badge anchored at top-left corner */}
-                <div className="hero-doodle-pop absolute -top-5 -left-5 sm:-top-6 sm:-left-6 z-40">
-                  <SmileyFaceBadge />
-                </div>
-              </div>
-
-              {/* Anthic's Photo Cutout (Hair pops out above the lilac backdrop) */}
-              <div className="relative z-20 w-full h-full flex items-end justify-center overflow-visible">
-                <Image
-                  src="/hero-image.png"
-                  alt="Anthic Kumar Singh — Full-Stack Developer"
-                  width={460}
-                  height={520}
-                  priority
-                  className="w-[96%] sm:w-[94%] h-auto object-cover object-top select-none drop-shadow-md transition-transform duration-500 hover:scale-[1.02]"
+      {/* ── Exact 1440x970 Figma Canvas (Shifted up to eliminate navbar gap) ── */}
+      <div
+        className="w-[1440px] h-[970px] relative shrink-0 origin-top bg-[#fef9f5] select-none"
+        style={{
+          transform: mounted ? `scale(${scale})` : "none",
+        }}
+        data-node-id="175:256"
+      >
+        {/* ── 1. Oval sketch doodle around 2025 Edition (Node 175:273: x=16, y=110, w=264, h=230) ── */}
+        <div
+          className="absolute flex h-[229.966px] items-center justify-center left-[16px] top-[110px] w-[263.985px] z-10 pointer-events-none"
+          data-node-id="175:273"
+        >
+          <div className="flex-none rotate-[-10.07deg]">
+            <div className="h-[192px] overflow-clip relative w-[234.013px]">
+              <div className="absolute inset-[16.04%_1.76%_16.15%_1.42%]">
+                <img
+                  alt=""
+                  className="absolute block inset-0 max-w-none size-full"
+                  src="/hero-figma/oval-sketch.svg"
                 />
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Floating Identity Card overlapping bottom-left */}
-              <div
-                ref={floatingCardRef}
-                className="absolute -bottom-9 sm:-bottom-11 -left-4 sm:-left-8 w-[275px] sm:w-[315px] bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-[26px] p-4 sm:p-5 shadow-[0_16px_36px_rgba(0,0,0,0.08)] border border-zinc-100/90 z-40 transition-all duration-300 hover:shadow-[0_22px_45px_rgba(0,0,0,0.12)]"
-              >
-                {/* Header: Name with yellow highlight + Pronouns */}
-                <div className="flex items-baseline justify-between gap-2 pb-2.5 sm:pb-3 border-b border-zinc-100">
-                  <div className="relative">
-                    <h2 className="text-[1.08rem] sm:text-[1.2rem] font-extrabold tracking-tight text-[#141416] leading-none">
-                      Anthic Kumar Singh
-                    </h2>
-                    {/* Yellow highlighter underline stroke under name */}
-                    <span
-                      className="absolute -bottom-1 left-0 w-full h-[5px] bg-[#FDE047]/85 rounded-full -z-10"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <span className="text-[11px] sm:text-xs font-semibold text-[#2563EB] select-none tracking-tight">
-                    He/Him
-                  </span>
-                </div>
+        {/* ── 2. 2025 Edition text (Node 175:257: x=82.59, y=183) ── */}
+        <div
+          className="absolute flex h-[91.362px] items-center justify-center left-[82.59px] top-[183px] w-[99.808px] z-20 pointer-events-none"
+          data-node-id="175:257"
+        >
+          <div className="flex-none rotate-[-28.48deg]">
+            <div className="[word-break:break-word] content-stretch flex flex-col font-sans font-extrabold gap-[4px] items-center leading-[normal] relative text-[#102ec7] text-[24px] text-center tracking-[0.96px] whitespace-nowrap">
+              <p className="relative shrink-0" data-node-id="175:258">
+                2025
+              </p>
+              <p className="relative shrink-0" data-node-id="175:259">
+                Edition
+              </p>
+            </div>
+          </div>
+        </div>
 
-                {/* Details List */}
-                <div className="mt-3 space-y-2 text-[12px] sm:text-[13px] font-medium text-zinc-700">
-                  
-                  {/* Location: Dhaka, Bangladesh */}
-                  <div className="flex items-center gap-2.5">
-                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-900 shrink-0" />
-                    <span className="text-zinc-800 font-semibold truncate">
-                      Dhaka, Bangladesh
-                    </span>
-                  </div>
+        {/* ── 3. Top Arrow Filled Head Swirl Long (Node 175:276: x=215, y=160) ──
+            Positioned directly beside the 2025 Edition oval with minimal gap */}
+        <div
+          className="absolute flex items-center justify-center left-[215px] top-[160px] size-[132.597px] z-10 pointer-events-none"
+          data-node-id="175:276"
+        >
+          <div className="flex-none rotate-[97.74deg]">
+            <div className="overflow-clip relative size-[117.81px]">
+              <div className="absolute inset-[6.86%_10.15%_6.85%_10.14%]">
+                <img
+                  alt=""
+                  className="absolute block inset-0 max-w-none size-full"
+                  src="/hero-figma/arrow-swirl-top.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-                  {/* Email */}
-                  <a
-                    href="mailto:anthickumarsingh@gmail.com"
-                    className="flex items-center gap-2.5 hover:text-[#2250F4] transition-colors group/item"
-                  >
-                    <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-900 shrink-0 group-hover/item:text-[#2250F4]" />
-                    <span className="truncate">anthickumarsingh@gmail.com</span>
-                  </a>
+        {/* ── 4. Main Title Line 1: "Port" (Node 175:284: x=25, y=255) ── */}
+        <div
+          className="absolute flex h-[289.029px] items-center justify-center left-[25px] top-[255px] w-[427.902px] z-20"
+          data-node-id="175:284"
+        >
+          <div className="flex-none rotate-[-4.5deg]">
+            <h1 className="[word-break:break-word] hero-title-font font-serif leading-[normal] not-italic relative text-[#1447df] text-[200px] whitespace-nowrap m-0 p-0 tracking-tight">
+              <span className="hero-letter leading-[normal] text-[200px]">P</span>
+              <span className="hero-letter leading-[normal] text-[196px] relative top-[8px]">o</span>
+              <span className="hero-letter leading-[normal] text-[206px] relative -top-[8px]">r</span>
+              <span className="hero-letter leading-[normal] text-[218px] relative top-[2px]">t</span>
+            </h1>
+          </div>
+        </div>
 
-                  {/* Website */}
-                  <a
-                    href="https://anthic.dev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-[#2250F4] transition-colors group/item"
-                  >
-                    <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-900 shrink-0 group-hover/item:text-[#2250F4]" />
-                    <span className="truncate">anthic.dev</span>
-                  </a>
+        {/* ── 5. Star 3: Blue 4-Point Sparkle Star (Node 175:305: x=498, y=294) ── */}
+        <div
+          className="absolute left-[498px] top-[294px] size-[54px] z-10 pointer-events-none"
+          data-node-id="175:305"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full"
+            src="/hero-figma/blue-sparkle-star.svg"
+          />
+        </div>
 
-                  {/* Facebook Link as specifically requested */}
-                  <a
-                    href="https://facebook.com/anthickumarsingh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-[#1877F2] transition-colors group/item font-semibold text-zinc-800"
-                  >
-                    {/* Official Facebook SVG Icon */}
-                    <svg
-                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-900 group-hover/item:text-[#1877F2] shrink-0 fill-current"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                    <span className="truncate text-zinc-700 group-hover/item:text-[#1877F2]">
-                      facebook.com/anthickumarsingh
-                    </span>
-                  </a>
+        {/* ── 6. Coral Pill Badge: "Full-Stack Developer" (Node 175:271: x=472, y=459) ── */}
+        <div
+          className="absolute bg-[#f85648] content-stretch flex items-center justify-center left-[472px] top-[459px] w-[267px] h-[44px] rounded-[100px] z-30 shadow-sm cursor-default hover:scale-105 transition-transform duration-200"
+          data-node-id="175:271"
+        >
+          <p className="[word-break:break-word] font-sans font-medium leading-[normal] relative shrink-0 text-[#fef6f8] text-[24px] text-center tracking-[0.96px] whitespace-nowrap">
+            Full-Stack Developer
+          </p>
+        </div>
 
+        {/* ── 7. Main Title Line 2: "folio" with Star replacing the 'i' dot directly ── */}
+        <div
+          className="absolute flex h-[361.62px] items-center justify-center left-[64px] top-[433px] w-[469.119px] z-20"
+          data-node-id="175:285"
+        >
+          <div className="flex-none rotate-[-4.9deg]">
+            <p className="[word-break:break-word] hero-title-font font-serif leading-[0] not-italic relative text-[#1447df] text-[0px] whitespace-nowrap m-0 p-0 tracking-tight">
+              <span className="hero-letter leading-[normal] text-[200px]">f</span>
+              <span className="hero-letter leading-[normal] text-[200px]">o</span>
+              <span className="hero-letter leading-[normal] text-[239px]">l</span>
+              
+              {/* 'i' letter: circular dot completely clipped away, Star sits down in its place */}
+              <span className="hero-letter leading-[normal] text-[200px] relative inline-block">
+                {/* 4-point blue Star lowered down to sit directly where the circular dot was */}
+                <span className="absolute top-[16%] left-1/2 -translate-x-1/2 w-[46px] h-[46px] pointer-events-none z-30 flex items-center justify-center">
+                  <img
+                    alt=""
+                    className="w-full h-full object-contain"
+                    src="/hero-figma/star-i-dot.svg"
+                  />
+                </span>
+                {/* The stem of 'i' in Recoleta font with circular dot 100% cleanly clipped */}
+                <span className="inline-block" style={{ clipPath: "inset(35.5% 0 0 0)" }}>
+                  i
+                </span>
+              </span>
+
+              <span className="hero-letter leading-[normal] text-[200px]">o</span>
+            </p>
+          </div>
+        </div>
+
+        {/* ── 9. Star 4: Lime 4-Point Sparkle Star (Node 175:306: x=24, y=486) ── */}
+        <div
+          className="absolute h-[47px] left-[24px] top-[486px] w-[54px] z-10 pointer-events-none"
+          data-node-id="175:306"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full"
+            src="/hero-figma/green-sparkle-star.svg"
+          />
+        </div>
+
+        {/* ── 10. Red Swirl Arrow under 'f' and above 'I build' (Node 175:282: x=24, y=655) ── */}
+        <div
+          className="absolute flex h-[95px] w-[95px] left-[24px] top-[655px] items-center justify-center z-10 pointer-events-none"
+          data-node-id="175:282"
+        >
+          <div className="flex-none rotate-[-44.42deg] w-[76px] h-[76px]">
+            <img
+              alt=""
+              className="block size-full object-contain"
+              src="/hero-figma/red-swirl-bottom-left.svg"
+            />
+          </div>
+        </div>
+
+        {/* ── 11. Subtitle Value Proposition (Node 175:260: x=40, y=756) ── */}
+        <div
+          className="[word-break:break-word] absolute font-sans font-extrabold leading-normal left-[40px] text-[24px] text-black top-[756px] w-[479px] tracking-[0.96px] whitespace-nowrap z-20"
+          data-node-id="175:260"
+        >
+          <p className="mb-0">I build digital products that are</p>
+          <p>fast, scalable and thoughtfully designed.</p>
+        </div>
+
+        {/* ── 12. Buttons Row (Node 175:261: x=40, y=868) ── */}
+        <div
+          className="absolute flex gap-[24px] items-center left-[40px] top-[868px] w-[415px] h-[48px] z-20"
+          data-node-id="175:261"
+        >
+          {/* Black Primary Button (Node 175:262: w=215, h=48) */}
+          <Link
+            href="#contact"
+            className="bg-black flex gap-[10px] items-center justify-center px-[24px] py-[12px] w-[215px] h-[48px] rounded-[8px] shrink-0 hover:bg-neutral-900 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group shadow-sm"
+            data-node-id="175:262"
+          >
+            <span className="[word-break:break-word] font-sans font-semibold leading-[normal] text-[16px] text-white whitespace-nowrap">
+              let’s work together
+            </span>
+            <div className="relative shrink-0 size-[24px]">
+              <img
+                alt=""
+                className="absolute block inset-0 max-w-none size-full invert group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                src="/hero-figma/arrow-up-right.svg"
+              />
+            </div>
+          </Link>
+
+          {/* Download CV Button (Node 175:266: w=176, h=48) */}
+          <a
+            href="/cv.pdf"
+            download
+            className="flex gap-[10px] items-center justify-center px-[24px] py-[12px] w-[176px] h-[48px] rounded-[8px] shrink-0 group transition-colors"
+            data-node-id="175:266"
+          >
+            <span className="[word-break:break-word] font-sans font-semibold leading-[normal] text-[16px] text-black group-hover:text-[#1447df] transition-colors whitespace-nowrap">
+              Download Cv
+            </span>
+            <div className="relative shrink-0 size-[24px]">
+              <img
+                alt=""
+                className="absolute block inset-0 max-w-none size-full group-hover:translate-y-0.5 transition-transform"
+                src="/hero-figma/download.svg"
+              />
+            </div>
+          </a>
+        </div>
+
+        {/* ── 13. Wavy Underline for Download CV (Node 175:307: x=287, y=913, w=155, h=14.26) ── */}
+        <div
+          className="absolute left-[287px] top-[913px] w-[155px] h-[14.26px] z-20 pointer-events-none"
+          data-node-id="175:307"
+        >
+          <img
+            alt=""
+            className="w-full h-auto object-contain"
+            src="/hero-figma/wavy-underline.svg"
+          />
+        </div>
+
+        {/* ── 14. Big Yellow Sunburst Star (Node 175:302: x=512, y=556, w=262, h=262) ── */}
+        <div
+          className="absolute left-[512px] top-[556px] size-[262px] z-0 pointer-events-none"
+          data-node-id="175:302"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full"
+            src="/hero-figma/yellow-sunburst.svg"
+          />
+        </div>
+
+        {/* ── 15. Blue Outer Aura Loop Line (Node 175:286: x=803, y=182, w=597, h=487) ── */}
+        <div
+          className="absolute left-[803px] top-[182px] w-[597px] h-[487px] z-0 pointer-events-none"
+          data-node-id="175:286"
+        >
+          <div className="absolute inset-[-0.41%_-0.34%_-0.41%_-0.33%]">
+            <img
+              alt=""
+              className="block max-w-none size-full"
+              src="/hero-figma/blue-aura-loop.svg"
+            />
+          </div>
+        </div>
+
+        {/* ── 16. Lilac Backdrop Shape (Node 175:287: x=819, y=238.5, w=522, h=434.5) ── */}
+        <div
+          className="absolute left-[819px] top-[238.5px] w-[522px] h-[434.5px] z-10 pointer-events-none"
+          data-node-id="175:287"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full"
+            src="/hero-figma/lilac-backdrop.svg"
+          />
+        </div>
+
+        {/* ── 17. Anthic Profile Photo Cutout (Node 175:288: left=812.88, top=181.8, w=556, h=505) ── */}
+        <div
+          className="absolute flex h-[504.817px] items-center justify-center left-[812.88px] top-[175.8px] w-[555.975px] z-20 pointer-events-none"
+          data-node-id="175:288"
+        >
+          <div className="h-[476.046px] relative rounded-[12px] w-[530.307px]">
+            <div className="absolute inset-0 overflow-hidden rounded-[12px]">
+              <img
+                alt="Anthic Kumar Singh"
+                className="absolute h-[109.03%] left-0 max-w-none top-0 w-full object-cover"
+                src="/hero-figma/hero-image.png"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ── 18. Green Smiley Face Badge (Node 175:289: x=785, y=234, w=108, h=108) ── */}
+        <div
+          className="absolute left-[785px] top-[234px] size-[108px] z-30 cursor-pointer"
+          data-node-id="175:289"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full hover:rotate-12 transition-transform duration-300"
+            src="/hero-figma/smiley-badge.svg"
+          />
+        </div>
+
+        {/* ── 19. Three Radiating Black Ink Dashes Above Head (Node 175:295: x=1182.01, y=117) ── */}
+        <div
+          className="absolute left-[1182.01px] top-[117px] w-[138.87px] h-[107.17px] z-30 pointer-events-none"
+          data-node-id="175:295"
+        >
+          <div className="absolute flex h-[57.558px] items-center justify-center left-0 top-0 w-[16.107px]">
+            <div className="flex-none rotate-[8.26deg]">
+              <div className="bg-black h-[57px] relative w-[8px] rounded-full" />
+            </div>
+          </div>
+          <div className="absolute flex h-[48.995px] items-center justify-center left-[42.7px] top-[25.24px] w-[42.528px]">
+            <div className="flex-none rotate-[39.65deg]">
+              <div className="bg-black h-[57px] relative w-[8px] rounded-full" />
+            </div>
+          </div>
+          <div className="absolute flex h-[31.74px] items-center justify-center left-[76.06px] top-[75.43px] w-[62.812px]">
+            <div className="flex-none rotate-[67.86deg]">
+              <div className="bg-black h-[64.558px] relative w-[8px] rounded-full" />
+            </div>
+          </div>
+        </div>
+
+        {/* ── 20. Lime Starburst Top-Right (Node 175:299: x=1292, y=25, w=126, h=126) ── */}
+        <div
+          className="absolute left-[1292px] top-[25px] size-[126px] z-10 pointer-events-none"
+          data-node-id="175:299"
+        >
+          <img
+            alt=""
+            className="absolute block inset-0 max-w-none size-full"
+            src="/hero-figma/lime-starburst-top-right.svg"
+          />
+        </div>
+
+        {/* ── 21. Bottom-Right Arrow Filled Head Swirl Long (Node 175:279: x=1373.09, y=758.7) ── */}
+        <div
+          className="absolute flex items-center justify-center left-[1250px] top-[660px] size-[121.091px] z-30 pointer-events-none"
+          data-node-id="175:279"
+        >
+          <div className="-scale-y-100 flex-none rotate-[-116.62deg]">
+            <div className="overflow-clip relative size-[90.226px]">
+              <div className="absolute inset-[6.86%_10.15%_6.85%_10.14%]">
+                <img
+                  alt=""
+                  className="absolute block inset-0 max-w-none size-full"
+                  src="/hero-figma/red-spiral-bottom-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── 22. Floating Identity Card (Node 175:310: x=838.49, y=584) ── */}
+        <div
+          className="absolute flex h-[253.085px] items-center justify-center left-[838.49px] top-[584px] w-[408.457px] z-40"
+          data-node-id="175:310"
+        >
+          <div className="flex-none rotate-[3.56deg]">
+            <div className="bg-[#fffdf5] h-[229px] overflow-clip relative rounded-[12px] shadow-[0px_4px_10px_0px_rgba(93,89,89,0.25)] w-[395px] border border-[#f0ede4]">
+              {/* Pronouns */}
+              <p className="[word-break:break-word] absolute font-sans font-extrabold leading-[normal] left-[319.39px] text-[#1447df] text-[16px] top-[41px] tracking-[0.64px] whitespace-nowrap">
+                He/Him
+              </p>
+
+              {/* Yellow Highlighter Stroke under Name */}
+              <div className="absolute h-[0.61px] left-[18px] top-[39px] w-[228.613px] pointer-events-none">
+                <div className="absolute inset-[-737.53%_-1.97%]">
+                  <img
+                    alt=""
+                    className="block max-w-none size-full"
+                    src="/hero-figma/yellow-highlighter.svg"
+                  />
                 </div>
               </div>
 
+              {/* Name */}
+              <p className="[word-break:break-word] absolute font-sans font-extrabold leading-[normal] left-[16.39px] text-[24px] text-black top-[16px] tracking-[0.96px] whitespace-nowrap">
+                Anthic Kumar Singh
+              </p>
+
+              {/* 4 Rows List */}
+              <div className="absolute content-stretch flex flex-col gap-[16px] items-start left-[16px] top-[84px] w-[266px]">
+                {/* Row 1: Location */}
+                <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full">
+                  <div className="overflow-clip relative shrink-0 size-[16px]">
+                    <img
+                      alt=""
+                      className="absolute block inset-0 max-w-none size-full"
+                      src="/hero-figma/pin-icon.svg"
+                    />
+                  </div>
+                  <p className="[word-break:break-word] font-sans font-normal leading-[normal] relative shrink-0 text-[16px] text-black tracking-[0.64px] whitespace-nowrap">
+                    Dhaka, Bangladesh
+                  </p>
+                </div>
+
+                {/* Row 2: Mail */}
+                <a
+                  href="mailto:anthickumarsingh2@gmail.com"
+                  className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full hover:text-[#1447df] transition-colors"
+                >
+                  <div className="overflow-clip relative shrink-0 size-[16px]">
+                    <img
+                      alt=""
+                      className="absolute block inset-0 max-w-none size-full"
+                      src="/hero-figma/mail-icon.svg"
+                    />
+                  </div>
+                  <p className="[word-break:break-word] font-sans font-normal leading-[normal] relative shrink-0 text-[16px] text-black tracking-[0.64px] whitespace-nowrap">
+                    anthickumarsingh2@gmail.com
+                  </p>
+                </a>
+
+                {/* Row 3: Phone */}
+                <a
+                  href="tel:01717182035"
+                  className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full hover:text-[#1447df] transition-colors"
+                >
+                  <div className="overflow-clip relative shrink-0 size-[16px]">
+                    <img
+                      alt=""
+                      className="absolute block inset-0 max-w-none size-full"
+                      src="/hero-figma/phone-icon.svg"
+                    />
+                  </div>
+                  <p className="[word-break:break-word] font-sans font-normal leading-[normal] relative shrink-0 text-[16px] text-black tracking-[0.64px] whitespace-nowrap">
+                    01717182035 | 01779080742
+                  </p>
+                </a>
+
+                {/* Row 4: GitHub Link */}
+                <a
+                  href="https://github.com/Anthic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full hover:text-[#1447df] transition-colors"
+                >
+                  <div className="overflow-clip relative shrink-0 size-[16px]">
+                    <img
+                      alt=""
+                      className="absolute block inset-0 max-w-none size-full"
+                      src="/hero-figma/github-icon.svg"
+                    />
+                  </div>
+                  <p className="[word-break:break-word] font-sans font-normal leading-[normal] relative shrink-0 text-[16px] text-black tracking-[0.64px] whitespace-nowrap">
+                    GitHub link
+                  </p>
+                </a>
+              </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

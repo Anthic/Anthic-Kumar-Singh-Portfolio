@@ -4,99 +4,108 @@ import React, { forwardRef } from "react";
  * 2025 Edition Hand-drawn Sketched Badge with curved doodle line & arrow
  * Matches reference screenshot 2 with SVG drawing animation support.
  */
-export const EditionBadge = forwardRef<
-  HTMLDivElement,
-  {
-    className?: string;
-    circlePathRef?: React.RefObject<SVGPathElement | null>;
-    arrowPathRef?: React.RefObject<SVGPathElement | null>;
-    arrowHeadRef?: React.RefObject<SVGPathElement | null>;
-    textRef?: React.RefObject<HTMLDivElement | null>;
-  }
->(function EditionBadge(
-  { className = "", circlePathRef, arrowPathRef, arrowHeadRef, textRef },
-  ref
-) {
-  return (
-    <div
-      ref={ref}
-      className={`relative inline-flex items-center select-none ${className}`}
-    >
-      {/* Hand-drawn Oval Badge Container */}
-      <div className="relative flex items-center justify-center -rotate-[12deg] hover:rotate-0 transition-transform duration-300">
-        {/* SVG Hand-sketched Oval Path */}
-        <svg
-          viewBox="0 0 132 78"
-          className="w-[120px] sm:w-[136px] h-auto overflow-visible"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            ref={circlePathRef}
-            className="hero-draw-circle"
-            d="M 52 8 C 84 4, 118 12, 124 28 C 129 44, 98 68, 58 70 C 22 72, 6 56, 7 36 C 8 18, 34 8, 66 8 C 94 8, 118 18, 122 34"
-            stroke="#2250F4"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            pathLength={100}
-            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
-          />
-        </svg>
 
-        {/* Text inside the oval */}
-        <div
-          ref={textRef}
-          className="hero-badge-text absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-        >
-          <span className="text-[14px] sm:text-[15px] font-extrabold tracking-tight text-[#2250F4] leading-tight">
-            2025
-          </span>
-          <span className="text-[12px] sm:text-[13px] font-extrabold tracking-tight text-[#2250F4] leading-none">
-            Edition
-          </span>
+interface EditionBadgeProps {
+  className?: string;
+  circlePathRef?: React.RefObject<SVGPathElement | null>;
+  arrowPathRef?: React.RefObject<SVGPathElement | null>;
+  arrowHeadRef?: React.RefObject<SVGPathElement | null>;
+  textRef?: React.RefObject<HTMLDivElement | null>;
+}
+
+export const EditionBadge = forwardRef<HTMLDivElement, EditionBadgeProps>(
+  function EditionBadge(
+    { className = "", circlePathRef, arrowPathRef, arrowHeadRef, textRef },
+    ref
+  ) {
+    return (
+      <div
+        ref={ref}
+        className={`relative inline-flex items-center select-none ${className}`}
+      >
+        {/* Hand-drawn Oval Badge Container — tilted -12deg like reference */}
+        <div className="relative flex items-center justify-center -rotate-[11deg] hover:rotate-0 transition-transform duration-300">
+          <svg
+            viewBox="0 0 136 80"
+            className="w-[124px] sm:w-[138px] h-auto overflow-visible"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              ref={circlePathRef}
+              className="hero-draw-circle"
+              d="M 38 12
+                 C 22 10, 10 20, 10 38
+                 C 10 56, 24 68, 54 71
+                 C 86 73, 122 66, 126 44
+                 C 129 26, 110 12, 74 10
+                 C 50 8, 32 10, 24 16"
+              stroke="#2250F4"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength={100}
+              style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+            />
+          </svg>
+
+          <div
+            ref={textRef}
+            className="hero-badge-text absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          >
+            <span className="text-[17px] sm:text-[21px] font-extrabold tracking-tight text-[#2250F4] leading-tight">
+              2025
+            </span>
+            <span className="text-[17px] sm:text-[21px] font-extrabold tracking-tight text-[#2250F4] leading-none">
+              Edition
+            </span>
+          </div>
+        </div>
+
+        {/* Hand-drawn Doodle Arrow: loops at top and arches down pointing towards "Port" */}
+        <div className="relative -ml-2 -mt-1 pointer-events-none">
+          <svg
+            viewBox="0 0 54 52"
+            className="w-[58px] h-[56px] sm:w-[68px] sm:h-[64px] text-[#2250F4] overflow-visible"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            {/* Loop-the-loop then arch down */}
+            <path
+              ref={arrowPathRef}
+              className="hero-draw-arrow"
+              d="M 2 24
+                 C 6 22, 10 14, 15 16
+                 C 19 18, 17 25, 12 23
+                 C 15 15, 28 10, 36 22
+                 C 40 28, 42 36, 42 42"
+              stroke="currentColor"
+              strokeWidth="2.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength={100}
+              style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+            />
+            {/* Arrowhead pointing down */}
+            <path
+              ref={arrowHeadRef}
+              className="hero-draw-arrowhead"
+              d="M 34 35 L 42 43 L 48 35"
+              stroke="currentColor"
+              strokeWidth="2.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength={100}
+              style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
+            />
+          </svg>
         </div>
       </div>
-
-      {/* Hand-drawn Doodle Arrow next to the oval arching down toward "Port" */}
-      <div className="relative -ml-1 -mt-4 pointer-events-none">
-        <svg
-          viewBox="0 0 62 56"
-          className="w-12 h-11 sm:w-14 sm:h-13 text-[#2250F4] overflow-visible"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          {/* Curved wavy loop body starting near oval and arching down */}
-          <path
-            ref={arrowPathRef}
-            className="hero-draw-arrow"
-            d="M 4 20 C 10 14, 15 14, 19 18 C 22 23, 17 26, 14 24 C 11 22, 14 14, 25 12 C 38 10, 47 22, 45 38 C 44 42, 42 46, 40 48"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            pathLength={100}
-            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
-          />
-          {/* Arrowhead pointing down / down-left */}
-          <path
-            ref={arrowHeadRef}
-            className="hero-draw-arrowhead"
-            d="M 33 42 L 40 48 L 46 39"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            pathLength={100}
-            style={{ strokeDasharray: 100, strokeDashoffset: 0 }}
-          />
-        </svg>
-      </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 /**
  * Green 4-point Plus mark doodle next to "folio"
@@ -138,9 +147,10 @@ export function BlueSparkleStar({ className = "" }: { className?: string }) {
 }
 
 /**
- * Hand-drawn Curved Black Doodle Arrow matching Reference Screenshot 2:
- * Sits to the left of the bottom of "f", with a top arrowhead pointing up-left,
- * a sweeping C-curve down, and a bottom arrowhead pointing up-right.
+ * Hand-drawn doodle arrow next to 'f' matching reference screenshot:
+ * Curved backward-C loop on the left that splits into:
+ * 1) Top arrow curving up-right with arrowhead pointing towards upper 'f'
+ * 2) Bottom arrow curving down-right with arrowhead pointing towards lower 'f'
  */
 export function BottomCurledArrow({
   className = "",
@@ -151,41 +161,59 @@ export function BottomCurledArrow({
 }) {
   return (
     <svg
-      className={`w-12 h-14 sm:w-14 sm:h-16 text-[#141416] overflow-visible select-none ${className}`}
-      viewBox="0 0 64 68"
+      className={`text-[#141416] overflow-visible select-none ${className}`}
+      viewBox="0 0 54 62"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Top arrowhead pointing up-left towards ~11 o'clock */}
-      <path
-        d="M 23 14 L 32 8 L 32 20"
-        stroke="currentColor"
-        strokeWidth="2.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Sweeping C-curve arching down-left and curving under to the right */}
+      {/* Top curved stroke arcing up-right with arrowhead pointing towards 'f' */}
       <path
         ref={pathRef}
-        d="M 32 8 C 17 12, 6 24, 5 38 C 4 52, 16 61, 30 61 C 40 61, 48 56, 52 46"
+        d="M 15 36
+           C 10 24, 12 14, 24 10
+           C 31 8, 38 9, 43 13"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Bottom arrowhead pointing up-right towards ~2 o'clock */}
       <path
-        d="M 40 48 L 52 46 L 49 57"
+        d="M 33 10 L 44 13 L 38 22"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Bottom curved stroke curling down-right with arrowhead */}
+      <path
+        d="M 15 36
+           C 17 45, 25 54, 38 50
+           C 43 48, 46 45, 48 42"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 38 39 L 49 42 L 43 51"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Bottom loop tail flourish */}
+      <path
+        d="M 36 50 C 37 54, 39 58, 42 61"
+        stroke="currentColor"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
   );
 }
-
 /**
  * Yellow 8-point Sunburst / Asterisk Star under "folio"
  * Matches Reference Screenshot 2 with 8 radiating golden spokes.
@@ -291,9 +319,14 @@ export function BlueOuterAuraLine({ className = "" }: { className?: string }) {
       aria-hidden="true"
     >
       <path
-        d="M 28 270 C 20 175, 30 95, 62 55 C 96 15, 170 8, 255 12 C 342 16, 386 46, 412 96 C 448 162, 452 268, 416 352 C 388 416, 352 455, 312 474"
+        d="M 28 270
+           C 22 180, 12 110, 24 68
+           C 38 20, 105 10, 210 10
+           C 310 10, 375 22, 405 65
+           C 438 118, 442 240, 422 350
+           C 406 420, 380 470, 340 495"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -302,26 +335,28 @@ export function BlueOuterAuraLine({ className = "" }: { className?: string }) {
 }
 
 /**
- * Coral-red Curly Spiral Doodle with arrow pointing up-left (bottom-right)
+ * Coral-red Curly Spiral Spring Doodle at bottom-right of photo
+ * 3 smooth descending cursive loop coils
  */
 export function RedSpiralDoodle({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`w-11 h-18 text-[#EF4444] animate-float-gentle overflow-visible ${className}`}
-      viewBox="0 0 44 76"
+      className={`w-11 h-20 text-[#EF4444] animate-float-gentle overflow-visible select-none ${className}`}
+      viewBox="0 0 50 90"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
-        d="M 16 14 L 10 8 L 19 6"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M 10 8 C 28 14, 38 28, 20 34 C 6 38, 38 48, 24 58 C 14 65, 34 70, 38 71"
+        d="M 12 8
+           C 28 4, 42 16, 38 28
+           C 34 38, 18 30, 20 22
+           C 22 14, 40 28, 42 44
+           C 44 56, 22 52, 24 40
+           C 26 30, 44 46, 44 64
+           C 44 78, 26 76, 28 64
+           C 30 54, 42 70, 36 84
+           C 32 92, 22 90, 16 86"
         stroke="currentColor"
         strokeWidth="2.4"
         strokeLinecap="round"

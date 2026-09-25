@@ -3,13 +3,17 @@
 :root {
   --background: #faf9f6;
   --foreground: #141416;
+  --font-serif: var(--font-recoleta);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
+  --font-serif: var(--font-recoleta);
+  --font-recoleta: var(--font-recoleta);
+  --font-fraunces: var(--font-fraunces);
+  --font-caveat: var(--font-caveat);
 }
 
 body {
@@ -19,81 +23,413 @@ body {
   overflow-x: hidden;
 }
 
-.font-serif {
-  font-family: var(--font-serif), Georgia, serif;
+/* Recoleta font matching reference typography */
+.font-serif,
+.hero-title-font {
+  font-family: var(--font-recoleta), var(--font-fraunces), serif;
+  font-weight: 700;
 }
 
+/* Cursive handwriting font matching prompt & reference */
+.font-handwriting,
+.font-caveat {
+  font-family: var(--font-caveat), cursive;
+}
+
+/* ── Hero Letter Hover ──────────────────────────────────────────────────────
+   Using vertical-align: bottom on inline-block letters prevents baseline
+   reflow (which causes left-right shake). Pure translateY only — no rotation
+   or scale — so the letter's horizontal footprint never changes.
+   ────────────────────────────────────────────────────────────────────────── */
+.hero-letter {
+  display: inline-block;
+  vertical-align: bottom;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.22s cubic-bezier(0.34, 1.45, 0.64, 1);
+  will-change: transform;
+}
+
+.hero-letter:hover {
+  transform: translateY(-12px);
+}
+
+@media (min-width: 640px) {
+  .hero-letter:hover {
+    transform: translateY(-18px);
+  }
+}
+
+/* ── Wave / Float Animations ───────────────────────────────────────────── */
 @keyframes liveWaveMove {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-16px, 0, 0);
-  }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-16px, 0, 0); }
 }
-
 .animate-wave-live {
   animation: liveWaveMove 1.1s linear infinite;
   will-change: transform;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-wave-live,
-  .animate-float-gentle,
-  .animate-float-sway,
-  .animate-star-pulse,
-  .animate-dash-move {
-    animation: none !important;
-  }
-}
-
 @keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
 }
-
 @keyframes floatSway {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-7px) rotate(3deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-7px) rotate(3deg); }
 }
-
 @keyframes starPulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(6deg);
-  }
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50%       { transform: scale(1.12) rotate(8deg); }
 }
-
 @keyframes dashMove {
-  to {
-    stroke-dashoffset: -32;
-  }
+  to { stroke-dashoffset: -32; }
 }
 
 .animate-float-gentle {
   animation: floatGentle 3.6s ease-in-out infinite;
 }
-
 .animate-float-sway {
   animation: floatSway 4.2s ease-in-out infinite;
 }
-
 .animate-star-pulse {
   animation: starPulse 2.8s ease-in-out infinite;
   transform-origin: center;
 }
-
 .animate-dash-move {
   stroke-dasharray: 6 6;
   animation: dashMove 2.4s linear infinite;
 }
+
+/* ── What I Do Cards & Icon Animations ─────────────────────────────────── */
+.what-i-do-card {
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 300ms ease;
+  will-change: transform, box-shadow;
+  box-shadow: 0 4px 20px -2px rgba(24, 24, 28, 0.04);
+}
+
+.what-i-do-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 22px 38px -10px rgba(24, 24, 28, 0.09), 0 4px 14px rgba(24, 24, 28, 0.03);
+  border-color: rgba(20, 71, 223, 0.16);
+}
+
+/* Card 1: Bracket left/right slide & slash wiggle */
+@keyframes bracketLeftSpring {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(-3.5px); }
+  70% { transform: translateX(0.8px); }
+}
+
+@keyframes bracketRightSpring {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(3.5px); }
+  70% { transform: translateX(-0.8px); }
+}
+
+@keyframes slashWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-9deg); }
+  65% { transform: rotate(8deg); }
+}
+
+.what-i-do-card:hover .anim-bracket-left,
+.what-i-do-card.in-view-animate .anim-bracket-left {
+  animation: bracketLeftSpring 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.what-i-do-card:hover .anim-bracket-right,
+.what-i-do-card.in-view-animate .anim-bracket-right {
+  animation: bracketRightSpring 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.what-i-do-card:hover .anim-slash,
+.what-i-do-card.in-view-animate .anim-slash {
+  transform-origin: 14px 14px;
+  animation: slashWiggle 0.65s ease-in-out;
+}
+
+/* Card 2: Neural nodes pulse & signal fire */
+@keyframes aiNodePulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+@keyframes aiSignalFire {
+  0% { stroke-dashoffset: 16; opacity: 0.35; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.35; }
+}
+
+.anim-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.what-i-do-card:hover .anim-node-1,
+.what-i-do-card.in-view-animate .anim-node-1 {
+  animation: aiNodePulse 0.9s ease-in-out infinite;
+}
+
+.what-i-do-card:hover .anim-node-2,
+.what-i-do-card.in-view-animate .anim-node-2 {
+  animation: aiNodePulse 0.9s ease-in-out 0.22s infinite;
+}
+
+.what-i-do-card:hover .anim-node-3,
+.what-i-do-card.in-view-animate .anim-node-3 {
+  animation: aiNodePulse 0.9s ease-in-out 0.44s infinite;
+}
+
+.what-i-do-card:hover .anim-signal,
+.what-i-do-card.in-view-animate .anim-signal {
+  stroke-dasharray: 4 4;
+  animation: aiSignalFire 1.1s linear infinite;
+}
+
+/* Card 3: Stacked layers separate and re-stack */
+@keyframes layerTopPop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-3.5px); }
+  75% { transform: translateY(0.5px); }
+}
+
+@keyframes layerBottomPop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(3.5px); }
+  75% { transform: translateY(-0.5px); }
+}
+
+.what-i-do-card:hover .anim-layer-top,
+.what-i-do-card.in-view-animate .anim-layer-top {
+  animation: layerTopPop 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.what-i-do-card:hover .anim-layer-bottom,
+.what-i-do-card.in-view-animate .anim-layer-bottom {
+  animation: layerBottomPop 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) 0.08s;
+}
+
+/* Card 4: Bar chart bars grow from baseline */
+@keyframes barGrow {
+  0% { transform: scaleY(0.2); }
+  65% { transform: scaleY(1.15); }
+  85% { transform: scaleY(0.96); }
+  100% { transform: scaleY(1); }
+}
+
+.anim-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.what-i-do-card:hover .anim-bar-1,
+.what-i-do-card.in-view-animate .anim-bar-1 {
+  animation: barGrow 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) 0.04s both;
+}
+
+.what-i-do-card:hover .anim-bar-2,
+.what-i-do-card.in-view-animate .anim-bar-2 {
+  animation: barGrow 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) 0.14s both;
+}
+
+.what-i-do-card:hover .anim-bar-3,
+.what-i-do-card.in-view-animate .anim-bar-3 {
+  animation: barGrow 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) 0.24s both;
+}
+
+.what-i-do-card:hover .anim-bar-4,
+.what-i-do-card.in-view-animate .anim-bar-4 {
+  animation: barGrow 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) 0.34s both;
+}
+
+/* ── Pencil-Sketch Draw-in & Settle Animations ───────────────────────────── */
+.sketch-stroke {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 1.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: stroke-dashoffset;
+}
+
+.sketch-stroke.sketch-active {
+  stroke-dashoffset: 0;
+}
+
+@keyframes pencilLift {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  38% {
+    transform: rotate(-2.4deg) translate(-1px, -0.5px);
+  }
+  75% {
+    transform: rotate(1.6deg) translate(0.5px, 0);
+  }
+}
+
+.pencil-lift-settle {
+  transform-origin: center center;
+  animation: pencilLift 0.55s ease-out 1.5s 1 normal forwards;
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-letter {
+    transition: none !important;
+  }
+  .hero-letter:hover {
+    transform: none !important;
+  }
+  .animate-wave-live,
+  .animate-float-gentle,
+  .animate-float-sway,
+  .animate-star-pulse,
+  .animate-dash-move,
+  .anim-bracket-left,
+  .anim-bracket-right,
+  .anim-slash,
+  .anim-node-1,
+  .anim-node-2,
+  .anim-node-3,
+  .anim-signal,
+  .anim-layer-top,
+  .anim-layer-bottom,
+  .anim-bar-1,
+  .anim-bar-2,
+  .anim-bar-3,
+  .anim-bar-4,
+  .what-i-do-card,
+  .pencil-lift-settle {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .sketch-stroke,
+  .sketch-path {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+  .card,
+  .card.active,
+  .card.exiting,
+  .card.pre-enter,
+  .card.exited-up,
+  .card.waiting-down {
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}
+
+/* ── What I Do Card Stack Section ────────────────────────────────────────── */
+.stack-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 475px;
+}
+
+.stack-sticky {
+  position: relative;
+  perspective: 1200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  overflow: visible;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(90px) scale(0.92) rotateX(8deg);
+  filter: blur(6px);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 22px;
+  box-shadow: 0 16px 40px -10px rgba(30, 20, 60, 0.1), 0 2px 6px rgba(0,0,0,0.02);
+  border: 1px solid rgba(235, 220, 208, 0.9);
+  width: 100%;
+  max-width: 680px;
+}
+
+/* 1. Active card: rises up from below, fully focused and interactive */
+.card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotateX(0deg);
+  filter: blur(0);
+  pointer-events: auto;
+  z-index: 10;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease;
+}
+
+/* 2. Previous cards (passed): recede back and up slightly into background */
+.card.exited-up {
+  opacity: 0;
+  transform: translateY(-26px) scale(0.94) rotateX(-4deg);
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease,
+              filter 0.4s ease;
+}
+
+/* 3. Upcoming cards: wait below to rise up */
+.card.waiting-down,
+.card.pre-enter {
+  opacity: 0;
+  transform: translateY(90px) scale(0.92) rotateX(8deg);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease,
+              filter 0.4s ease;
+}
+
+.rail {
+  width: 3px;
+  height: 160px;
+  background: rgba(20, 20, 22, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rail-fill {
+  width: 100%;
+  background: #1447df;
+  border-radius: 3px;
+  height: 0%;
+  transition: height 0.05s linear;
+}
+
+.rail-label {
+  font-family: var(--font-sans), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1447df;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+
+
