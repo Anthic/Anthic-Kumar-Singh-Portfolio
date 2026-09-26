@@ -2,6 +2,11 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
+interface HighlightItem {
+  label: string;
+  detail: string;
+}
+
 interface ServiceData {
   id: string;
   stepNumber: string;
@@ -10,7 +15,10 @@ interface ServiceData {
   badgeBorder: string;
   badgeRotate: string;
   tagBg: string;
+  tagText: string;
   description: string;
+  metrics: string[];
+  highlights: HighlightItem[];
   tags: string[];
   renderSketchIcon: () => React.ReactNode;
 }
@@ -18,15 +26,31 @@ interface ServiceData {
 const SERVICES: ServiceData[] = [
   {
     id: "web-dev",
-    stepNumber: "1",
+    stepNumber: "01",
     title: "Web Development",
     badgeBg: "#B4E24C",
     badgeBorder: "border-[#9dcb3a]/45",
     badgeRotate: "-rotate-[4deg]",
-    tagBg: "bg-[#B4E24C]/22 text-[#243707]",
+    tagBg: "bg-[#B4E24C]/22",
+    tagText: "text-[#243707]",
     description:
-      "Building production-grade, responsive web apps with React and Next.js — architecting dynamic UI components with measurable performance gains across 10+ screen sizes.",
-    tags: ["React.js", "Next.js", "TypeScript", "Redux Toolkit", "Tailwind CSS"],
+      "Building responsive, high-performance web applications using modern React, Next.js, and TypeScript — designing modular UI component architectures with optimized rendering cycles and cross-browser responsiveness.",
+    metrics: ["Next.js 15 & React 19", "TypeScript & Redux", "Tailwind & Modern CSS"],
+    highlights: [
+      {
+        label: "Component Architecture & SSR",
+        detail: "Proficient in Next.js (App Router, Server Components) and React, engineering dynamic modular UI components with low cumulative layout shifts.",
+      },
+      {
+        label: "State Management & Data Flow",
+        detail: "Managing complex global client state with Redux Toolkit and Context API, paired with Axios REST API integration and Server-Sent Events (SSE).",
+      },
+      {
+        label: "Styling & Responsive Systems",
+        detail: "Crafting modern, accessible interfaces with Tailwind CSS, custom CSS animations, Webpack build optimizations, and responsive designs across 10+ viewports.",
+      },
+    ],
+    tags: ["React.js", "Next.js", "TypeScript", "Redux Toolkit", "Tailwind CSS", "Axios REST", "SSE", "HTML5/CSS3"],
     renderSketchIcon: () => (
       <svg
         className="w-[34px] h-[34px] overflow-visible"
@@ -66,15 +90,31 @@ const SERVICES: ServiceData[] = [
   },
   {
     id: "ai-agent",
-    stepNumber: "2",
+    stepNumber: "02",
     title: "AI & Agent Engineering",
     badgeBg: "#C6BFF2",
     badgeBorder: "border-[#aaa0e8]/45",
     badgeRotate: "-rotate-[4deg]",
-    tagBg: "bg-[#C6BFF2]/35 text-[#2b2158]",
+    tagBg: "bg-[#C6BFF2]/35",
+    tagText: "text-[#2b2158]",
     description:
-      "Architecting multi-agent LLM systems — a 9-node LangGraph pipeline that autonomously researches, fact-checks, and self-corrects via RAG and Mistral Large.",
-    tags: ["LangGraph", "LangChain", "RAG", "Qdrant", "Python", "LLM Agents"],
+      "Architecting production-grade multi-agent AI systems, autonomous LLM pipelines, and Retrieval-Augmented Generation (RAG) architectures with multi-provider fallbacks and self-correcting evaluation loops.",
+    metrics: ["LangGraph & LangChain", "Qdrant Vector RAG", "Multi-Agent Systems"],
+    highlights: [
+      {
+        label: "Multi-Agent Orchestration",
+        detail: "Building stateful, cyclic multi-agent workflows using LangGraph and LangChain with autonomous reasoning, tool calling, and self-correcting evaluation loops.",
+      },
+      {
+        label: "Vector Search & RAG Pipelines",
+        detail: "Implementing high-accuracy RAG architectures using Qdrant vector databases, dense embeddings, semantic chunking, and similarity ranking.",
+      },
+      {
+        label: "LLM Gateways & Fallback Cascades",
+        detail: "Integrating multi-provider LLMs (Mistral, OpenAI, Groq, Gemini) with streaming Server-Sent Events (SSE) and automated fallback failover.",
+      },
+    ],
+    tags: ["LangGraph", "LangChain", "Agentic AI", "Qdrant", "RAG Pipelines", "LLM APIs", "Python", "SSE Streaming"],
     renderSketchIcon: () => (
       <svg
         className="w-[34px] h-[34px] overflow-visible"
@@ -144,15 +184,31 @@ const SERVICES: ServiceData[] = [
   },
   {
     id: "backend-dev",
-    stepNumber: "3",
+    stepNumber: "03",
     title: "Backend Development",
     badgeBg: "#F2C94C",
     badgeBorder: "border-[#deb02c]/45",
     badgeRotate: "-rotate-[4deg]",
-    tagBg: "bg-[#F2C94C]/25 text-[#463504]",
+    tagBg: "bg-[#F2C94C]/25",
+    tagText: "text-[#463504]",
     description:
-      "Engineering secure, scalable API gateways with JWT auth, refresh-token rotation, and Redis-backed rate limiting — eliminating long-running request bottlenecks.",
-    tags: ["Node.js", "Express.js", "MongoDB", "Redis", "Docker"],
+      "Engineering secure, scalable backend architectures, RESTful API gateways, and microservices with high-speed in-memory caching, dual-token JWT authentication, and containerized deployments.",
+    metrics: ["Node.js & Express (TS)", "Redis Caching & Queues", "Docker & PostgreSQL"],
+    highlights: [
+      {
+        label: "API Gateways & Microservices",
+        detail: "Building scalable backend services using Node.js, Express.js, TypeScript, and FastAPI with modular route architectures and asynchronous job handling.",
+      },
+      {
+        label: "Authentication & Security",
+        detail: "Engineering enterprise security with dual-token JWT authentication (access & refresh rotation), Redis-backed rate limiting, CSRF protection, and RBAC.",
+      },
+      {
+        label: "Databases & Cloud Deployment",
+        detail: "Designing performant schemas and indexing across MongoDB Atlas and Supabase (PostgreSQL), with Docker containerization, Nginx, and Linux VPS servers.",
+      },
+    ],
+    tags: ["Node.js", "Express.js", "TypeScript", "Redis", "MongoDB", "Supabase (PostgreSQL)", "Docker", "JWT & RBAC"],
     renderSketchIcon: () => (
       <svg
         className="w-[34px] h-[34px] overflow-visible"
@@ -214,15 +270,31 @@ const SERVICES: ServiceData[] = [
   },
   {
     id: "data-science",
-    stepNumber: "4",
+    stepNumber: "04",
     title: "Data Science & Analytics",
     badgeBg: "#F26B5B",
     badgeBorder: "border-[#d84a39]/45",
     badgeRotate: "-rotate-[4deg]",
-    tagBg: "bg-[#F26B5B]/18 text-[#4a1810]",
+    tagBg: "bg-[#F26B5B]/18",
+    tagText: "text-[#4a1810]",
     description:
-      "Applying statistical modeling and machine learning to build predictive analytics platforms — backed by a B.Sc. in Statistics.",
-    tags: ["Python", "Pandas", "Scikit-learn", "XGBoost", "SHAP"],
+      "Applying statistical theory, mathematical modeling, exploratory data analysis, and machine learning pipelines to extract actionable insights and build explainable predictive models.",
+    metrics: ["Python, Pandas & NumPy", "Scikit-learn & XGBoost", "SHAP & Statistical Modeling"],
+    highlights: [
+      {
+        label: "Predictive Machine Learning",
+        detail: "Developing supervised machine learning pipelines using Scikit-learn, XGBoost, and SHAP for model training, validation, and explainable feature importance.",
+      },
+      {
+        label: "Data Wrangling & Exploration",
+        detail: "Cleaning, transforming, and analyzing complex multivariate datasets using Python, Pandas, and NumPy with interactive visualization in Streamlit dashboards.",
+      },
+      {
+        label: "Statistical Inference & SQL",
+        detail: "Formulating hypothesis testing, regression analysis, and probability distributions using Python, R, SPSS, and relational database querying with SQL (MySQL, Oracle).",
+      },
+    ],
+    tags: ["Python", "Pandas", "NumPy", "Scikit-learn", "XGBoost", "SHAP", "SQL / DBMS", "R & SPSS"],
     renderSketchIcon: () => (
       <svg
         className="w-[34px] h-[34px] overflow-visible"
@@ -425,7 +497,7 @@ export default function WhatIDoStickyStack() {
       >
         <div className="stack-sticky" id="stackSticky">
           {/* Main cards host with left/right sketch arrow doodles & progress indicator */}
-          <div className="relative w-full max-w-[1020px] mx-auto px-4 flex items-center justify-center gap-6 lg:gap-10 z-10">
+          <div className="relative w-full max-w-[1180px] mx-auto px-4 flex items-center justify-center gap-6 lg:gap-8 z-10">
             
             {/* ── LEFT SKETCH ARROW DOODLE ── */}
             <div className="hidden lg:flex flex-col items-center select-none pointer-events-none shrink-0 -mr-1">
@@ -467,7 +539,7 @@ export default function WhatIDoStickyStack() {
             </div>
 
             {/* 4x .card divs, stacked absolutely on top of each other */}
-            <div id="cardHost" className="relative w-full max-w-[680px] h-[450px]">
+            <div id="cardHost" className="relative w-full max-w-[780px] h-[535px]">
               {SERVICES.map((card, index) => (
                 <DesktopCardItem
                   key={card.id}
@@ -578,134 +650,94 @@ function DesktopCardItem({
       ? "exited-up"
       : "waiting-down";
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    e.currentTarget.style.setProperty("--cursor-x", x.toFixed(3));
-    e.currentTarget.style.setProperty("--cursor-y", y.toFixed(3));
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.setProperty("--cursor-x", "0");
-    e.currentTarget.style.setProperty("--cursor-y", "0");
-  };
-
   return (
     <div
       ref={cardRef}
       className={`card group ${cardStateClass}`}
       data-card-index={index}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
-      <article className="relative p-8 sm:p-10 flex flex-col justify-between h-full select-none overflow-hidden rounded-[22px]">
-        {/* ── Playful Floating Bubbles in the Right-Side Corner (Interactive Cursor Parallax) ── */}
-        <div className="absolute top-2 right-3 sm:top-3 sm:right-5 w-[160px] h-[140px] pointer-events-none select-none z-0 overflow-visible">
-          {/* Bubble 1: Large Glossy Glass Sphere */}
-          <div
-            className="absolute top-0 right-1 w-[74px] h-[74px] sm:w-[84px] sm:h-[84px] rounded-full border shadow-[inset_0_2px_8px_rgba(255,255,255,0.75),0_6px_20px_-4px_rgba(0,0,0,0.05)] backdrop-blur-[2px]"
-            style={{
-              backgroundColor: `${card.badgeBg}18`,
-              borderColor: `${card.badgeBg}42`,
-              transform: `translate3d(calc(var(--cursor-x, 0) * 16px), calc(var(--cursor-y, 0) * 16px), 0)`,
-              transition: "transform 0.22s cubic-bezier(0.2, 0.8, 0.4, 1)",
-              willChange: "transform",
-            }}
-          >
-            {/* Specular reflections */}
-            <div className="absolute top-2.5 left-3.5 w-4 h-2 rounded-full bg-white/90 -rotate-45" />
-            <div className="absolute top-4.5 left-2.5 w-1.5 h-1.5 rounded-full bg-white/80" />
-            <div className="absolute bottom-3 right-4 w-3.5 h-1.5 rounded-full bg-white/35 -rotate-45" />
-          </div>
-
-          {/* Bubble 2: Medium Bubble (Counter-drifts to create optical 3D depth) */}
-          <div
-            className="absolute top-12 right-16 sm:top-14 sm:right-18 w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] rounded-full border shadow-[inset_0_1.5px_6px_rgba(255,255,255,0.7)] backdrop-blur-[1px]"
-            style={{
-              backgroundColor: `${card.badgeBg}15`,
-              borderColor: `${card.badgeBg}36`,
-              transform: `translate3d(calc(var(--cursor-x, 0) * -22px), calc(var(--cursor-y, 0) * -18px), 0)`,
-              transition: "transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1)",
-              willChange: "transform",
-            }}
-          >
-            <div className="absolute top-1.5 left-2.5 w-2.5 h-1.5 rounded-full bg-white/85 -rotate-45" />
-            <div className="absolute top-3 left-2 w-1 h-1 rounded-full bg-white/70" />
-          </div>
-
-          {/* Bubble 3: Small Bubble (Floats faster towards cursor) */}
-          <div
-            className="absolute top-2 right-20 sm:top-3 sm:right-24 w-[28px] h-[28px] sm:w-[30px] sm:h-[30px] rounded-full border shadow-[inset_0_1px_4px_rgba(255,255,255,0.75)]"
-            style={{
-              backgroundColor: `${card.badgeBg}24`,
-              borderColor: `${card.badgeBg}48`,
-              transform: `translate3d(calc(var(--cursor-x, 0) * 26px), calc(var(--cursor-y, 0) * 24px), 0)`,
-              transition: "transform 0.28s cubic-bezier(0.2, 0.8, 0.4, 1)",
-              willChange: "transform",
-            }}
-          >
-            <div className="absolute top-1 left-1.5 w-1.5 h-1 rounded-full bg-white/90 -rotate-45" />
-          </div>
-
-          {/* Bubble 4: Mini Accent Bubble */}
-          <div
-            className="absolute top-20 right-3 sm:top-24 sm:right-4 w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] rounded-full border shadow-[inset_0_1px_3px_rgba(255,255,255,0.8)]"
-            style={{
-              backgroundColor: `${card.badgeBg}22`,
-              borderColor: `${card.badgeBg}45`,
-              transform: `translate3d(calc(var(--cursor-x, 0) * -15px), calc(var(--cursor-y, 0) * 26px), 0)`,
-              transition: "transform 0.24s cubic-bezier(0.2, 0.8, 0.4, 1)",
-              willChange: "transform",
-            }}
-          >
-            <div className="absolute top-0.5 left-1 w-1 h-0.5 rounded-full bg-white/90 -rotate-45" />
-          </div>
-
-          {/* Bubble 5: Tiny Floating Pearl Glint */}
-          <div
-            className="absolute top-8 right-12 sm:top-9 sm:right-14 w-[12px] h-[12px] sm:w-[13px] sm:h-[13px] rounded-full border"
-            style={{
-              backgroundColor: `${card.badgeBg}30`,
-              borderColor: `${card.badgeBg}60`,
-              transform: `translate3d(calc(var(--cursor-x, 0) * 32px), calc(var(--cursor-y, 0) * -14px), 0)`,
-              transition: "transform 0.3s cubic-bezier(0.2, 0.8, 0.4, 1)",
-              willChange: "transform",
-            }}
-          >
-            <div className="absolute top-0.5 left-0.5 w-1 h-0.5 rounded-full bg-white/95" />
-          </div>
-        </div>
-
-        {/* Top: Icon Badge, Title, Description */}
+      <article className="relative p-6 sm:p-8 flex flex-col justify-between h-full select-none rounded-none">
+        {/* Top: Header with Icon Badge & Title, Description */}
         <div className="relative z-10">
-          {/* Icon badge (58px, rotated -4deg, colored per card, subtle drop shadow) */}
-          <div
-            className={`w-[58px] h-[58px] rounded-2xl flex items-center justify-center border shadow-xs transition-transform duration-300 ${card.badgeBorder} ${card.badgeRotate}`}
-            style={{ backgroundColor: card.badgeBg }}
-          >
-            {card.renderSketchIcon()}
+          <div className="flex items-center gap-4">
+            {/* Icon badge (52px, crisp square with sketch icon) */}
+            <div
+              className={`w-[52px] h-[52px] rounded-none shrink-0 flex items-center justify-center border shadow-2xs transition-transform duration-300 ${card.badgeBorder} ${card.badgeRotate}`}
+              style={{ backgroundColor: card.badgeBg }}
+            >
+              {card.renderSketchIcon()}
+            </div>
+
+            <div>
+              <span
+                className="text-[11px] font-bold tracking-wider uppercase font-mono block mb-0.5"
+                style={{ color: card.tagText }}
+              >
+                0{index + 1} // Capability
+              </span>
+              <h3 className="text-[23px] sm:text-[25px] font-bold text-[#141416] tracking-tight leading-snug">
+                {card.title}
+              </h3>
+            </div>
           </div>
 
-          {/* Bold title */}
-          <h3 className="text-[25px] sm:text-[28px] font-bold text-[#141416] tracking-tight leading-snug mt-6 mb-3">
-            {card.title}
-          </h3>
-
-          {/* Short description */}
-          <p className="text-[14.5px] sm:text-[15.5px] leading-[1.7] text-[#4d5361] font-normal">
+          {/* Tech stack description */}
+          <p className="text-[13.5px] sm:text-[14.5px] leading-[1.6] text-[#4d5361] font-normal mt-3.5">
             {card.description}
           </p>
+
+          {/* 3 Tech Stack Highlights with bold labels */}
+          <div
+            className="mt-3.5 space-y-1.5 bg-[#fbf9f6] rounded-none p-3.5 border border-black/[0.06] border-l-[3px]"
+            style={{ borderLeftColor: card.badgeBg }}
+          >
+            {card.highlights.map((h, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-2.5 text-[12.5px] sm:text-[13px] leading-[1.5]"
+              >
+                <span
+                  className="shrink-0 w-1.5 h-1.5 rounded-none mt-1.5"
+                  style={{ backgroundColor: card.badgeBg }}
+                />
+                <p className="m-0">
+                  <strong className="font-semibold text-[#181d26]">{h.label}: </strong>
+                  <span className="text-[#555d6e]">{h.detail}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Tech Stack Core Chips */}
+          <div className="flex flex-wrap items-center gap-2 mt-3.5">
+            {card.metrics.map((metric, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1.5 text-[11px] sm:text-[11.5px] font-semibold px-2.5 py-0.5 rounded-none border"
+                style={{
+                  backgroundColor: `${card.badgeBg}18`,
+                  borderColor: `${card.badgeBg}40`,
+                  color: card.tagText,
+                }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-none"
+                  style={{ backgroundColor: card.badgeBg }}
+                />
+                {metric}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom: Tech-tag pills & arrow (→) that nudges right on hover */}
-        <div className="relative z-10 mt-8 pt-5 border-t border-black/[0.05] flex items-end justify-between gap-4">
+        <div className="relative z-10 mt-3 pt-3.5 border-t border-black/[0.06] flex items-end justify-between gap-4">
           {/* Tech tag pills */}
-          <div className="flex flex-wrap gap-2 max-w-[520px]">
+          <div className="flex flex-wrap gap-1.5 max-w-[620px]">
             {card.tags.map((tag) => (
               <span
                 key={tag}
-                className={`text-[12px] font-medium px-3 py-1 rounded-full transition-colors ${card.tagBg}`}
+                className={`text-[11px] sm:text-[11.5px] font-medium px-2.5 py-0.5 rounded-none border border-black/[0.06] transition-colors ${card.tagBg} ${card.tagText}`}
               >
                 {tag}
               </span>
@@ -718,11 +750,11 @@ function DesktopCardItem({
               e.stopPropagation();
               onNext();
             }}
-            className="shrink-0 w-9 h-9 rounded-full bg-[#f8f5f0] text-[#141416] flex items-center justify-center transition-all duration-300 group-hover:bg-[#1447df] group-hover:text-white shadow-xs cursor-pointer"
+            className="shrink-0 w-9 h-9 rounded-none bg-[#f8f5f0] border border-black/[0.08] text-[#141416] flex items-center justify-center transition-all duration-300 group-hover:bg-[#1447df] group-hover:border-[#1447df] group-hover:text-white shadow-2xs cursor-pointer"
             aria-label={`Next service`}
             title="Next card"
           >
-            <span className="text-[16px] font-bold leading-none transition-transform duration-300 group-hover:translate-x-1 inline-block">
+            <span className="text-[15px] font-bold leading-none transition-transform duration-300 group-hover:translate-x-1 inline-block">
               →
             </span>
           </div>
@@ -763,73 +795,103 @@ function MobileCardItem({ card }: { card: ServiceData }) {
   return (
     <div
       ref={itemRef}
-      className={`relative overflow-hidden rounded-[22px] bg-white/90 backdrop-blur-md p-6 sm:p-7 border border-[#ebdcd0]/85 shadow-[0_12px_32px_-8px_rgba(20,20,30,0.08)] transition-all duration-500 ease-out ${
+      className={`relative overflow-hidden rounded-none bg-white/98 p-5 sm:p-6 border border-[#ebdcd0] shadow-[0_8px_24px_-8px_rgba(20,20,30,0.06)] transition-all duration-500 ease-out ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
     >
-      {/* ── Bubbles clustered in the right-side corner ── */}
-      <div className="absolute top-2 right-3 w-[120px] h-[100px] pointer-events-none select-none z-0 overflow-visible">
-        <div
-          className="absolute top-0 right-1 w-[56px] h-[56px] rounded-full border shadow-[inset_0_2px_6px_rgba(255,255,255,0.7)]"
+      <div className="relative z-10 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div
+            className={`w-[48px] h-[48px] rounded-none shrink-0 flex items-center justify-center border shadow-xs ${card.badgeBorder} ${card.badgeRotate}`}
+            style={{ backgroundColor: card.badgeBg }}
+          >
+            {card.renderSketchIcon()}
+          </div>
+          <div>
+            <span
+              className="text-[10px] font-bold tracking-wider uppercase font-mono block"
+              style={{ color: card.tagText }}
+            >
+              {card.stepNumber} // Capability
+            </span>
+            <h3 className="text-[20px] font-bold text-[#141416] tracking-tight leading-snug">
+              {card.title}
+            </h3>
+          </div>
+        </div>
+        <span
+          className="text-[11.5px] font-bold px-2.5 py-0.5 rounded-none font-mono shrink-0 border"
           style={{
-            backgroundColor: `${card.badgeBg}18`,
-            borderColor: `${card.badgeBg}38`,
+            backgroundColor: `${card.badgeBg}22`,
+            borderColor: `${card.badgeBg}44`,
+            color: card.tagText,
           }}
         >
-          <div className="absolute top-2 left-2.5 w-3 h-1.5 rounded-full bg-white/90 -rotate-45" />
-        </div>
-        <div
-          className="absolute top-10 right-12 w-[32px] h-[32px] rounded-full border shadow-[inset_0_1px_4px_rgba(255,255,255,0.7)]"
-          style={{
-            backgroundColor: `${card.badgeBg}15`,
-            borderColor: `${card.badgeBg}30`,
-          }}
-        >
-          <div className="absolute top-1 left-1.5 w-1.5 h-1 rounded-full bg-white/85 -rotate-45" />
-        </div>
-        <div
-          className="absolute top-1 right-16 w-[18px] h-[18px] rounded-full border"
-          style={{
-            backgroundColor: `${card.badgeBg}24`,
-            borderColor: `${card.badgeBg}45`,
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 flex items-center justify-between">
-        <div
-          className={`w-[54px] h-[54px] rounded-2xl flex items-center justify-center border shadow-xs ${card.badgeBorder} ${card.badgeRotate}`}
-          style={{ backgroundColor: card.badgeBg }}
-        >
-          {card.renderSketchIcon()}
-        </div>
-        <span className="text-[12px] font-bold text-[#1447df] bg-[#1447df]/10 px-2.5 py-0.5 rounded-full font-mono">
           {card.stepNumber} / 4
         </span>
       </div>
 
-      <h3 className="text-[21px] font-bold text-[#141416] tracking-tight leading-snug mt-5 mb-2.5">
-        {card.title}
-      </h3>
-
-      <p className="text-[14px] leading-[1.65] text-[#4d5361] font-normal mb-5">
+      <p className="text-[13px] leading-[1.6] text-[#4d5361] font-normal mt-3 mb-3">
         {card.description}
       </p>
 
-      <div className="pt-4 border-t border-black/[0.05] flex items-end justify-between gap-3">
+      {/* Highlights */}
+      <div
+        className="space-y-1.5 bg-[#fbf9f6] rounded-none p-3 border border-black/[0.06] border-l-[3px] mb-3"
+        style={{ borderLeftColor: card.badgeBg }}
+      >
+        {card.highlights.map((h, i) => (
+          <div
+            key={i}
+            className="flex items-start gap-2 text-[11.5px] leading-[1.45]"
+          >
+            <span
+              className="shrink-0 w-1.5 h-1.5 rounded-none mt-1.5"
+              style={{ backgroundColor: card.badgeBg }}
+            />
+            <p className="m-0">
+              <strong className="font-semibold text-[#181d26]">{h.label}: </strong>
+              <span className="text-[#555d6e]">{h.detail}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Metric chips */}
+      <div className="flex flex-wrap gap-1.5 mb-3">
+        {card.metrics.map((metric, i) => (
+          <span
+            key={i}
+            className="inline-flex items-center gap-1 text-[10.5px] font-semibold px-2 py-0.5 rounded-none border"
+            style={{
+              backgroundColor: `${card.badgeBg}15`,
+              borderColor: `${card.badgeBg}35`,
+              color: card.tagText,
+            }}
+          >
+            <span
+              className="w-1 h-1 rounded-none"
+              style={{ backgroundColor: card.badgeBg }}
+            />
+            {metric}
+          </span>
+        ))}
+      </div>
+
+      <div className="pt-3 border-t border-black/[0.06] flex items-end justify-between gap-3">
         <div className="flex flex-wrap gap-1.5">
           {card.tags.map((tag) => (
             <span
               key={tag}
-              className={`text-[11px] font-medium px-2.5 py-1 rounded-full ${card.tagBg}`}
+              className={`text-[10.5px] font-medium px-2 py-0.5 rounded-none border border-black/[0.05] ${card.tagBg} ${card.tagText}`}
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="shrink-0 w-8 h-8 rounded-full bg-[#f8f5f0] text-[#141416] flex items-center justify-center">
-          <span className="text-[14px] font-bold leading-none">→</span>
+        <div className="shrink-0 w-7 h-7 rounded-none bg-[#f8f5f0] border border-black/[0.08] text-[#141416] flex items-center justify-center">
+          <span className="text-[13px] font-bold leading-none">→</span>
         </div>
       </div>
     </div>

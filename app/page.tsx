@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
+import SelectedWorkSection from "@/components/SelectedWorkSection";
+import ExperienceEducationSkills from "@/components/ExperienceEducationSkills";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
@@ -11,8 +13,11 @@ export default function Home() {
         <main className="flex-1 flex flex-col">
           <Hero />
           <AboutSection />
+          <SelectedWorkSection />
+          <ExperienceEducationSkills />
         </main>
       </div>
     </SmoothScroll>
   );
 }
+

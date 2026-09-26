@@ -1,0 +1,1874 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "slug": "easyfile-magnesifant",
+      "thumbnail": "/projects/easyfile-magnesifant.png",
+      "title": "EasyFile (Magnesifant)",
+      "category": "Tax Filing Platform",
+      "tagline": "Enterprise-grade UK tax filing platform with HMRC integration",
+      "links": {
+        "live": "https://easyfiletax.co.uk/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Full Stack Developer",
+      "caseStudy": {
+        "overview": "Easyfiy (Magnesifant) is a modern, enterprise-grade tax filing platform designed to simplify the UK tax return process for individuals, sole traders, and businesses. It streamlines complex tax workflows through an intuitive multi-step filing system, automated tax calculations, secure payment processing, and direct integration with HM Revenue & Customs (HMRC).",
+        "problem": "Tax filing is complex and time-consuming. Users need to provide extensive personal, business, income, and expense information while ensuring HMRC compliance. The goal was to simplify filing, reduce manual calculations, securely manage sensitive data, integrate with HMRC APIs, support online payments, and give admins full operational control.",
+        "responsibilities": [
+          "Developing responsive frontend interfaces",
+          "Building RESTful APIs",
+          "Creating the multi-step tax filing workflow",
+          "Managing application state",
+          "Implementing authentication and authorization",
+          "Integrating payment gateways",
+          "Working with HMRC API integration",
+          "Optimizing performance and security",
+          "Supporting deployment and production-ready features"
+        ],
+        "solutionApproach": {
+          "frontendFlow": [
+            "User enters info via multi-step form",
+            "Redux Toolkit manages state",
+            "Axios communicates with backend APIs",
+            "React Router handles navigation",
+            "Lazy loading improves performance"
+          ],
+          "backendFlow": [
+            "Express receives requests",
+            "Zod validates payloads",
+            "Controllers delegate to service layers",
+            "Prisma interacts with the database",
+            "JWT protects secured endpoints",
+            "Background jobs process async tasks"
+          ]
+        },
+        "techStack": {
+          "frontend": [
+            "React 19",
+            "TypeScript",
+            "Vite 7",
+            "Tailwind CSS 4",
+            "Redux Toolkit",
+            "React Router 7",
+            "Axios",
+            "GSAP",
+            "Lenis Smooth Scroll",
+            "React Datepicker",
+            "Lucide Icons",
+            "Sonner Notifications"
+          ],
+          "backend": [
+            "Node.js",
+            "Express.js",
+            "TypeScript",
+            "Prisma ORM",
+            "PostgreSQL / MySQL",
+            "JWT Authentication",
+            "Passport OAuth (Google & Facebook)",
+            "Stripe",
+            "PayPal Server SDK",
+            "AWS S3",
+            "Multer",
+            "Redis",
+            "BullMQ",
+            "Node Cron",
+            "Socket.io",
+            "Nodemailer",
+            "SendGrid",
+            "PDFKit",
+            "Zod Validation"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Multi-Step Tax Filing System",
+            "description": "Guided workflow: Personal Information, Business Information, Income & Expenses, Tax Summary, Payment & Submission — with progress saved throughout."
+          },
+          {
+            "name": "Automated Tax Calculation",
+            "description": "System auto-generates tax summaries and filing calculations to reduce manual errors."
+          },
+          {
+            "name": "User Dashboard",
+            "description": "Track filing progress, view submissions, manage profile, monitor payments, check tax status, continue incomplete filings."
+          },
+          {
+            "name": "Admin Dashboard",
+            "description": "Manage users, review submissions, generate reports, monitor activity, configure settings."
+          },
+          {
+            "name": "HMRC Integration",
+            "description": "Direct integration with HMRC APIs for secure tax data sync and submission."
+          },
+          {
+            "name": "Payment & Subscription",
+            "description": "Stripe and PayPal integration for subscription plans and filing fees."
+          },
+          {
+            "name": "Real-Time Notifications",
+            "description": "Socket.io powers instant updates on filings, payments, and admin actions."
+          },
+          {
+            "name": "Background Processing",
+            "description": "BullMQ + Redis handle async tasks like email delivery, document generation, and scheduled jobs."
+          }
+        ],
+        "security": [
+          "JWT Authentication",
+          "HttpOnly Cookies",
+          "Google OAuth",
+          "Facebook OAuth",
+          "Input Validation (Zod)",
+          "Secure File Uploads",
+          "Protected API Routes",
+          "Role-Based Access Control",
+          "Secure Payment Processing"
+        ],
+        "performanceOptimizations": [
+          "Lazy-loaded routes",
+          "Efficient Redux state management",
+          "Background job queues",
+          "Optimized API architecture",
+          "Smooth scrolling (Lenis)",
+          "GSAP UI animations",
+          "Modular backend services",
+          "Database optimization with Prisma"
+        ],
+        "outcome": "A secure, high-performance, production-ready tax management solution integrating HMRC, Stripe, PayPal, AWS S3, Redis, and BullMQ — transforming a complex tax filing process into a streamlined digital experience."
+      }
+    },
+    {
+      "id": 2,
+      "slug": "sane-church",
+      "thumbnail": "/projects/sane-church.png",
+      "title": "Sane.Church",
+      "category": "Community Platform",
+      "tagline": "Interactive multilingual community & virtual meeting platform (Brian D. Scott Community Platform)",
+      "links": {
+        "live": "https://www.sane.church/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Frontend Developer",
+      "caseStudy": {
+        "overview": "A modern, interactive web application built to strengthen digital community engagement through immersive UX, multilingual accessibility, and seamless virtual collaboration for churches and community organizations.",
+        "problem": "Create a complete digital ecosystem enabling community members to interact beyond physical gatherings — with virtual meetings, multimedia content, multilingual support, and a premium responsive UI.",
+        "responsibilities": [
+          "Developing reusable React components",
+          "Building responsive layouts with Tailwind CSS",
+          "Implementing advanced UI animations using Framer Motion",
+          "Integrating Zoom Meeting SDK",
+          "Managing application state with Redux Toolkit",
+          "Implementing multilingual support",
+          "Optimizing media delivery and performance",
+          "Collaborating with backend APIs and authentication systems"
+        ],
+        "solutionApproach": {
+          "flow": [
+            "Users authenticate via NextAuth",
+            "Global state managed via Redux Toolkit",
+            "Next.js App Router handles routing/SSR",
+            "API requests hit backend services",
+            "MongoDB stores data",
+            "Zoom Meeting SDK enables live participation",
+            "Next-Intl serves localized content"
+          ]
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js 14 (App Router)",
+            "React 18",
+            "TypeScript",
+            "Tailwind CSS",
+            "Radix UI",
+            "Framer Motion",
+            "Redux Toolkit"
+          ],
+          "authSecurity": [
+            "NextAuth.js",
+            "JWT Authentication",
+            "bcryptjs"
+          ],
+          "database": [
+            "MongoDB",
+            "Mongoose"
+          ],
+          "i18n": [
+            "Next-Intl",
+            "Google Translate Provider"
+          ],
+          "integrations": [
+            "Zoom Meeting SDK",
+            "Custom Video Player",
+            "Multimedia Streaming"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Embedded Zoom Meeting Experience",
+            "description": "Members join live meetings, prayer sessions, Bible studies, and events directly in-browser via Zoom Meeting SDK."
+          },
+          {
+            "name": "Community Management",
+            "description": "Community Groups, Leadership Management, Member Profiles, Daily Notes, Bible Study Resources, Accountability Programs, Private Confession System."
+          },
+          {
+            "name": "Multimedia Content Platform",
+            "description": "Video Sermons, Podcast Episodes, Educational Resources, Community Updates, Featured Media."
+          },
+          {
+            "name": "Premium User Experience",
+            "description": "Scroll-triggered animations, interactive hover effects, animated navigation, testimonial sliders, marquee sections."
+          },
+          {
+            "name": "Multi-Language Support",
+            "description": "Eight languages: English, Spanish, French, German, Russian, Chinese, Vietnamese, Hebrew via Next-Intl."
+          }
+        ],
+        "security": [
+          "JWT Authentication",
+          "NextAuth.js session management",
+          "bcrypt password hashing",
+          "Protected application routes",
+          "Secure API communication",
+          "Role-based access control",
+          "Secure handling of user-generated content"
+        ],
+        "performanceOptimizations": [
+          "Server-side rendering (Next.js)",
+          "Route-based code splitting",
+          "Lazy-loaded components",
+          "Optimized image/video delivery",
+          "Efficient Redux updates",
+          "Memoized components",
+          "Responsive media loading"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Zoom SDK Error 3009 due to cached sessions",
+            "solution": "Cleared Zoom-related localStorage/sessionStorage on unmount, generated unique participant names, reset sessions before init."
+          },
+          {
+            "problem": "Global localization without hurting SEO/performance",
+            "solution": "Next-Intl with dynamic locale routing + Google Translate Provider while maintaining static optimization."
+          },
+          {
+            "problem": "Complex state across auth, media, i18n, and community features",
+            "solution": "Centralized state with Redux Toolkit for predictability and maintainability."
+          },
+          {
+            "problem": "Secure authentication for sensitive community data",
+            "solution": "NextAuth.js with JWT and bcrypt password hashing."
+          }
+        ],
+        "outcome": "A modern digital ecosystem connecting members through immersive UX, multilingual accessibility, and seamless virtual collaboration — enterprise-level, scalable, and secure."
+      }
+    },
+    {
+      "id": 5,
+      "slug": "greenfields-hairapetyan",
+      "thumbnail": "/projects/greenfields-hairapetyan.png",
+      "title": "Greenfields (Hairapetyan)",
+      "category": "E-Commerce & Delivery Platform",
+      "tagline": "Dispensary e-commerce, delivery, loyalty & membership platform",
+      "links": {
+        "live": "https://www.greenfields420.com/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Full Stack Developer",
+      "caseStudy": {
+        "overview": "Hairapetyan is a full-stack, enterprise-grade e-commerce and delivery platform built for the dispensary/cannabis retail industry, combining product management, secure ordering, real-time delivery tracking, loyalty rewards, and membership management.",
+        "problem": "Build a scalable e-commerce platform for cannabis retail with real-time delivery tracking, customer retention systems, secure payments, and a maintainable, future-proof architecture.",
+        "responsibilities": [
+          "Developing responsive UIs with Next.js",
+          "Building RESTful APIs with Express.js",
+          "Designing scalable database models with Prisma",
+          "Implementing authentication and authorization",
+          "Integrating Stripe and PayPal",
+          "Developing loyalty and membership features",
+          "Implementing real-time order tracking and notifications",
+          "Optimizing performance and architecture"
+        ],
+        "solutionApproach": {
+          "backendAPI": {
+            "description": "Central business layer for auth, inventory, orders, payments, loyalty, and real-time comms.",
+            "tech": [
+              "Node.js",
+              "Express.js",
+              "TypeScript",
+              "Prisma ORM",
+              "PostgreSQL",
+              "Socket.io",
+              "Firebase Admin"
+            ]
+          },
+          "customerStorefront": {
+            "description": "Public shopping experience: product discovery, accounts, checkout.",
+            "tech": [
+              "Next.js 16",
+              "React 19",
+              "TypeScript",
+              "Tailwind CSS",
+              "GSAP",
+              "Lenis Smooth Scroll"
+            ]
+          },
+          "userDashboard": {
+            "description": "Post-purchase management: orders, memberships, rewards, invoices.",
+            "tech": [
+              "Next.js 15",
+              "Redux Toolkit",
+              "Redux Persist",
+              "React Hook Form",
+              "Zod",
+              "Google Maps"
+            ]
+          }
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js 15 & 16",
+            "React 19",
+            "TypeScript",
+            "Tailwind CSS",
+            "GSAP",
+            "Framer Motion",
+            "Lenis",
+            "Redux Toolkit",
+            "React Context"
+          ],
+          "backend": [
+            "Node.js",
+            "Express.js",
+            "TypeScript",
+            "Socket.io"
+          ],
+          "database": [
+            "PostgreSQL",
+            "Prisma ORM"
+          ],
+          "auth": [
+            "JWT",
+            "NextAuth",
+            "bcrypt"
+          ],
+          "integrations": [
+            "Stripe",
+            "PayPal",
+            "Firebase Cloud Messaging",
+            "AWS S3",
+            "SendGrid",
+            "Nodemailer"
+          ],
+          "validation": [
+            "React Hook Form",
+            "Zod"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Advanced Product Catalog",
+            "description": "Flavor variations, THC%, CBD%, strain classification (Sativa/Indica/Hybrid), categories, inventory, pricing variations."
+          },
+          {
+            "name": "Real-Time Delivery Management",
+            "description": "Driver assignment, route management, delivery milestones (Pending → Picked Up → In Transit → Delivered) via Socket.io + FCM."
+          },
+          {
+            "name": "Loyalty & Membership System",
+            "description": "Reward points from purchases/referrals/birthdays; membership tiers: Basic, Gold, Platinum, VIP."
+          },
+          {
+            "name": "Secure Payment Processing",
+            "description": "Stripe & PayPal for checkout, verification, invoicing, refunds, subscriptions."
+          },
+          {
+            "name": "Order Management",
+            "description": "Live tracking, order history, PDF invoice downloads, payment status."
+          },
+          {
+            "name": "Interactive Reviews",
+            "description": "Write, rate, like/dislike product reviews."
+          }
+        ],
+        "security": [
+          "JWT Authentication",
+          "NextAuth session management",
+          "bcrypt password hashing",
+          "Protected API routes",
+          "Secure payment processing",
+          "Role-based authorization",
+          "Zod input validation",
+          "Secure AWS S3 uploads",
+          "Environment-based secret management"
+        ],
+        "performanceOptimizations": [
+          "Server-side rendering",
+          "Route-based code splitting",
+          "Lazy-loaded components",
+          "Optimized API communication",
+          "Redux state optimization",
+          "Lenis smooth scrolling",
+          "GSAP animations",
+          "Efficient Prisma queries",
+          "Optimized image/asset loading"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Complex cannabis product metadata",
+            "solution": "Highly normalized PostgreSQL schema via Prisma supporting variants, flavors, THC/CBD, strain classification."
+          },
+          {
+            "problem": "Real-time delivery tracking expectations",
+            "solution": "Socket.io for instant updates + Firebase Cloud Messaging for push notifications."
+          },
+          {
+            "problem": "Customer retention beyond simple discounts",
+            "solution": "Loyalty ecosystem: reward points, referrals, birthday bonuses, tiered memberships."
+          },
+          {
+            "problem": "Maintainability at scale",
+            "solution": "Separated into three specialized apps: Backend API, Customer Storefront, User Dashboard."
+          }
+        ],
+        "outcome": "A complete digital commerce ecosystem for the dispensary industry combining a high-performance storefront, scalable backend, and feature-rich dashboard with excellent scalability and maintainability."
+      }
+    },
+    {
+      "id": 4,
+      "slug": "healthy-home-jkurzweil",
+      "thumbnail": "/projects/healthy-home-jkurzweil.png",
+      "title": "Healthy Home (J. Kurzweil Platform)",
+      "category": "Property Maintenance & Repair Service Management",
+      "tagline": "Property maintenance, technician dispatch & service management platform",
+      "links": {
+        "live": "http://187.127.255.105:8520/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Full Stack Developer",
+      "caseStudy": {
+        "overview": "A full-stack, enterprise-grade application divided into a User Frontend, an Admin/Technician Dashboard, and a Backend API, connecting property owners with professional technicians to streamline home repairs, equipment servicing, and emergency maintenance.",
+        "problem": "Deliver an interactive, SEO-friendly experience for homeowners; give admins powerful analytics and dispatch tools; and handle complex backend operations — async tasks, real-time status updates, secure file storage, and multi-gateway payments.",
+        "solutionApproach": {
+          "coreFunctionality": [
+            "Property & Equipment Management (installation dates, serial numbers, service history)",
+            "Service & Emergency Requests (with photos and descriptions)",
+            "Technician Dispatching (assign technicians, track job status, technical notes)",
+            "Subscription Services (recurring maintenance billing)"
+          ],
+          "architectureApps": {
+            "userFrontend": {
+              "description": "Performance/SEO-focused homeowner-facing app.",
+              "tech": [
+                "Next.js 14 (App Router)",
+                "Redux Toolkit + redux-persist",
+                "Tailwind CSS v4",
+                "Framer Motion",
+                "@lottiefiles/dotlottie-react",
+                "Swiper"
+              ]
+            },
+            "adminDashboard": {
+              "description": "Admin/technician dispatch portal.",
+              "tech": [
+                "Next.js 14",
+                "React 18",
+                "@tanstack/react-query",
+                "@tanstack/react-table",
+                "Recharts",
+                "shadcn/ui",
+                "lucide-react",
+                "react-hook-form",
+                "Zod"
+              ]
+            },
+            "backendServices": {
+              "description": "High-load, real-time API layer.",
+              "tech": [
+                "Node.js",
+                "Express.js",
+                "TypeScript",
+                "Prisma ORM (PostgreSQL)",
+                "Redis",
+                "BullMQ",
+                "@bull-board",
+                "Socket.io",
+                "Firebase Admin",
+                "SendGrid",
+                "Stripe",
+                "PayPal",
+                "AWS S3"
+              ]
+            }
+          }
+        },
+        "techStack": {
+          "frontendUser": [
+            "Next.js 14",
+            "React 18",
+            "Redux Toolkit",
+            "Tailwind CSS v4",
+            "Framer Motion",
+            "Lottie"
+          ],
+          "frontendAdmin": [
+            "Next.js 14",
+            "React 18",
+            "TanStack Query",
+            "TanStack Table",
+            "Recharts",
+            "Shadcn",
+            "Zod"
+          ],
+          "backend": [
+            "Node.js",
+            "Express",
+            "Prisma ORM (PostgreSQL)",
+            "TypeScript",
+            "Redis",
+            "BullMQ",
+            "Socket.io"
+          ],
+          "integrations": [
+            "Stripe",
+            "PayPal",
+            "AWS S3",
+            "Firebase Admin",
+            "SendGrid"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Scalable Architecture",
+            "description": "Independent scaling of user frontend and admin dashboard based on traffic patterns."
+          },
+          {
+            "name": "Streamlined Service Workflow",
+            "description": "Automated flow from emergency request to technician dispatch, reducing response times."
+          },
+          {
+            "name": "Reliable Async Processing",
+            "description": "Redis + BullMQ keep heavy tasks off the main event loop for fast API responses."
+          },
+          {
+            "name": "Premium User Experience",
+            "description": "SSR + Redux persistence + animations for an app-like web feel."
+          },
+          {
+            "name": "Comprehensive Admin Tooling",
+            "description": "Real-time data tables and charts for platform management."
+          }
+        ],
+        "outcome": "A scalable, decoupled ecosystem streamlining property maintenance dispatch with reliable async processing, real-time updates, and a premium experience for both homeowners and admins."
+      }
+    },
+    {
+      "id": 3,
+      "slug": "atlas-ai-mars",
+      "thumbnail": "/projects/atlash.ai.png",
+      "title": "Atlas.AI — Production-Grade Multi-Agent Research System (MARS)",
+      "category": "AI / Multi-Agent Research Platform",
+      "tagline": "Production-grade 9-node LangGraph multi-agent research system with RAG, 4-provider fallback & AWS EC2 deployment",
+      "links": {
+        "live": "https://multiagent-frontend.vercel.app/",
+        "github": {
+          "frontend": "https://github.com/Anthic/multiagent-frontend.git",
+          "backend": "https://github.com/Anthic/MultiAgentPart-Backend-New.git",
+          "agent": "https://github.com/Anthic/MultiAgentPart.git"
+        }
+      },
+      "role": "Full Stack AI Developer",
+      "caseStudy": {
+        "overview": "Atlas.AI is a production-grade multi-agent autonomous research system featuring a 9-node LangGraph pipeline, self-correcting critique loops, and 6 specialized academic AI agents. Deployed across a 6-service multi-cloud architecture (AWS EC2 for the AI engine, Vercel, Qdrant Cloud, Supabase, Upstash Redis, MongoDB Atlas), it automates deep academic research, fact verification, and report synthesis while reducing zero-output failures to <0.5%.",
+        "problem": "Overcome LLM hallucinations, single-prompt shallowness, and API timeout failures by building an autonomous multi-agent pipeline with self-correcting critique loops, 4-provider LLM fallback cascades, high-accuracy RAG vector retrieval, and async SSE streaming.",
+        "responsibilities": [
+          "Architecting the 9-node LangGraph multi-agent pipeline with self-correcting rewrite loops",
+          "Deploying the Python/FastAPI AI engine on AWS EC2 with systemd and reverse proxy",
+          "Engineering a TypeScript Node.js/Express API gateway with dual-token JWT authentication (15-min access + 7-day refresh rotation)",
+          "Implementing Upstash Redis caching (<50ms response) and asynchronous SSE job queues across 8 route modules",
+          "Building 6 specialized academic AI Agents with Qdrant vector vault RAG (+38% factual accuracy)",
+          "Configuring 4-provider AI fallback cascade (Mistral → Groq → Gemini → OpenRouter) reducing failures to <0.5%",
+          "Developing interactive Next.js 15 / React 19 workspace with real-time SSE streaming and LangGraph visualizer",
+          "Orchestrating 6-service multi-cloud stack across AWS EC2, Vercel, Qdrant Cloud, Supabase, Upstash, and MongoDB Atlas"
+        ],
+        "solutionApproach": {
+          "architectureApps": {
+            "frontend": {
+              "description": "Interactive Next.js 15 and React 19 research workspace featuring real-time Server-Sent Events (SSE), custom LangGraph workflow visualization, live agent execution tracking, automated report scoring, and analytics dashboards.",
+              "tech": [
+                "Next.js 15",
+                "React 19",
+                "TypeScript",
+                "Zustand",
+                "Tailwind CSS v4",
+                "Framer Motion",
+                "GSAP",
+                "Server-Sent Events (SSE)",
+                "React Hook Form",
+                "Zod"
+              ]
+            },
+            "apiGateway": {
+              "description": "Node.js/Express TypeScript API gateway with dual-token JWT auth (15-min access + 7-day refresh rotation), Upstash Redis caching (<50ms response vs 90+ second pipeline runs), CSRF protection, and an async SSE job queue eliminating HTTP gateway timeouts across 8 route modules.",
+              "tech": [
+                "Node.js",
+                "Express.js",
+                "TypeScript",
+                "Upstash Redis",
+                "MongoDB Atlas",
+                "Supabase PostgreSQL",
+                "Dual-Token JWT Auth",
+                "SSE Job Queue",
+                "Helmet",
+                "Express Rate Limit",
+                "Zod"
+              ]
+            },
+            "aiOrchestrationEngine": {
+              "description": "Python/FastAPI AI engine deployed on AWS EC2, executing the 9-node LangGraph multi-agent pipeline with a 4-provider fallback cascade (Mistral → Groq → Gemini → OpenRouter) and Qdrant Cloud vector vault RAG.",
+              "tech": [
+                "FastAPI",
+                "Python",
+                "LangGraph (9-Node)",
+                "LangChain",
+                "Mistral AI",
+                "Groq",
+                "Google Gemini",
+                "OpenRouter",
+                "Qdrant Cloud (Vector Vault)",
+                "FastEmbed",
+                "Tavily API",
+                "BeautifulSoup",
+                "AWS EC2"
+              ]
+            }
+          },
+          "multiAgentPipeline": [
+            {
+              "agent": "Planner Agent",
+              "role": "Performs autonomous query expansion and breaks research topics into targeted sub-questions."
+            },
+            {
+              "agent": "Searcher Agent",
+              "role": "Conducts intelligent web intelligence gathering via Tavily API across verified scientific and web sources."
+            },
+            {
+              "agent": "Reader & Scraper Agent",
+              "role": "Scrapes and cleans unstructured web content, filtering ads, navigation, and noise."
+            },
+            {
+              "agent": "Summarizer Agent",
+              "role": "Extracts and condenses key data points into structured factual summaries."
+            },
+            {
+              "agent": "Qdrant Vector Vault RAG Node",
+              "role": "Generates dense embeddings via FastEmbed, stores them in Qdrant Cloud, and retrieves relevant semantic chunks (+38% factual gain)."
+            },
+            {
+              "agent": "Writer Agent",
+              "role": "Synthesizes comprehensive research reports using Mistral Large with structured citation references."
+            },
+            {
+              "agent": "Temporal Fact-Checker Agent",
+              "role": "Cross-verifies claims against raw retrieved sources to identify and eliminate hallucinations."
+            },
+            {
+              "agent": "Critic Agent (Self-Correcting Loop)",
+              "role": "Evaluates report quality (>92% average critique score); triggers automated rewrite cycles if score < 8/10."
+            },
+            {
+              "agent": "Knowledge Graph & Visualization Node",
+              "role": "Extracts entity-relationship networks for dynamic concept map rendering in the frontend."
+            }
+          ],
+          "specializedAcademicAgents": [
+            {
+              "name": "Literature Gap Finder",
+              "description": "Analyzes corpus of research papers to pinpoint unexplored niches and methodological gaps."
+            },
+            {
+              "name": "3-Agent Peer Review Panel",
+              "description": "Simulates academic peer-review with methodology critic, novelty reviewer, and statistical soundness analyst."
+            },
+            {
+              "name": "Thesis Defense Simulator",
+              "description": "Generates cross-examination questions and stress-tests academic arguments against counter-evidence."
+            },
+            {
+              "name": "Temporal Fact-Checker",
+              "description": "Validates chronological claims and data recency across multi-year source documents."
+            },
+            {
+              "name": "Slide Generator",
+              "description": "Transforms synthesized research reports into structured presentation slide decks."
+            },
+            {
+              "name": "AI Paraphraser (4 Modes)",
+              "description": "Provides Academic, Concise, Casual, and Technical rewrite modes with semantic integrity."
+            }
+          ],
+          "multiCloudDeployment": [
+            {
+              "service": "AWS EC2",
+              "role": "Hosts the Python/FastAPI AI Engine running the 9-node LangGraph pipeline with persistent compute."
+            },
+            {
+              "service": "Vercel",
+              "role": "Deploys Next.js 15 frontend and serverless edge API gateway."
+            },
+            {
+              "service": "Qdrant Cloud",
+              "role": "Manages high-dimensional vector vault for semantic RAG retrieval."
+            },
+            {
+              "service": "Supabase (PostgreSQL)",
+              "role": "Stores historical research analytics, session tracking, and workflow logs."
+            },
+            {
+              "service": "Upstash Redis",
+              "role": "Provides sub-50ms query caching and rate limiting across gateway modules."
+            },
+            {
+              "service": "MongoDB Atlas",
+              "role": "Handles user credentials, profile records, and subscription billing."
+            }
+          ]
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js 15",
+            "React 19",
+            "TypeScript",
+            "Zustand",
+            "Tailwind CSS v4",
+            "Framer Motion",
+            "GSAP",
+            "Server-Sent Events (SSE)",
+            "React Hook Form",
+            "Zod"
+          ],
+          "backend": [
+            "Node.js",
+            "Express.js",
+            "TypeScript",
+            "FastAPI",
+            "Python"
+          ],
+          "aiOrchestration": [
+            "LangGraph (9-Node)",
+            "LangChain",
+            "Mistral Large",
+            "Groq",
+            "Google Gemini",
+            "OpenRouter",
+            "Tavily API",
+            "BeautifulSoup"
+          ],
+          "vectorRAG": [
+            "Qdrant Cloud (Vector Vault)",
+            "FastEmbed",
+            "Dense Embeddings"
+          ],
+          "cloudDeployment": [
+            "AWS EC2 (AI Engine)",
+            "Vercel (Frontend & Gateway)",
+            "Qdrant Cloud",
+            "Supabase PostgreSQL",
+            "Upstash Redis",
+            "MongoDB Atlas"
+          ],
+          "database": [
+            "MongoDB Atlas",
+            "Supabase PostgreSQL",
+            "Upstash Redis"
+          ],
+          "authSecurity": [
+            "Dual-Token JWT (15-min access + 7-day refresh)",
+            "bcryptjs",
+            "Helmet",
+            "Express Rate Limit",
+            "CSRF Protection",
+            "Role-Based Access Control"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "9-Node LangGraph Multi-Agent Architecture",
+            "description": "Achieves >92% average critique score with a self-correcting Critic Agent rewrite loop for scores < 8/10."
+          },
+          {
+            "name": "4-Provider AI Fallback Cascade",
+            "description": "Dynamic failover across Mistral → Groq → Gemini → OpenRouter, reducing zero-output API failures to <0.5%."
+          },
+          {
+            "name": "6 Specialized Academic AI Agents",
+            "description": "Literature Gap Finder, 3-Agent Peer Review Panel, Thesis Defense Simulator, Temporal Fact-Checker, Slide Generator, and AI Paraphraser (4 modes)."
+          },
+          {
+            "name": "Qdrant Vector Vault RAG",
+            "description": "Semantic dense embedding retrieval improving factual accuracy by 38% vs non-RAG baseline."
+          },
+          {
+            "name": "Sub-50ms Upstash Redis Caching",
+            "description": "Instant cache responses (<50ms) for repeated queries vs 90+ second pipeline executions."
+          },
+          {
+            "name": "Dual-Token JWT Authentication",
+            "description": "15-minute access token + 7-day refresh token rotation with Redis-backed rate limiting."
+          },
+          {
+            "name": "Async SSE Job Queue",
+            "description": "Eliminates HTTP gateway timeouts across 8 route modules via real-time Server-Sent Events progress streaming."
+          },
+          {
+            "name": "6-Service Multi-Cloud Deployment",
+            "description": "AWS EC2 (AI Engine), Vercel (Frontend/Gateway), Qdrant Cloud, Supabase, Upstash Redis, and MongoDB Atlas."
+          },
+          {
+            "name": "Automated End-to-End Testing",
+            "description": "Achieves 85.7% pass rate across 28 automated end-to-end feature tests."
+          }
+        ],
+        "performanceOptimizations": [
+          "AWS EC2 dedicated compute hosting Python/FastAPI AI engine for heavy LangGraph workloads",
+          "Upstash Redis sub-50ms query caching eliminating redundant LLM pipeline runs",
+          "4-provider fallback cascade cutting downtime and zero-output failures to <0.5%",
+          "Asynchronous SSE job queue eliminating HTTP gateway timeouts on multi-minute pipelines",
+          "Parallel multi-agent execution via asyncio.gather cutting latency by ~50%",
+          "Semantic vector retrieval with Qdrant Cloud dense embeddings and context window optimization",
+          "6-service multi-cloud distributed architecture separating concerns for maximum reliability"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Long-running AI research pipeline timing out over standard HTTP gateways (90s+ execution)",
+            "solution": "Engineered an asynchronous SSE job queue with unique job tracking and real-time streaming progress across 8 route modules."
+          },
+          {
+            "problem": "Zero-output API errors and rate limit throttling from single LLM providers",
+            "solution": "Built a 4-provider fallback cascade (Mistral → Groq → Gemini → OpenRouter) reducing zero-output failures to <0.5%."
+          },
+          {
+            "problem": "Factual hallucinations in deep academic synthesis",
+            "solution": "Created a 9-node graph with Qdrant vector vault RAG (+38% factual gain) and self-correcting Critic Agent rewrite loop (<8/10 score threshold)."
+          },
+          {
+            "problem": "Heavy compute load on serverless environments during cyclic LangGraph agent executions",
+            "solution": "Deployed the Python/FastAPI AI engine onto AWS EC2 as a persistent dedicated service while maintaining serverless Vercel frontend and cloud-native databases."
+          },
+          {
+            "problem": "High token cost and latency from repeated research queries",
+            "solution": "Implemented Upstash Redis caching returning instant results in <50ms for previously researched topics."
+          }
+        ],
+        "outcome": "A production-grade, 6-service multi-cloud research system achieving an 85.7% pass rate across 28 automated E2E tests, >92% average critique score, and sub-50ms cached responses — powered by AWS EC2, Next.js 15, LangGraph, and Qdrant."
+      }
+    },
+    {
+      "id": 6,
+      "slug": "prime-luxury",
+      "thumbnail": "/projects/prime-luxury.png",
+      "title": "Prime Luxury (Raj Prime Luxury)",
+      "category": "Real Estate Platform",
+      "tagline": "Premium real estate platform for luxury residential & commercial properties",
+      "links": {
+        "live": "http://200.234.47.131:3058/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Full Stack Developer",
+      "caseStudy": {
+        "overview": "An enterprise-grade real estate platform for buying, selling, and renting luxury properties, combining an elegant UI with backend tools for listings, inquiries, appointments, teams, and marketing content.",
+        "problem": "Showcase luxury properties, simplify buying/renting/selling, improve lead generation and scheduling, enable secure role-based management, and deliver a visually engaging, scalable experience.",
+        "responsibilities": [
+          "Building responsive interfaces with Next.js",
+          "Developing RESTful APIs using Express.js",
+          "Designing scalable database models with Prisma ORM",
+          "Implementing authentication and role-based authorization",
+          "Integrating Google Maps and Leaflet",
+          "Developing appointment and inquiry workflows",
+          "Optimizing application performance and SEO",
+          "Integrating media storage and payment services"
+        ],
+        "solutionApproach": {
+          "frontend": {
+            "tech": [
+              "Next.js 15",
+              "React 19",
+              "Tailwind CSS",
+              "Redux Toolkit",
+              "Redux Persist",
+              "Framer Motion",
+              "GSAP",
+              "Radix UI"
+            ]
+          },
+          "backend": {
+            "tech": [
+              "Node.js",
+              "Express.js",
+              "TypeScript",
+              "Prisma ORM",
+              "PostgreSQL",
+              "Socket.io"
+            ]
+          }
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js 15",
+            "React 19",
+            "TypeScript",
+            "Tailwind CSS",
+            "Redux Toolkit",
+            "Redux Persist",
+            "Framer Motion",
+            "GSAP",
+            "React Hook Form",
+            "Zod",
+            "Radix UI"
+          ],
+          "backend": [
+            "Node.js",
+            "Express.js",
+            "TypeScript",
+            "Socket.io"
+          ],
+          "database": [
+            "PostgreSQL",
+            "Prisma ORM"
+          ],
+          "auth": [
+            "JWT Authentication",
+            "bcryptjs"
+          ],
+          "mapping": [
+            "Google Maps",
+            "Leaflet"
+          ],
+          "media": [
+            "Cloudinary",
+            "AWS SDK",
+            "Multer",
+            "Nodemailer",
+            "Stripe",
+            "Node-cron"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Luxury Property Listings",
+            "description": "Categories: Buy, Rent, Commercial, Off-Plan, Apartments — with images, specs, amenities, community details, floor plans, FAQs."
+          },
+          {
+            "name": "Advanced Property Search",
+            "description": "Filter by category, location, price, type, amenities, community."
+          },
+          {
+            "name": "Property Inquiry & Visit Scheduling",
+            "description": "Book on-site visits, online consultations, and submit inquiries — auto-stored as leads."
+          },
+          {
+            "name": "Property Submission",
+            "description": "Owners submit property info, images, and contact details for admin review."
+          },
+          {
+            "name": "Interactive Maps",
+            "description": "Google Maps + Leaflet for property locations, landmarks, and community surroundings."
+          },
+          {
+            "name": "Content Management",
+            "description": "Blog management, testimonials, newsletter subscriptions, contact forms."
+          },
+          {
+            "name": "Role-Based Access Control",
+            "description": "Super Admin, Admin, Team Member, User roles with dedicated permissions."
+          }
+        ],
+        "security": [
+          "JWT Authentication",
+          "bcryptjs password hashing",
+          "RBAC",
+          "Secure API authorization",
+          "Zod input validation",
+          "Protected admin routes",
+          "Secure cloud media storage",
+          "Environment-based configuration"
+        ],
+        "performanceOptimizations": [
+          "SSR (Next.js)",
+          "Turbopack optimization",
+          "Route-based code splitting",
+          "Lazy-loaded components",
+          "Optimized image delivery",
+          "Efficient Redux state management",
+          "SEO optimization",
+          "Smooth GSAP/Framer Motion animations"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Interface needing to reflect luxury exclusivity without sacrificing performance",
+            "solution": "Next.js + Tailwind + GSAP + Framer Motion for smooth, elegant, performant animations."
+          },
+          {
+            "problem": "Managing extensive relational property data",
+            "solution": "Flexible PostgreSQL schema via Prisma ORM for scalable, efficient querying."
+          },
+          {
+            "problem": "Efficient lead management",
+            "solution": "Automated inquiry/scheduling workflows organizing leads and communication."
+          },
+          {
+            "problem": "Different access levels per role",
+            "solution": "JWT-based auth with RBAC ensuring authorized-only access."
+          }
+        ],
+        "outcome": "A premium, enterprise-ready real estate platform enabling agencies to efficiently manage listings, inquiries, appointments, and operations while delivering an exceptional customer browsing experience."
+      }
+    },
+    {
+      "id": 7,
+      "slug": "studio-butterfly-support",
+      "thumbnail": "/projects/studio-butterfly-support.png",
+      "title": "Studio Butterfly AI Support Agent",
+      "category": "AI Customer Support Agent",
+      "tagline": "Autonomous AI support agent with RAG, tool calling, and stateful memory (local project)",
+      "links": {
+        "live": null,
+        "note": "Runs locally",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "AI/Full Stack Developer",
+      "caseStudy": {
+        "overview": "A production-grade, autonomous decision-making AI support agent capable of answering general queries, retrieving info from uploaded documents (RAG), and using mock tool calling for product/order details — built to automate and improve customer support accuracy.",
+        "solutionApproach": {
+          "systemWorkflow": [
+            "User message + chat history sent to Mistral LLM",
+            "LLM decides if a tool call is needed; fetches from local JSON databases if so",
+            "If document context is needed, searches Qdrant Vector DB for relevant chunks",
+            "If Qdrant confidence score is below 0.65, a fallback 'not found' message is triggered",
+            "Conversation saved in memory and displayed in real-time on the frontend"
+          ],
+          "setupGuide": {
+            "prerequisites": [
+              "Python 3.10+",
+              "Node.js v18+",
+              "Mistral AI API Key"
+            ],
+            "backend": [
+              "cd smartAiChatBot/smartAiAgent",
+              "pip install uv",
+              "uv venv",
+              "Activate venv (.venv\\Scripts\\Activate.ps1 on Windows / source .venv/bin/activate on macOS/Linux)",
+              "uv sync",
+              "Create .env with MISTRAL_API_KEY, MISTRAL_CHAT_MODEL, MISTRAL_EMBED_MODEL, QDRANT_URL, QDRANT_COLLECTION_NAME",
+              "uv run uvicorn app.main:app --reload --port 8000",
+              "Docs available at http://localhost:8000/docs"
+            ],
+            "frontend": [
+              "cd smartAiChatBot/smartaiagent-frontend",
+              "npm install",
+              "Create .env.local with NEXT_PUBLIC_BACKEND_URL=\"http://localhost:8000\"",
+              "npm run dev",
+              "Open http://localhost:3000"
+            ]
+          },
+          "testScenarios": [
+            "Memory Test: tell the agent your name, then ask 'What is my name?'",
+            "Product Search: 'Do you have a wireless mouse?'",
+            "Order Status: 'Where is my order ORD001?'",
+            "Document RAG: upload a PDF and ask questions about its content"
+          ]
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js (App Router)",
+            "React",
+            "Tailwind CSS"
+          ],
+          "backend": [
+            "Python",
+            "FastAPI",
+            "uv (package manager)"
+          ],
+          "aiDatabase": [
+            "Mistral AI (LLM + Embeddings)",
+            "Qdrant Vector Database"
+          ],
+          "architecturePatterns": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Tool Calling",
+            "Stateful Memory"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Autonomous Routing",
+            "description": "AI decides whether to give a general response, call a tool, or use RAG based on the user's message."
+          },
+          {
+            "name": "Tool Calling",
+            "description": "Fetches real-time mock data (orders.json, products.json) for order status or product pricing queries."
+          },
+          {
+            "name": "RAG - Document Analysis",
+            "description": "Users upload PDF/Text files; AI extracts context to answer accurately."
+          },
+          {
+            "name": "Stateful Memory",
+            "description": "Remembers the last 10 conversation turns for fluid, multi-turn conversations."
+          }
+        ],
+        "outcome": "By bypassing bloated frameworks like LangChain in favor of a custom agent router and lightweight Qdrant Vector DB, the agent is exceptionally fast and scalable for automating real-time customer support."
+      }
+    },
+    {
+      "id": 8,
+      "slug": "expresur",
+      "thumbnail": "/projects/expresur.png",
+      "title": "Expresur (XXMartiz Logistics Platform)",
+      "category": "Parcel Forwarding & Logistics",
+      "tagline": "International parcel forwarding and warehouse-to-doorstep logistics platform",
+      "links": {
+        "live": "https://expresur.com/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Full Stack Developer",
+      "caseStudy": {
+        "overview": "EXPRESUR gives global customers a personal US warehouse locker to shop at US retailers, managing the entire package lifecycle from pre-alert to warehouse receiving, consolidation, international shipping, and last-mile delivery.",
+        "problem": "International customers face high shipping costs and limited international shipping options from US retailers, plus difficulty tracking multiple purchases across borders. Logistics providers need robust tooling for receiving, consolidation, flight/ship batching, billing, and support.",
+        "solutionApproach": {
+          "coreWorkflow": [
+            "Locker Assignment — users get a unique US warehouse address",
+            "Shopping & Pre-alert — users pre-alert the warehouse about incoming packages",
+            "Warehouse Processing — packages scanned, weighed, logged at the Miami warehouse",
+            "Shipment Strategy — direct shipping or consolidation of multiple packages",
+            "International Transit — shipments grouped into logistic batches through customs",
+            "Last-Mile Delivery — local couriers complete doorstep delivery"
+          ],
+          "roleSystem": [
+            "USER",
+            "STORE_DEPARTMENT",
+            "CUSTOMER_SERVICE",
+            "WAREHOUSE_DEPARTMENT",
+            "FINANCE_ADMIN",
+            "ADMIN / SUPER_ADMIN"
+          ]
+        },
+        "techStack": {
+          "frontend": [
+            "Next.js 14 (App Router)",
+            "TypeScript",
+            "Tailwind CSS",
+            "shadcn/ui",
+            "Radix UI",
+            "Redux Toolkit",
+            "React Query",
+            "i18next"
+          ],
+          "backend": [
+            "Node.js",
+            "Express.js",
+            "MongoDB (Prisma ORM v6)",
+            "JWT + bcrypt",
+            "Socket.io v4"
+          ],
+          "payments": [
+            "Stripe (PaymentIntents + webhooks)"
+          ],
+          "storage": [
+            "Cloudinary",
+            "AWS S3"
+          ],
+          "logisticsTooling": [
+            "qrcode (QR generation)",
+            "bwip-js (CODE128 barcode generation)"
+          ],
+          "scheduling": [
+            "node-cron"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Multi-Tier Role System",
+            "description": "7 distinct privilege levels orchestrating customer, store, warehouse, finance, and admin operations."
+          },
+          {
+            "name": "Inbound Parcel & Consolidation Engine",
+            "description": "Pre-alerts, split & consolidate workflows for cost-effective shipping."
+          },
+          {
+            "name": "Wallet and Payment Flow",
+            "description": "Digital wallet topped up via Stripe; shipping fees and services deducted seamlessly."
+          },
+          {
+            "name": "Internal Labeling & Tracking",
+            "description": "Auto-generated QR codes and barcodes for precise box tracking via handheld scanners."
+          }
+        ],
+        "impact": [
+          "Reduces operational overhead via automated labeling, scanning, and cron-jobs",
+          "Enhances user experience with real-time visibility into packages, wallet, and costs",
+          "Scales effortlessly with decoupled Next.js + Node.js/MongoDB architecture"
+        ],
+        "outcome": "A production-ready platform dramatically streamlining cross-border logistics through automated warehouse operations and full customer transparency."
+      }
+    },
+    {
+      "id": 9,
+      "slug": "ai-career-assistant-rag",
+      "thumbnail": "/projects/ai-career-assistant-rag.png",
+      "title": "AI Career Assistant (RAG + LLM Platform)",
+      "category": "Generative AI / RAG Platform",
+      "tagline": "AI-powered platform for Resume Generation, Job Description Matching, and Interview Preparation",
+      "links": {
+        "live": "https://gen-ai-frontend-three.vercel.app/",
+        "github": {
+          "frontend": "https://github.com/Anthic/GenAiFrontend.git",
+          "backend": "https://github.com/Anthic/GenIAi-Rag-Langchain.git",
+          "project": "https://github.com/Anthic/GenAi-Project.git"
+        }
+      },
+      "role": "Full Stack AI Developer",
+      "caseStudy": {
+        "overview": "Built a full-stack AI Career Assistant using Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs). The platform enables users to generate ATS-friendly resumes, optimize CVs based on job descriptions, prepare for interviews with AI-generated questions, and chat with their uploaded career documents using context-aware responses.",
+        "targetUsers": [
+          "Job seekers preparing ATS-friendly resumes",
+          "Students and fresh graduates applying for internships and jobs",
+          "Professionals tailoring CVs to specific job descriptions",
+          "Candidates preparing for technical and HR interviews"
+        ],
+        "solutionApproach": [
+          "Users upload resumes, job descriptions, or career-related documents.",
+          "Documents are parsed, chunked, embedded, and stored in a vector database.",
+          "The system retrieves relevant context using semantic similarity search.",
+          "LLMs generate ATS-friendly resumes, resume improvements, interview questions, and personalized answers using retrieved context.",
+          "Responses are streamed to the frontend with supporting document references."
+        ],
+        "techStack": {
+          "backend": [
+            "Python",
+            "FastAPI",
+            "LangChain"
+          ],
+          "vectorStore": [
+            "FAISS",
+            "ChromaDB",
+            "Pinecone"
+          ],
+          "embeddings": [
+            "OpenAI Embeddings",
+            "HuggingFace Sentence Transformers"
+          ],
+          "llm": [
+            "OpenAI GPT",
+            "Google Gemini",
+            "Anthropic Claude"
+          ],
+          "frontend": [
+            "Next.js",
+            "React.js",
+            "Tailwind CSS"
+          ],
+          "documentLoaders": [
+            "PDF",
+            "DOCX",
+            "TXT"
+          ]
+        },
+        "keyFeatures": [
+          "ATS-friendly Resume/CV generation",
+          "Resume optimization based on Job Description",
+          "Job Description semantic matching",
+          "AI-powered interview preparation",
+          "Technical and HR interview question generation",
+          "Resume analysis with personalized improvement suggestions",
+          "RAG-based document chat",
+          "Context-aware responses with source citations",
+          "Multi-LLM support",
+          "Scalable frontend and backend architecture"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Resume recommendations lacked relevance.",
+            "solution": "Used RAG to retrieve job-specific context before LLM generation."
+          },
+          {
+            "problem": "Large resumes and job descriptions increased response time.",
+            "solution": "Implemented chunking, caching, and asynchronous document indexing."
+          },
+          {
+            "problem": "Hallucinated interview answers.",
+            "solution": "Grounded prompts with retrieved resume and job description context."
+          },
+          {
+            "problem": "Poor semantic retrieval.",
+            "solution": "Optimized chunk size, embedding models, and similarity threshold."
+          }
+        ],
+        "futureScope": [
+          "Multi-agent workflow using LangGraph",
+          "AI mock interview with voice support",
+          "Cover letter generation",
+          "Skill gap analysis",
+          "Job recommendation engine",
+          "Multi-user authentication and workspace management",
+          "Hybrid search with advanced re-ranking"
+        ],
+        "outcome": "Developed a production-ready AI Career Assistant that leverages RAG and LLMs to generate ATS-friendly resumes, optimize CVs for specific job descriptions, provide personalized interview preparation, and deliver accurate, context-aware career guidance."
+      }
+    },
+    {
+      "id": 10,
+      "slug": "covid19-vaccine-side-effect-prediction",
+      "thumbnail": "/projects/covid19.png",
+      "title": "COVID-19 Vaccine Side Effect Prediction Platform",
+      "category": "Healthcare AI / Machine Learning",
+      "tagline": "Case study platform for predicting COVID-19 vaccine side effects using Machine Learning",
+      "links": {
+        "live": "https://covid19-frontend-ruby.vercel.app/",
+        "github": {
+          "frontend": "https://github.com/Anthic/Covid19-Frontend.git",
+          "backend": "https://github.com/Anthic/Covid19-Backend.git",
+          "ml": "https://github.com/Anthic/covid19-vaccine-prediction.git"
+        }
+      },
+      "role": "Full Stack / Machine Learning Developer",
+      "caseStudy": {
+        "overview": "Developed a healthcare AI platform that combines COVID-19 information with a machine learning model to predict potential vaccine side effects. Users can enter personal and vaccination-related information to receive a personalized side-effect risk prediction based on a trained ML model.",
+        "targetUsers": [
+          "Individuals planning COVID-19 vaccination",
+          "Healthcare professionals",
+          "Medical researchers and students",
+          "Public health organizations",
+          "Researchers analyzing vaccine side-effect trends"
+        ],
+        "solutionApproach": {
+          "workflow": [
+            "User enters demographic and vaccination-related information.",
+            "The backend validates and preprocesses the submitted data.",
+            "The trained machine learning model predicts the probability of vaccine side effects.",
+            "Prediction results are displayed with risk level and supporting insights.",
+            "Users can compare predictions with historical case study statistics through interactive dashboards."
+          ],
+          "caseStudyDataset": {
+            "source": "Primary survey dataset collected through Google Forms",
+            "participants": "395+ vaccinated participants from Bangladesh",
+            "features": [
+              "Age",
+              "Gender",
+              "Marital Status",
+              "Employment Status",
+              "Region",
+              "Chronic Diseases",
+              "Previous Allergic Conditions",
+              "Vaccine Dose Information",
+              "Side Effect Duration",
+              "Vaccination History"
+            ],
+            "target": "Prediction of COVID-19 vaccine side effects"
+          }
+        },
+        "techStack": {
+          "backend": [
+            "Python",
+            "FastAPI / Flask",
+            "Node.js"
+          ],
+          "database": [
+            "MongoDB",
+            "PostgreSQL"
+          ],
+          "frontend": [
+            "React.js",
+            "Next.js",
+            "Tailwind CSS",
+            "Chart.js"
+          ],
+          "mlModule": [
+            "Python",
+            "Pandas",
+            "Scikit-learn",
+            "XGBoost",
+            "Random Forest",
+            "Logistic Regression"
+          ],
+          "dataProcessing": [
+            "NumPy",
+            "Feature Engineering",
+            "Data Preprocessing"
+          ]
+        },
+        "keyFeatures": [
+          "Machine learning-based vaccine side effect prediction",
+          "Interactive COVID-19 case study dashboard",
+          "Personalized risk assessment",
+          "Prediction based on demographic and health information",
+          "Visual analytics and statistical reports",
+          "Multiple ML model comparison",
+          "Responsive web interface",
+          "Separate frontend, backend, and ML architecture"
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Survey dataset contained missing and inconsistent values.",
+            "solution": "Applied preprocessing, data cleaning, and feature engineering."
+          },
+          {
+            "problem": "Selecting the most effective prediction model.",
+            "solution": "Compared Logistic Regression, Decision Tree, Random Forest, XGBoost, AdaBoost, CatBoost, KNN, and SVM using cross-validation."
+          },
+          {
+            "problem": "Class imbalance affected prediction quality.",
+            "solution": "Applied feature selection and balanced training strategies."
+          },
+          {
+            "problem": "Presenting prediction results in an understandable way.",
+            "solution": "Built interactive dashboards with charts and personalized risk summaries."
+          }
+        ],
+        "futureScope": [
+          "Integration with hospital information systems",
+          "Support for additional vaccine types",
+          "Real-time prediction using live healthcare datasets",
+          "Explainable AI (SHAP/LIME) for prediction transparency",
+          "Doctor recommendation module",
+          "User authentication and patient history management"
+        ],
+        "outcome": "Built an end-to-end healthcare AI platform that predicts potential COVID-19 vaccine side effects using machine learning models trained on real-world survey data. The platform helps users, researchers, and healthcare professionals better understand vaccine side-effect risks through data-driven insights and interactive visualizations."
+      }
+    },
+    {
+      "id": 11,
+      "slug": "puropalma",
+      "thumbnail": "/projects/puropalma.png",
+      "title": "PuroPalma",
+      "category": "Luxury Villa Showcase Website",
+      "tagline": "\"Your Private Escape in Palma\" — cinematic single-property villa rental site",
+      "links": {
+        "live": "https://puropalma.com/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Frontend Developer",
+      "caseStudy": {
+        "overview": "A premium, single-property villa rental showcase website for a luxury private villa in the Málaga/Torremolinos area of Spain, presenting ambiance and amenities cinematically and converting visitors into direct booking inquiries via WhatsApp/contact form.",
+        "problem": [
+          "Generic booking platforms limit brand identity and emotional storytelling",
+          "No direct, commission-free guest communication channel",
+          "Goal: strong first impression, scroll-based storytelling, clear amenities/gallery/location showcase, easy WhatsApp/contact reach"
+        ],
+        "solutionApproach": {
+          "projectStructure": {
+            "MainLayout": "Shared layout with Navbar, Footer, ScrollToTop, WhatsApp button",
+            "Router": "Routes via createBrowserRouter (/, /gallery, /contact)",
+            "Pages": "Home, Gallery, Contact",
+            "components": "18+ reusable components (Banner, Experience, LuxuryFacilities, etc.)",
+            "dataConfig": "property.ts centralizes site name, WhatsApp number, email, map — enabling white-label reuse"
+          },
+          "designLanguage": {
+            "colorPalette": "Deep black (#0a0a0a) with gold/champagne accents (#C5A367, #C5A059) and off-white (#F2EBDB)",
+            "typography": "Poppins (body) + serif typeface (headlines)",
+            "visualStyle": "Full-screen imagery, generous whitespace, uppercase letter-spaced labels, minimal UI chrome"
+          }
+        },
+        "techStack": {
+          "framework": [
+            "React 19",
+            "Vite 7"
+          ],
+          "routing": [
+            "React Router DOM v7"
+          ],
+          "styling": [
+            "Tailwind CSS v4 (Vite plugin)"
+          ],
+          "animation": [
+            "GSAP",
+            "@gsap/react (useGSAP)",
+            "ScrollTrigger"
+          ],
+          "scrolling": [
+            "Lenis"
+          ],
+          "video": [
+            "HTML5 video / react-player"
+          ],
+          "icons": [
+            "react-icons"
+          ],
+          "deployment": [
+            "Vercel"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "Cinematic Hero Banner",
+            "description": "GSAP timeline fades/slides title, subtitle, and CTA sequentially."
+          },
+          {
+            "name": "Scroll-Triggered Story Section",
+            "description": "Text block and image grid reveal on scroll via ScrollTrigger."
+          },
+          {
+            "name": "Stacking Cards Facilities Section",
+            "description": "Sticky left text column with pinned, scrub-animated stacking cards (desktop, Apple-style depth effect)."
+          },
+          {
+            "name": "Multi-Phase Image Transition Gallery",
+            "description": "A 13-unit master GSAP timeline choreographs yPercent slide/reveal across 10 images in a 1300vh sticky wrapper."
+          },
+          {
+            "name": "Promo Video Section",
+            "description": "Background video fades in and auto-plays on viewport entry."
+          },
+          {
+            "name": "Full-Screen Overlay Navigation",
+            "description": "Dark full-screen overlay with staggered nav-link animation on menu open."
+          },
+          {
+            "name": "Contact & Conversion Features",
+            "description": "Floating pulsing WhatsApp button, contact form with scroll-reveal, embedded Google Map."
+          }
+        ],
+        "challengesAndSolutions": [
+          {
+            "problem": "Jank risk from multiple simultaneous scroll animations",
+            "solution": "Lenis synced to the GSAP ticker, running a single RAF loop."
+          },
+          {
+            "problem": "Complex multi-image sequencing",
+            "solution": "Centralized master timeline with position-based offsets for clean reverse-scrubbing."
+          },
+          {
+            "problem": "Different layout behavior desktop vs. mobile",
+            "solution": "gsap.matchMedia() to separate responsive animation logic."
+          },
+          {
+            "problem": "Reusability for future properties",
+            "solution": "All brand/contact data isolated into a single property.ts config file."
+          }
+        ],
+        "outcome": "An agency-grade, immersive digital experience for a small hospitality brand — improving conversion potential, brand perception, and providing a commission-free, reusable, config-driven foundation."
+      }
+    },
+    {
+      "id": 12,
+      "slug": "k72-website-clone",
+      "thumbnail": "/projects/k72-website-clone.png",
+      "title": "K72 Website Clone",
+      "category": "Creative Agency Portfolio (Front-end Clone)",
+      "tagline": "Front-end clone of a Canadian creative agency site — advanced GSAP animation showcase",
+      "links": {
+        "live": "https://k2-websit-clone.vercel.app/",
+        "github": {
+          "frontend": null,
+          "backend": null,
+          "agent": null
+        }
+      },
+      "role": "Frontend Developer (Portfolio Project)",
+      "caseStudy": {
+        "overview": "A front-end clone of the K72 creative agency's website, recreating its signature look — bold typography, full-bleed video, lime-green accent, and heavily choreographed page-transition animations — as a technical showcase.",
+        "solutionApproach": {
+          "goal": [
+            "Practice advanced GSAP timeline choreography (staggers, scrubbing, pinning)",
+            "Reproduce a fullscreen navigation experience with layered animation states",
+            "Implement scroll-driven image sequencing and page-transition effects",
+            "Demonstrate strong React + Tailwind + GSAP integration for a portfolio/CV project"
+          ],
+          "projectStructure": {
+            "App.jsx": "Route definitions (/, /agence, /projects, /blog)",
+            "main.jsx": "Wraps app in <Stairs> transition + <NavContext>",
+            "Context/NavContext.jsx": "Global nav-open state + nav color per route",
+            "components": "Stairs.jsx (page transition), Navbar.jsx, FullScreenNav.jsx, Home hero components, ProjectCard.jsx",
+            "Pages": "Home.jsx, Projects.jsx, Agents.jsx (scroll-pinned team section), Blog.tsx"
+          },
+          "designLanguage": {
+            "colorPalette": "Black and white base with a bright lime-green accent (#D3FD50)",
+            "typography": "Large, uppercase, tightly tracked display type as a core layout element",
+            "motionLanguage": "Heavy skew, stagger, and scrub-based animation for a kinetic, high-production feel"
+          }
+        },
+        "techStack": {
+          "framework": [
+            "React 19.1"
+          ],
+          "routing": [
+            "React Router DOM 7.9"
+          ],
+          "styling": [
+            "Tailwind CSS 4.1 (Vite plugin)"
+          ],
+          "animation": [
+            "GSAP 3.13",
+            "@gsap/react (useGSAP)",
+            "ScrollTrigger"
+          ],
+          "build": [
+            "Vite 7.1"
+          ],
+          "typeChecking": [
+            "TypeScript configs (mixed .jsx/.tsx)"
+          ],
+          "lintingFormatting": [
+            "ESLint",
+            "Prettier"
+          ]
+        },
+        "keyFeatures": [
+          {
+            "name": "\"Stair Wipe\" Page Transitions",
+            "description": "Five vertical black bars stagger-reveal and sweep down over route changes, masking the page swap cinematically."
+          },
+          {
+            "name": "Fullscreen Overlay Navigation",
+            "description": "GSAP timeline expands stair panels then flies in nav links with skew + rotateX + stagger; hover reveals a marquee of project thumbnails."
+          },
+          {
+            "name": "Home Hero with Inline Video",
+            "description": "Uppercase headline with an inline circular video clip mid-sentence plus a full-screen looping background video."
+          },
+          {
+            "name": "Scroll-Revealed Project Grid",
+            "description": "Project rows fade/grow in from collapsed state via a scrubbed GSAP tween with staggered timing."
+          },
+          {
+            "name": "Scroll-Pinned Image Sequence",
+            "description": "Pinned circular image frame swaps src on scroll progress, simulating a frame-by-frame video without actual video."
+          },
+          {
+            "name": "Context-Driven Nav Theming",
+            "description": "NavContext flips nav icon/logo color between white/black based on the current route's background."
+          }
+        ],
+        "technicalNotes": [
+          "Project/team images pulled from the original agency's live CDN (would need self-hosted assets for real deployment)",
+          "Nearly every interactive element built as a discrete GSAP timeline scoped with useGSAP",
+          "Lightweight state management via two small Context providers instead of a larger state library",
+          "Mixed .jsx/.tsx files with a TypeScript config present but not strictly enforced everywhere"
+        ],
+        "outcome": "A strong showcase of production-style GSAP + ScrollTrigger choreography, a custom page-transition system, and clean multi-page React structure — valued as an animation/interaction-design portfolio piece."
+      }
+    },
+    {
+      "id": 13,
+      "slug": "maternal-mental-health-ml",
+      "thumbnail": "/projects/feature_importance_RF.png",
+      "title": "Predictive Analytics for Maternal Mental Health Using Machine Learning (BDHS 2022)",
+      "category": "Machine Learning / Public Health Research",
+      "tagline": "ML-based prediction of depression/anxiety risk factors from the Bangladesh Demographic and Health Survey 2022",
+      "links": {
+        "live": null,
+        "github": {
+          "project": "https://github.com/Anthic/womanMachineLearning.git"
+        }
+      },
+      "role": "Machine Learning Developer / Researcher",
+      "caseStudy": {
+        "overview": "Applies advanced ML techniques to the BDHS 2022 dataset to identify and predict risk factors for depression, anxiety, and distress among women, aiming to build a robust, generalizable model for early screening and targeted intervention.",
+        "solutionApproach": {
+          "dataLeakagePrevention": "Correlation analysis and single-feature testing identified variables like MTH22 (months since last birth) as perfect separators reflecting survey timing rather than real risk; these were excluded to ensure generalization.",
+          "featureSelection": "Combined union of Mutual Information (MI), Chi-Square, and Random Forest importance, applied on the original training data.",
+          "classImbalanceHandling": "SMOTE (Synthetic Minority Over-sampling Technique) applied AFTER feature selection (not before) to avoid introducing synthetic bias."
+        },
+        "challengesAndSolutions": [
+          {
+            "name": "Extreme Class Imbalance",
+            "description": "Only 1,026 of 30,078 respondents (3.4%) tested positive for depression — standard models tend to ignore the minority class."
+          },
+          {
+            "name": "Data Leakage Risks",
+            "description": "Initial models hit an unrealistic 100% accuracy, signaling severe data leakage impossible in real-world medical/psychological prediction."
+          }
+        ],
+        "results": {
+          "modelsTrained": [
+            "XGBoost",
+            "Random Forest",
+            "Decision Tree",
+            "Logistic Regression",
+            "SVM",
+            "KNN"
+          ],
+          "evaluationApproach": "ROC-AUC as the primary metric (due to imbalance) alongside strict monitoring of the train-vs-test accuracy gap to prevent overfitting.",
+          "results": {
+            "modelPerformanceTable": [
+              {
+                "model": "XGBoost (Best)",
+                "trainAccuracy": "98.27%",
+                "testAccuracy": "96.53%",
+                "overfitGap": "1.74%",
+                "rocAuc": "75.60%"
+              },
+              {
+                "model": "Random Forest",
+                "trainAccuracy": "100.00%",
+                "testAccuracy": "96.53%",
+                "overfitGap": "3.47%",
+                "rocAuc": "73.12%"
+              },
+              {
+                "model": "Decision Tree",
+                "trainAccuracy": "90.91%",
+                "testAccuracy": "93.87%",
+                "overfitGap": "-2.96%",
+                "rocAuc": "72.47%"
+              },
+              {
+                "model": "SVM",
+                "trainAccuracy": "99.25%",
+                "testAccuracy": "96.53%",
+                "overfitGap": "2.72%",
+                "rocAuc": "71.89%"
+              },
+              {
+                "model": "Logistic Regression",
+                "trainAccuracy": "81.09%",
+                "testAccuracy": "78.57%",
+                "overfitGap": "2.52%",
+                "rocAuc": "68.54%"
+              }
+            ],
+            "bestModel": "XGBoost",
+            "figures": [
+              "Feature Importance (Random Forest) — highlights age, geographic clustering, husband's education as top predictors",
+              "Model Performance Comparison — Precision, Recall, F1-Score, ROC-AUC across all six models",
+              "ROC-AUC Ranking — XGBoost highest, most reliable at distinguishing depressed vs. non-depressed cases",
+              "Train vs. Test Accuracy — gap under 5% indicates good generalization",
+              "XGBoost Confusion Matrix — best-performing model's test set results"
+            ]
+          }
+        },
+        "impact": [
+          "Scalable, low-cost public health screening tool using easily collectible demographic/socio-economic variables",
+          "Enables targeted resource allocation via key predictors like geographic clustering and education levels",
+          "Establishes a reproducible ML pipeline correctly handling demographic survey data nuances, setting a standard for epidemiological ML studies"
+        ],
+        "outcome": "A robust, generalizable XGBoost-based predictive model for maternal mental health risk, engineered with careful data-leakage prevention, proper feature selection ordering, and rigorous overfitting checks."
+      }
+    },
+    {
+      "id": 14,
+      "slug": "covid19-vaccine-side-effect-prediction-ml",
+      "thumbnail": "/projects/covid19(ml).png",
+      "title": "COVID-19 Vaccine Side Effect Prediction Using Machine Learning",
+      "category": "Machine Learning / Healthcare Research",
+      "tagline": "ML-based prediction of COVID-19 vaccine side effects using real-world survey data from Bangladesh",
+      "links": {
+        "live": null,
+        "github": {
+          "project": "https://github.com/Anthic/covid19-vaccine-prediction"
+        }
+      },
+      "role": "Machine Learning Developer / Researcher",
+      "caseStudy": {
+        "overview": "Developed a machine learning framework to predict the likelihood of COVID-19 vaccine side effects using demographic, health, and vaccination-related information collected from vaccinated individuals in Bangladesh. The project focuses on early risk assessment and identifying the most influential factors associated with post-vaccination side effects.",
+        "solutionApproach": {
+          "dataset": {
+            "source": "Primary survey dataset collected through Google Forms",
+            "participants": "395 vaccinated participants from Bangladesh",
+            "targetVariable": "COVID-19 Vaccine Side Effect",
+            "features": [
+              "Age",
+              "Gender",
+              "Marital Status",
+              "Employment Status",
+              "Region",
+              "Previous Chronic Conditions",
+              "Previous Allergic Reactions",
+              "Vaccine Dose",
+              "Side Effect Duration",
+              "Vaccination History"
+            ]
+          },
+          "methodology": {
+            "dataPreprocessing": "Handled missing values, encoded categorical variables, normalized numerical features, and prepared data for ML training.",
+            "featureSelection": "Applied Mutual Information, Chi-Square, and Random Forest Feature Importance to identify the most influential predictors.",
+            "modelTraining": "Compared multiple supervised machine learning algorithms using cross-validation and performance metrics.",
+            "evaluation": "Measured Accuracy, Precision, Recall, F1-Score, ROC-AUC, and Confusion Matrix to select the best-performing model."
+          }
+        },
+        "challengesAndSolutions": [
+          {
+            "name": "Real-World Survey Data Quality",
+            "description": "Survey responses contained missing values, inconsistent entries, and categorical variables requiring preprocessing."
+          },
+          {
+            "name": "Feature Selection",
+            "description": "Identifying the most relevant demographic and medical features was essential to improve model performance and reduce overfitting."
+          },
+          {
+            "name": "Model Generalization",
+            "description": "Preventing overfitting while maintaining strong predictive performance across unseen data."
+          }
+        ],
+        "results": {
+          "modelsTrained": [
+            "Random Forest",
+            "XGBoost",
+            "Decision Tree",
+            "AdaBoost",
+            "CatBoost",
+            "Logistic Regression",
+            "K-Nearest Neighbors (KNN)",
+            "Support Vector Machine (SVM)"
+          ],
+          "evaluationApproach": "Compared multiple ML models using Accuracy, Precision, Recall, F1-Score, ROC-AUC, and Confusion Matrix while monitoring overfitting through train-test performance comparison.",
+          "results": {
+            "bestModel": "Random Forest",
+            "keyFindings": [
+              "Random Forest achieved the highest overall prediction performance.",
+              "Feature selection significantly improved model accuracy.",
+              "Previous allergic reactions, chronic diseases, age, and vaccine dose were among the strongest predictors.",
+              "The trained model demonstrated reliable performance for predicting post-vaccination side effects."
+            ],
+            "figures": [
+              "Random Forest Feature Importance",
+              "Model Performance Comparison",
+              "ROC Curve Comparison",
+              "Confusion Matrix",
+              "Accuracy Comparison Across Models"
+            ]
+          }
+        },
+        "impact": [
+          "Supports early identification of individuals at higher risk of vaccine side effects.",
+          "Helps healthcare professionals make data-driven vaccination recommendations.",
+          "Provides a reusable machine learning pipeline for healthcare prediction tasks.",
+          "Demonstrates practical application of predictive analytics in public health research."
+        ],
+        "outcome": "Built a robust machine learning prediction system capable of estimating COVID-19 vaccine side-effect risk from demographic and clinical information, with Random Forest emerging as the best-performing model and providing valuable insights for healthcare decision-making."
+      }
+    }
+  ]
+}

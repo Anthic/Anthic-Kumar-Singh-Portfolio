@@ -327,7 +327,7 @@ body {
 .stack-wrap {
   position: relative;
   width: 100%;
-  min-height: 475px;
+  min-height: 560px;
 }
 
 .stack-sticky {
@@ -356,14 +356,14 @@ body {
               filter 0.45s ease;
   transform-style: preserve-3d;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 22px;
-  box-shadow: 0 16px 40px -10px rgba(30, 20, 60, 0.1), 0 2px 6px rgba(0,0,0,0.02);
-  border: 1px solid rgba(235, 220, 208, 0.9);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 0px;
+  box-shadow: 0 16px 36px -10px rgba(30, 20, 60, 0.08), 0 1px 4px rgba(0,0,0,0.03);
+  border: 1.5px solid rgba(220, 210, 200, 0.95);
   width: 100%;
-  max-width: 680px;
+  max-width: 780px;
 }
 
 /* 1. Active card: rises up from below, fully focused and interactive */
@@ -430,6 +430,41 @@ body {
   text-align: center;
 }
 
+/* ── Selected Work Infinite Smooth Carousel Marquee ──────────────── */
+@keyframes infiniteMarqueeTrack {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
 
+.animate-infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: infiniteMarqueeTrack 50s linear infinite;
+  will-change: transform;
+}
 
+.animate-infinite-marquee:hover {
+  animation-play-state: paused;
+}
 
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpModal {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeInModal 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

@@ -1,66 +1,117 @@
-Build the "What I Do" section as a scroll-driven sticky card-stack with a modern, glassmorphic feel. The site has a sticky/fixed navbar at the top — make sure this section's sticky behavior works correctly underneath it (see NAVBAR COMPATIBILITY below).
+ROLE
+You are a senior frontend engineer extending an EXISTING portfolio website. Do not redesign — 
+replicate the reference screenshot PIXEL-PERFECT (same spacing, same colors, same fonts, same 
+proportions), only update the text content with the data given below. This section sits 
+directly BELOW the "All Projects" section on the homepage/portfolio page.
 
-HTML STRUCTURE:
-<div class="stack-wrap" id="stackWrap">        <!-- height: 420vh (≈105vh × 4 cards) -->
-  <div class="stack-sticky">
-    <div class="glow" id="glow"></div>          <!-- blurred color-shifting blob behind the card -->
-    <div id="cardHost">                          <!-- 4x .card divs, stacked absolutely on top of each other -->
-    <div class="rail"><div class="rail-fill" id="railFill"></div></div>  <!-- continuous progress bar -->
-    <div class="rail-label" id="railLabel">1 / 4</div>
-  </div>
-</div>
+═══════════════════════════════════════════
+1. LAYOUT — MATCH REFERENCE SCREENSHOT EXACTLY
+═══════════════════════════════════════════
+- Full-width section on the warm cream/off-white background (#FAF3E9 approx), generous 
+  padding top/bottom
+- 3-column grid on desktop (roughly equal width, gap ~32-40px between columns), stacks to 
+  single column on mobile in this order: Experience → Education → Skills
+- Small hand-drawn doodle accents scattered around the section, same thin black wobbly stroke 
+  style as the rest of the site:
+    - A small 4-point sparkle/star icon top-left area (between Skills header top area)
+    - A larger blue sparkle/starburst icon top-right, near "Skills" heading
+    - A red hand-drawn squiggle/spiral (like a loose coil, 2 loops) bottom-left, under the 
+      Experience column
+    - A small hand-drawn graduation cap doodle icon (black outline, simple line-art) placed 
+      bottom-right of the Education column
+    - A thin black horizontal dashed/plain divider line at the very bottom of the section
+- Each column has NO card/border — content sits directly on the cream background, just 
+  grouped under its own bold heading
 
-NAVBAR COMPATIBILITY (important):
-- Get the navbar's actual height (e.g. via `document.querySelector('.navbar').offsetHeight` or a CSS variable `--navbar-h` already used elsewhere in the project).
-- Set `.stack-sticky { position: sticky; top: var(--navbar-h, 0px); height: calc(100vh - var(--navbar-h, 0px)); }` — NOT `top: 0` — so the sticky card area sits directly below the navbar instead of underneath/behind it.
-- The navbar must have a higher `z-index` than `.stack-sticky` and `.card` (e.g. navbar z-index: 100, card z-index: 1-3) so the navbar always stays visibly on top while cards transition.
-- If the navbar changes height responsively (e.g. shrinks on scroll or on mobile), recalculate `--navbar-h` on resize and use it consistently for both the sticky offset and the height calc.
+COLUMN 1 — "Experience"
+  - Heading: bold, blue (#2F4FE0 approx), same font-weight/size as other section headings 
+    used site-wide (e.g. "What I Do", "Selected Work")
+  - Below heading: a vertical timeline list, each entry = a small colored round bullet dot 
+    (left-aligned, dot color cycles: green, then blue/teal — do NOT reuse the old 3rd dot 
+    since there are now only 2 entries) + text block to its right:
+      Line 1 (bold, dark): date range
+      Line 2 (bold, dark, slightly larger/emphasized — this is the role title)
+      Line 3 (regular, muted gray): company name
+  - Entries (top to bottom, most recent first):
+      ● Feb 2025 – Present
+        Full-Stack Developer
+        The Nexgenix
+      
+      ● Nov 2024 – Feb 2025
+        Full-Stack Developer (Intern)
+        The Nexgenix
 
-CSS FOR EACH CARD STATE:
-.card { position:absolute; opacity:0; transform: translateY(70px) scale(.9) rotateX(10deg); filter: blur(8px);
-        transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease;
-        transform-style: preserve-3d; pointer-events:none; }
-.card.active   { opacity:1; transform: translateY(0) scale(1) rotateX(0deg); filter: blur(0); pointer-events:auto; z-index:3; }
-.card.exiting  { opacity:0; transform: translateY(60px) scale(.92) rotateX(-8deg); filter: blur(8px); z-index:2; }
-.card.pre-enter{ opacity:0; transform: translateY(70px) scale(.9) rotateX(10deg); filter: blur(8px); }
-.stack-sticky { perspective: 1200px; }   /* required for the rotateX 3D effect to render */
+COLUMN 2 — "Education"
+  - Heading: bold, blue, same style as "Experience" heading
+  - Same vertical timeline dot-list style as Experience, dot colors cycling through 
+    pink/magenta, purple, then green for the 3rd entry
+  - Entries (top to bottom, most recent first):
+      ● 2022 – 2026
+        B.Sc. in Statistics
+        Mawlana Bhashani Science and Technology University, Tangail
+        CGPA: 3.27/4.00
 
-CARD VISUAL STYLE: semi-transparent white background (rgba(255,255,255,0.85)) with backdrop-filter: blur(20px) for a glassmorphic look, rounded corners ~22px, soft large shadow (0 20px 50px rgba(30,20,60,0.15)), icon badge (58px, rotated -4deg, colored per card, subtle drop shadow), bold title, short description, tech-tag pills, arrow (→) bottom-right that nudges right on hover.
+      ● 2019 – 2021
+        HSC (Science)
+        Cantonment Public School and College, BUMS, Parbatipur, Dinajpur
+        GPA: 4.90
 
-GLOW BLOB: an absolutely positioned, heavily blurred (blur(90px)) circular div (~480px) behind the card stack, opacity ~0.45, whose `background-color` smoothly transitions (0.6s ease) to match the currently active card's badge color every time the active card changes.
+      ● 2017 – 2019
+        SSC (Science)
+        Thakurgaon Govt. Boys' High School
+        GPA: 5.00
+  - Small graduation-cap doodle icon positioned bottom-right corner of this column, exactly 
+    as in the reference screenshot
 
-PROGRESS INDICATOR: a thin vertical rail (3px wide, ~160px tall) with a fill bar inside that grows in height continuously (not steppy) based on raw scroll progress (0-100%), plus a small "X / 4" text label below it.
+COLUMN 3 — "Skills"
+  - Heading: bold, blue, same style, with the blue sparkle/starburst doodle icon floating 
+    near the top-right of this heading (as in reference)
+  - Below heading: skill tags as rounded-pill badges (white/cream background, thin border, 
+    dark text, small padding), arranged in a wrapping flex-row grid with consistent gap 
+    (~8-10px), matching the exact pill shape/size/shadow from the reference screenshot
+  - IMPORTANT: bold/highlight a few standout pills with a solid darker fill + white text 
+    (like "MongoDB" is bolded in the reference) — apply this bold treatment to: 
+    React, Next.js, Node.js, Python, MongoDB, LangChain
+  - Group and order pills by category (no visible category labels needed — just flow them 
+    in this order so most relevant/impressive skills appear first):
+      React, Next.js, Node.js, TypeScript, JavaScript (ES6+), Python, Redux, Express.js, 
+      Django, FastAPI, Tailwind CSS, HTML5, CSS3, MongoDB, Redis, Qdrant, 
+      Supabase (PostgreSQL), Firebase, Docker, Vercel, LangChain, LangGraph, RAG, LLM, 
+      Agentic AI, Generative AI, Scikit-learn, Pandas, NumPy, XGBoost, SHAP, R, SPSS, Stata, 
+      Git, Nginx, Streamlit, Jest, JWT, CI/CD, Webpack
+  - If this creates more rows than the reference screenshot shows, that's fine — let the 
+    column grow taller naturally; keep pill size/spacing identical to reference regardless 
+    of row count
 
-JS SCROLL LOGIC (exact formula — do not replace with a fire-once Intersection Observer):
-function onScroll(){
-  const rect = stackWrap.getBoundingClientRect();
-  const total = rect.height - window.innerHeight;
-  const scrolled = Math.min(Math.max(-rect.top, 0), total);
-  const progress = total > 0 ? scrolled / total : 0;
-  const idx = Math.min(cards.length - 1, Math.floor(progress * cards.length));
-  setActive(idx);
-  railFill.style.height = (progress * 100) + '%';
-}
-window.addEventListener('scroll', onScroll, { passive: true });
+═══════════════════════════════════════════
+2. TYPOGRAPHY & COLOR — REUSE EXISTING TOKENS
+═══════════════════════════════════════════
+- Column headings: same font-family/weight/size/color as other blue bold headings elsewhere 
+  on the site (e.g. "What I Do", "Selected Work", "About me!")
+- Timeline entry bold text: same dark near-black color used for card titles elsewhere on 
+  the site
+- Timeline entry muted text (company/school names): same muted gray used for card 
+  descriptions elsewhere on the site
+- Dot colors: reuse the exact 4 accent colors already defined in the site's Tailwind theme 
+  (green, blue/teal, pink/magenta, purple) — do not introduce new colors
+- Skill pill default state: white/cream bg, thin dark border, dark text — matching any 
+  existing pill/tag component already used on the site (e.g. category tags on project cards)
+- Skill pill "bolded" state: solid dark/black fill, white bold text — same treatment style 
+  as the site's primary black CTA buttons
 
-setActive(newIndex) must, every time the index changes:
-1. Remove 'active' from the current card, add 'exiting'.
-2. Remove 'pre-enter'/'exiting' from the new card, add 'active'.
-3. Replay the pencil-sketch draw-in (below) on the newly active card's icon.
-4. Update the glow blob's background-color and the rail label text.
-5. After 600ms, reset the old card's class back to 'pre-enter' so it can correctly re-enter if the user scrolls back up.
-
-PENCIL-SKETCH DRAW-IN (inside each card's icon, replays every time that card becomes active):
-Build each icon as inline SVG <path> elements with stroke only (class="sketch-path", fill:none, stroke-linecap:round). On activation, for each path: get `path.getTotalLength()`, set stroke-dasharray/stroke-dashoffset to that length with transition:none, force reflow, then transition stroke-dashoffset to 0 over .5s ease-out, staggering each path in the icon by 120ms — so the icon looks hand-sketched stroke by stroke. Icon content: Card 1 = "</>" brackets; Card 2 = small circles (nodes) then connecting lines (neural diagram); Card 3 = 3 stacked cylinder/ellipse layers bottom-to-top; Card 4 = axis lines then bars growing bottom-to-top, staggered.
-
-CARD CONTENT (exact):
-Card 1 — Web Development — badge #B4E24C — "Building production-grade, responsive web apps with React and Next.js — architecting dynamic UI components with measurable performance gains across 10+ screen sizes." — tags: React.js · Next.js · TypeScript · Redux Toolkit · Tailwind CSS
-Card 2 — AI & Agent Engineering — badge #C6BFF2 — "Architecting multi-agent LLM systems — a 9-node LangGraph pipeline that autonomously researches, fact-checks, and self-corrects via RAG and Mistral Large." — tags: LangGraph · LangChain · RAG · Qdrant · Python · LLM Agents
-Card 3 — Backend Development — badge #F2C94C — "Engineering secure, scalable API gateways with JWT auth, refresh-token rotation, and Redis-backed rate limiting — eliminating long-running request bottlenecks." — tags: Node.js · Express.js · MongoDB · Redis · Docker
-Card 4 — Data Science & Analytics — badge #F26B5B — "Applying statistical modeling and machine learning to build predictive analytics platforms — backed by a B.Sc. in Statistics." — tags: Python · Pandas · Scikit-learn · XGBoost · SHAP
-
-ACCESSIBILITY: respect prefers-reduced-motion — disable the transform/blur/rotateX transitions and the sketch-draw animation, falling back to a simple opacity crossfade.
-
-MOBILE (<768px): drop the sticky-stack technique — show all 4 cards in a normal vertical list, each fading/sliding in once via Intersection Observer as it scrolls into view (keep the navbar offset logic and the pencil-sketch draw-in on first appearance).
-
-Use vanilla JS (no GSAP/ScrollTrigger unless already used elsewhere in the project), semantic HTML, fully responsive.
+═══════════════════════════════════════════
+3. TECH REQUIREMENTS
+═══════════════════════════════════════════
+- Build as a reusable <ExperienceEducationSkills /> section component, placed directly below 
+  the projects grid/section in the page composition
+- Break Experience and Education into a shared <TimelineList items={...} dotColors={...} /> 
+  component so both columns use identical markup/styling logic
+- Skills as a <SkillPill label="..." bold={boolean} /> mapped from a simple array/object
+- Fully responsive: 3-col desktop → stacked single column on mobile, same column ORDER 
+  (Experience, Education, Skills), doodle icons scale down proportionally and reposition to 
+  avoid overlapping text on small screens
+- Match spacing/margins to the reference screenshot as closely as pixel values allow (use 
+  the same spacing scale already defined in the site's Tailwind config)
+- Do not change fonts, colors, or component shapes from what already exists in the codebase — 
+  this section must look like it was always part of the same page, matching the reference 
+  screenshot exactly
