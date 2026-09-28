@@ -28,19 +28,19 @@ const EXPERIENCE_DOTS = ["#84cc16", "#0284c7"]; // green, then blue/teal
 
 const EDUCATION_ITEMS: TimelineEntry[] = [
   {
-    period: "2022 – 2026",
+    period: "2020 – 2025",
     title: "B.Sc. in Statistics",
     subtitle: "Mawlana Bhashani Science and Technology University, Tangail",
     detail: "CGPA: 3.27 / 4.00",
   },
   {
-    period: "2019 – 2021",
+    period: "2017 – 2018",
     title: "HSC (Science)",
     subtitle: "Cantonment Public School and College, BUMS, Parbatipur, Dinajpur",
     detail: "GPA: 4.90",
   },
   {
-    period: "2017 – 2019",
+    period: "2015 – 2016",
     title: "SSC (Science)",
     subtitle: "Thakurgaon Govt. Boys' High School",
     detail: "GPA: 5.00",
