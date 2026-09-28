@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { scrollToSection } from "./scrollHelper";
 
 export default function Hero() {
   const [scale, setScale] = useState(1);
@@ -122,12 +123,12 @@ export default function Hero() {
           />
         </div>
 
-        {/* ── 6. Coral Pill Badge: "Full-Stack Developer" (Node 175:271: x=472, y=459) ── */}
+        {/* ── 6. Coral Pill Badge: "Full-Stack Developer" (Node 175:271: x=445, y=462) ── */}
         <div
-          className="absolute bg-[#f85648] content-stretch flex items-center justify-center left-[472px] top-[459px] w-[267px] h-[44px] rounded-[100px] z-30 shadow-sm cursor-default hover:scale-105 transition-transform duration-200"
+          className="absolute bg-[#f85648] content-stretch flex items-center justify-center left-[445px] top-[462px] w-[215px] h-[38px] rounded-full z-30 shadow-sm cursor-default hover:scale-105 transition-transform duration-200 px-[16px]"
           data-node-id="175:271"
         >
-          <p className="[word-break:break-word] font-sans font-medium leading-[normal] relative shrink-0 text-[#fef6f8] text-[24px] text-center tracking-[0.96px] whitespace-nowrap">
+          <p className="[word-break:break-word] font-sans font-semibold leading-[normal] relative shrink-0 text-white text-[17px] text-center tracking-[0.4px] whitespace-nowrap">
             Full-Stack Developer
           </p>
         </div>
@@ -192,47 +193,60 @@ export default function Hero() {
 
         {/* ── 11. Subtitle Value Proposition (Node 175:260: x=40, y=756) ── */}
         <div
-          className="[word-break:break-word] absolute font-sans font-extrabold leading-normal left-[40px] text-[24px] text-black top-[756px] w-[479px] tracking-[0.96px] whitespace-nowrap z-20"
+          className="[word-break:break-word] absolute font-sans font-extrabold leading-[1.35] left-[40px] text-[24px] text-black top-[768px] tracking-[0.96px] whitespace-nowrap z-20 flex flex-col gap-[8px]"
           data-node-id="175:260"
         >
-          <p className="mb-0">I build digital products that are</p>
-          <p>fast, scalable and thoughtfully designed.</p>
+          <p className="m-0">I engineer full-stack web apps &amp; AI-driven systems that are</p>
+          <p className="m-0">fast, scalable, and built for real-world impact.</p>
         </div>
 
         {/* ── 12. Buttons Row (Node 175:261: x=40, y=868) ── */}
         <div
-          className="absolute flex gap-[24px] items-center left-[40px] top-[868px] w-[415px] h-[48px] z-20"
+          className="absolute flex gap-[16px] items-center left-[40px] top-[868px] z-20"
           data-node-id="175:261"
         >
-          {/* Black Primary Button (Node 175:262: w=215, h=48) */}
+          {/* Black Primary Button (Node 175:262: w=220, h=48) */}
           <Link
-            href="#contact"
-            className="bg-black flex gap-[10px] items-center justify-center px-[24px] py-[12px] w-[215px] h-[48px] rounded-[8px] shrink-0 hover:bg-neutral-900 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group shadow-sm"
+            href="/contact"
+            onClick={(e) => {
+              const isHomePage =
+                typeof window !== "undefined" &&
+                (window.location.pathname === "/" ||
+                  ["/about", "/work", "/skills", "/experience", "/contact"].includes(window.location.pathname));
+              if (isHomePage) {
+                e.preventDefault();
+                window.history.pushState(null, "", "/contact");
+                scrollToSection("contact");
+              }
+            }}
+            className="bg-black flex gap-[10px] items-center justify-center px-[18px] py-[12px] w-[220px] h-[48px] rounded-[8px] shrink-0 hover:bg-neutral-900 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group shadow-sm"
             data-node-id="175:262"
           >
             <span className="[word-break:break-word] font-sans font-semibold leading-[normal] text-[16px] text-white whitespace-nowrap">
-              let’s work together
+              Let’s Work Together
             </span>
-            <div className="relative shrink-0 size-[24px]">
+            <div className="relative shrink-0 size-[20px]">
               <img
                 alt=""
-                className="absolute block inset-0 max-w-none size-full invert group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                className="absolute block inset-0 max-w-none size-full group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                 src="/hero-figma/arrow-up-right.svg"
               />
             </div>
           </Link>
 
-          {/* Download CV Button (Node 175:266: w=176, h=48) */}
+          {/* Download CV Button (Node 175:266: w=220, h=48) */}
           <a
-            href="/cv.pdf"
-            download
-            className="flex gap-[10px] items-center justify-center px-[24px] py-[12px] w-[176px] h-[48px] rounded-[8px] shrink-0 group transition-colors"
+            href="/cv/Anthic_Kumar_Singh_CV.pdf"
+            download="Anthic_Kumar_Singh_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex gap-[10px] items-center justify-center px-[18px] py-[12px] w-[220px] h-[48px] rounded-[8px] shrink-0 group transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             data-node-id="175:266"
           >
-            <span className="[word-break:break-word] font-sans font-semibold leading-[normal] text-[16px] text-black group-hover:text-[#1447df] transition-colors whitespace-nowrap">
+            <span className="[word-break:break-word] font-sans font-semibold leading-[normal] text-[18px] text-black group-hover:text-[#1447df] transition-colors whitespace-nowrap">
               Download Cv
             </span>
-            <div className="relative shrink-0 size-[24px]">
+            <div className="relative shrink-0 size-[22px]">
               <img
                 alt=""
                 className="absolute block inset-0 max-w-none size-full group-hover:translate-y-0.5 transition-transform"
@@ -242,9 +256,9 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* ── 13. Wavy Underline for Download CV (Node 175:307: x=287, y=913, w=155, h=14.26) ── */}
+        {/* ── 13. Wavy Underline for Download CV (Node 175:307: x=308, y=913, w=155, h=14.26) ── */}
         <div
-          className="absolute left-[287px] top-[913px] w-[155px] h-[14.26px] z-20 pointer-events-none"
+          className="absolute left-[308px] top-[913px] w-[160px] h-[14.26px] z-20 pointer-events-none"
           data-node-id="175:307"
         >
           <img
@@ -254,9 +268,9 @@ export default function Hero() {
           />
         </div>
 
-        {/* ── 14. Big Yellow Sunburst Star (Node 175:302: x=512, y=556, w=262, h=262) ── */}
+        {/* ── 14. Yellow Sunburst Star (Node 175:302) ── */}
         <div
-          className="absolute left-[512px] top-[556px] size-[262px] z-0 pointer-events-none"
+          className="absolute left-[573px] top-[617px] size-[140px] z-0 pointer-events-none"
           data-node-id="175:302"
         >
           <img
@@ -302,7 +316,7 @@ export default function Hero() {
               <img
                 alt="Anthic Kumar Singh"
                 className="absolute h-[109.03%] left-0 max-w-none top-0 w-full object-cover"
-                src="/hero-figma/hero-image.png"
+                src="/hero-image.png"
               />
             </div>
           </div>

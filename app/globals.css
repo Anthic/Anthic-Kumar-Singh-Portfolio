@@ -451,6 +451,37 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes infiniteMarqueeReverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: infiniteMarqueeTrack 34s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: infiniteMarqueeReverse 34s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
 @keyframes fadeInModal {
   from { opacity: 0; }
   to { opacity: 1; }

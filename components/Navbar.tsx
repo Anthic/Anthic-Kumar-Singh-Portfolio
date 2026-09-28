@@ -3,17 +3,20 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+import { scrollToSection } from "./scrollHelper";
+
 interface NavItem {
   label: string;
   href: string;
+  targetId: string;
 }
 
 const navItems: NavItem[] = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about", targetId: "about" },
+  { label: "Work", href: "/work", targetId: "work" },
+  { label: "Skills", href: "/skills", targetId: "skills" },
+  { label: "Experience", href: "/experience", targetId: "experience" },
+  { label: "Contact", href: "/contact", targetId: "contact" },
 ];
 
 /**
@@ -86,6 +89,7 @@ export default function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const headerRef = React.useRef<HTMLElement>(null);
+  const isNavigatingRef = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     const updateNavHeight = () => {
@@ -99,6 +103,114 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", updateNavHeight);
   }, []);
 
+  // Sync active nav item with current pathname and on popstate (browser back/forward)
+  React.useEffect(() => {
+    const syncActiveFromUrl = () => {
+      const path = window.location.pathname;
+      const matched = navItems.find((n) => n.href === path);
+      if (matched) {
+        setActiveItem(matched.label);
+      } else if (path === "/") {
+        setActiveItem(null);
+      }
+    };
+
+    syncActiveFromUrl();
+    window.addEventListener("popstate", syncActiveFromUrl);
+    return () => window.removeEventListener("popstate", syncActiveFromUrl);
+  }, []);
+
+  // Scroll spy: update active nav item and URL cleanly without hash as user scrolls
+  React.useEffect(() => {
+    const isHomePage =
+      typeof window !== "undefined" &&
+      (window.location.pathname === "/" ||
+        ["/about", "/work", "/skills", "/experience", "/contact"].includes(window.location.pathname));
+
+    if (!isHomePage) return;
+
+    const handleScroll = () => {
+      if (isNavigatingRef.current) return;
+
+      const scrollY = window.scrollY;
+      const headerH = headerRef.current?.offsetHeight || 72;
+      const triggerY = scrollY + headerH + 100;
+
+      // At the very top (Hero section)
+      if (scrollY < 220) {
+        setActiveItem(null);
+        if (window.location.pathname !== "/") {
+          window.history.replaceState(null, "", "/");
+        }
+        return;
+      }
+
+      // Check section bounding positions
+      let currentItem: NavItem | null = null;
+      for (const item of navItems) {
+        const el = document.getElementById(item.targetId);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          if (triggerY >= top - 20) {
+            currentItem = item;
+          }
+        }
+      }
+
+      if (currentItem) {
+        setActiveItem(currentItem.label);
+        if (window.location.pathname !== currentItem.href) {
+          window.history.replaceState(null, "", currentItem.href);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    const isHomePage =
+      typeof window !== "undefined" &&
+      (window.location.pathname === "/" ||
+        ["/about", "/work", "/skills", "/experience", "/contact"].includes(window.location.pathname));
+
+    if (isHomePage) {
+      e.preventDefault();
+      setActiveItem(item.label);
+      isNavigatingRef.current = true;
+      window.history.pushState(null, "", item.href);
+      const navH = headerRef.current?.offsetHeight || 76;
+      scrollToSection(item.targetId, navH);
+      setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 1200);
+    } else {
+      setActiveItem(item.label);
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const isHomePage =
+      typeof window !== "undefined" &&
+      (window.location.pathname === "/" ||
+        ["/about", "/work", "/skills", "/experience", "/contact"].includes(window.location.pathname));
+
+    if (isHomePage) {
+      e.preventDefault();
+      setActiveItem(null);
+      isNavigatingRef.current = true;
+      window.history.pushState(null, "", "/");
+      scrollToSection("top");
+      setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 1200);
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header
       ref={headerRef}
@@ -108,6 +220,7 @@ export default function Navbar() {
         {/* Brand / Logo */}
         <Link
           href="/"
+          onClick={handleLogoClick}
           className="group inline-flex items-center gap-2 select-none focus:outline-none"
         >
           <span className="font-bold text-[1.28rem] sm:text-[1.38rem] tracking-tight text-[#141416] group-hover:text-black transition-colors font-sans">
@@ -127,7 +240,8 @@ export default function Navbar() {
         >
           {navItems.map((item) => {
             const isHovered = hoveredItem === item.label;
-            const isWaveVisible = isHovered;
+            const isSelected = activeItem === item.label;
+            const isWaveVisible = isHovered || isSelected;
 
             return (
               <div
@@ -138,14 +252,14 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  onClick={() => setActiveItem(item.label)}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`relative inline-flex flex-col items-center text-[15px] lg:text-[15.5px] font-medium tracking-tight transition-colors duration-200 cursor-pointer ${
                     isWaveVisible ? "text-[#111113]" : "text-[#3e3e42] hover:text-[#111113]"
                   }`}
                 >
-                  <span>{item.label}</span>
+                  <span className={isSelected ? "font-semibold text-[#111113]" : ""}>{item.label}</span>
 
-                  {/* Live Horizontal Waving Underline on hover */}
+                  {/* Live Horizontal Waving Underline on hover & active */}
                   <LiveWaveUnderline active={isWaveVisible} />
                 </Link>
               </div>
@@ -205,10 +319,7 @@ export default function Navbar() {
                 <div key={item.label} className="w-fit py-1">
                   <Link
                     href={item.href}
-                    onClick={() => {
-                      setActiveItem(item.label);
-                      setMobileMenuOpen(false);
-                    }}
+                    onClick={(e) => handleNavClick(e, item)}
                     className={`relative inline-flex flex-col items-start text-lg font-medium transition-colors ${
                       isSelected ? "text-zinc-950 font-semibold" : "text-zinc-700 hover:text-zinc-950"
                     }`}

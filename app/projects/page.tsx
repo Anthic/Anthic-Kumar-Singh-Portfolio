@@ -231,7 +231,7 @@ export default function ProjectsPage() {
 
             <div className="pl-0 sm:pl-12">
               {/* Back to home */}
-              <Link href="/#projects" className="inline-flex items-center gap-1.5 text-[13px] text-[#6b7280] hover:text-[#141416] transition-colors mb-2 sm:mb-3 group">
+              <Link href="/work" className="inline-flex items-center gap-1.5 text-[13px] text-[#6b7280] hover:text-[#141416] transition-colors mb-2 sm:mb-3 group">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M 11 7 L 3 7 M 6 3 L 2 7 L 6 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -343,7 +343,7 @@ export default function ProjectsPage() {
               Get in Touch
             </a>
             <Link
-              href="/#about"
+              href="/about"
               className="px-6 py-3 rounded-[10px] border border-[#374151] text-white font-semibold text-[15px] hover:border-[#6b7280] transition-colors"
             >
               About Me

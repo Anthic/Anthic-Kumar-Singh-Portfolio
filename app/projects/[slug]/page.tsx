@@ -749,7 +749,7 @@ export default async function ProjectDetailPage({
               ← Return to All Projects
             </Link>
             <span>•</span>
-            <Link href="/#contact" className="text-[#141416] hover:text-[#1447df] font-semibold">
+            <Link href="/contact" className="text-[#141416] hover:text-[#1447df] font-semibold">
               Get in Touch
             </Link>
           </div>

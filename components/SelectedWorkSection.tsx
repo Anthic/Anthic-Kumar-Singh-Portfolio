@@ -221,10 +221,12 @@ export default function SelectedWorkSection() {
 
   return (
     <section
-      id="projects"
+      id="work"
       aria-label="Selected Work"
       className="w-full bg-[#fef9f5] pt-16 sm:pt-20 pb-20 sm:pb-28 overflow-hidden relative"
     >
+      {/* Backward-compatibility anchor for projects */}
+      <div id="projects" className="sr-only" aria-hidden="true" />
       {/* Coral sparkle left — below & left of carousel */}
       <SparkleStar size={26} color="#f87171" className="absolute left-4 sm:left-8 top-[62%] pointer-events-none select-none z-10" />
 

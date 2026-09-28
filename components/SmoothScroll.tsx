@@ -24,6 +24,9 @@ export default function SmoothScroll({
     });
 
     lenisRef.current = lenis;
+    if (typeof window !== "undefined") {
+      window.__lenis = lenis;
+    }
 
     // Use standard requestAnimationFrame instead of lagSmoothing(0) which freezes scroll on frame drops
     let rafId: number;
@@ -52,6 +55,9 @@ export default function SmoothScroll({
       window.removeEventListener("resize", handleResize);
       lenis.destroy();
       lenisRef.current = null;
+      if (typeof window !== "undefined") {
+        window.__lenis = undefined;
+      }
     };
   }, []);
 

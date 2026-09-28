@@ -78,11 +78,9 @@ export default function AboutSection() {
           </div>
 
           {/* 2. Middle Column: Bio Paragraph */}
-          <div className="max-w-[440px] xl:max-w-[470px]">
+          <div className="max-w-[460px] xl:max-w-[500px]">
             <p className="text-[17px] sm:text-[18px] leading-[1.65] font-medium text-[#141416] tracking-[-0.01em]">
-              I&apos;m a full-stack developer who loves turning ideas into
-              real-world web and mobile applications. I enjoy solving problems,
-              writing clean code and creating smooth user experiences.
+              I&apos;m a full-stack developer and AI engineer passionate about building digital products from concept to scale. From intelligent agentic systems to pixel-perfect interfaces, I thrive on writing maintainable code and engineering smooth user experiences.
             </p>
           </div>
 
