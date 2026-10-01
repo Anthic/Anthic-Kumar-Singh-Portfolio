@@ -7,6 +7,7 @@ import ExperienceEducationSkills from "@/components/ExperienceEducationSkills";
 import ContactSection from "@/components/ContactSection";
 import SmoothScroll from "@/components/SmoothScroll";
 import SectionRouteInitializer from "@/components/SectionRouteInitializer";
+import AiAssistantWidget from "@/components/ai-assistant/AiAssistantWidget";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <ExperienceEducationSkills />
           <ContactSection />
         </main>
+        <AiAssistantWidget />
       </div>
     </SmoothScroll>
   );
